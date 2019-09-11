@@ -11,13 +11,13 @@ body {
 .head {
     /* display: inline-block; */
     background-color: #FEA02F;
-    height: 15vh;
+    height: 25vh;
 }
 
 .logo {
     margin: 20px;
-    width: 10%;
-    height: 60%;
+    width: 150px;
+    height: 150px;
 }
 
 .menu,.search, ul, li, a{
@@ -55,4 +55,5 @@ a:hover {
     height: 5vh;
     background-color: #FEA02F;
     color: #ffffff; 
+    font-size: 1.5rem;
 }

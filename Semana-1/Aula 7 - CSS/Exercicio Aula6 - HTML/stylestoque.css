@@ -11,13 +11,13 @@ body {
 .head {
     /* display: inline-block; */
     background-color: #FEA02F;
-    height: 15vh;
+    height: 25vh;
 }
 
 .logo {
     margin: 20px;
-    width: 10%;
-    height: 60%;
+    width: 150px;
+    height: 150px;
 }
 
 .menu,.search, ul, li, a{
@@ -42,9 +42,26 @@ a:hover {
 }                   
 
 .table-product {
-    background-color: #6D9B51;
+    background-color: #7A972C;
     border: 1px solid black;
+    font-size: 1.5rem;
+    color: #ffffff;
 }
+
+.table-product > caption{
+    text-align: left;
+    font-weight: bold;
+    font-size: 2rem;
+    border-bottom: 0.2em solid #FEA02F;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.table-product td{
+    border: 2px solid black;
+    
+}
+  
 
 
 
@@ -56,4 +73,5 @@ a:hover {
     height: 5vh;
     background-color: #FEA02F;
     color: #ffffff;
+    font-size: 1.5rem;
 }
