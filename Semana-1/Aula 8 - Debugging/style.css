@@ -47,6 +47,19 @@ body{
     color: #ffffff;
 }
   
+/* #dica {
+    position: relative;
+    top: 10%;
+    display: none;
+    background-color: rgb(0, 0, 0);
+    width: 15%;
+    color: #ffffff;
+}
+
+.menu:hover #dica {
+    display: block;
+  } */
+
 .menu a.ativo {
     background-color: #F1C962;
     color: white;
