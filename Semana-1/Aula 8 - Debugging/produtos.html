@@ -5,39 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styleprodutos.css">
-    <title>Produtos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Produtos - TchauMi!</title>
 </head>
 <body>
     <header class="head">
-        <img class="logo"  src="imagens/logo.png" alt="banner tchau">
-        <nav class="menu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="estoque.html">Estoque</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="funcionarios.html">Funcionários</a></li>
-            </ul>
-        </nav>
-        <input class="search"  type="search" placeholder="Pesquisar">
-    </header><br><br><br>
-    <h2 class="subTitle">Formulário para solicitação de produtos</h2><br><br><br><br>
-    <form class="formularioProduto" action="http://soter.ninja/form-viewer/">
+        <img class="image-logo" src="imagens/logo.png" alt="Logo Tchau">
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="estoque.html">Estoque</a>
+            <a class="ativo" href="produtos.html">Produtos</a>
+            <a href="funcionarios.html">Funcionários</a>
+            <input type="text" placeholder="Pesquisar">
+          </div>
+    </header>
+        <h2 class="sub-title">Formulário para solicitação de produtos</h2>
+        <form class="formulario-produto" action="http://soter.ninja/form-viewer/">
         
-        <label for="produto">Produto</label><br>
-        <input  class="field" type="text" name="produto" id="produto" placeholder="Nome do produto"><br><br>
+        <label for="produto">Produto</label>
+        <input  class="field" type="text" name="produto" id="produto" placeholder="Nome do produto">
         
-        <label for="descricao">Descrição</label><br>
-        <input  class="field" type="text" name="descricao" id="descricao" placeholder="Descreva o produto"><br><br>
+        <label for="descricao">Descrição</label>
+        <input  class="field" type="text" name="descricao" id="descricao" placeholder="Descreva o produto">
 
-        <label for="preco">Preço</label><br>
-        <input  class="field" type="text" name="preco" id="preco" placeholder="Insira o preço em R$"><br><br>
+        <label for="preco">Preço</label>
+        <input  class="field" type="text" name="preco" id="preco" placeholder="Insira o preço em R$">
 
-        <label for="quantidade">Quantidade</label><br>
-        <input  class="field" type="number" name="quantidade" id="quantidade"><br><br>
+        <label for="quantidade">Quantidade</label>
+        <input id="quant" class="field" type="number" name="quantidade" id="quantidade">
 
-        <button class="sendForm" type="submit">Enviar</button>
-    </form><br><br>
-    <footer class="endPage">&copy; TchauMi! 2019.</footer>
+        <button class="send-form" type="submit">Enviar</button>
+    </form>
+    <footer class="end-page">&copy; TchauMi! 2019
+        <a href="https://facebook.com" target="_blank" class="fa fa-facebook"></a>
+        <a href="https://twitter.com" target="_blank" class="fa fa-twitter"></a>
+        <a href="https://linkedin.com" target="_blank" class="fa fa-linkedin"></a>
+    </footer>
 </body>
 </html>
