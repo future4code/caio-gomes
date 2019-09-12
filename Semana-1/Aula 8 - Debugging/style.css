@@ -172,18 +172,43 @@ body{
 
 /* ////Inicio Funcionários//// */
 .employee {
+    position: relative;
+    top: 5%;
     text-align: center;
     font-size: 3rem;
     background-color: #6D9B51;
     color: #ffffff;
 }
 
-.order-employee li{
-    font-weight: normal;
-    font-size: 2rem;
-    font-style: oblique;
+.order-employee {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    border-collapse: collapse;
+    width: 50%;
 }
 
+.order-employee td, .order-employee th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.order-employee tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.order-employee tr:hover {
+    background-color: #ddd;
+}
+
+.order-employee th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
 
 /* ////// Inicio Footer////// */
 .end-page {
@@ -221,3 +246,55 @@ body{
     background: #007bb5;
     color: white;
 }
+
+
+
+/* Form do index */
+
+.form-login > h2 {
+    color: #000000;
+    padding: 0px 10px 15px 0px;
+}
+
+.form-login {
+    position: fixed;
+    bottom: 40%;
+    left: 82%;
+    width: 300px;
+    padding: 10px;
+    border: 4px inset #000000;
+    background-color: #ffffff;
+    font-size: 2rem;
+    color: #526334;
+  }
+  
+  .form-login input[type=text], .form-login input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    font-size: 1rem;
+  }
+  
+  .form-login input[type=text]:focus, .form-login input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  .form-login .btn-login {
+    background-color: rgb(231, 103, 18);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  .btn-login:hover {
+    background-color: #AB3B15;
+  }
