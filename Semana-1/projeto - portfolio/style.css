@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Rubik', sans-serif;
+
+}
+
+.head {
+    font-size: 4rem;
+    height: 80vh;
+    text-align: center;
+}
+
+#first-name {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 10rem;
+}
+
+#last-name {
+    position: relative;
+    left: 5%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 7rem;
+    text-transform: uppercase;
+}
+
+#stack {
+    position: relative;
+    top: 50px;
+    color: rgb(204, 1, 69);
+}
+
+.menu a{
+    display: inline-block;
+    position: relative;
+    top: 100px;
+    padding: 20px;
+    font-size: 2rem;
+    color: #000000;
+}
+
+
+.link-grow {
+    transition: all .3s ease-in-out;
+}
+.link-grow:hover {
+      transform: scale(1.1);
+}
+
+.about {
+    text-align: center;
+    background-color: #0093D3;
+    font-size: 2rem;
+    height: 70%;
+    color: #ffffff;
+    padding: 20px;
+}
+
+#par {
+    margin-top: 2%;
+}
+
+
+.school, .work, .me {
+    display: inline-block;
+    width: 25%;
+    border: 3px groove yellow;
+    border-radius: 5px;
+    list-style: none;
+}
+
+.me {
+    position: relative;
+    top: 50px;
+    width: 35%;
+    text-transform: capitalize;
+}
+
+
+.school {
+    position: relative;
+    right: 20%;
+    bottom: 40px;
+}
+
+.school > li:first-child, .work > li:first-child {
+    color: #000000;
+    font-size: 3rem;
+}
+
+.work {
+    position: relative;
+    left: 20%;
+    bottom: 40px;
+}
+
+
+
+
+.project {
+    text-align: center;
+    background-color: #CC016B;
+    font-size: 2rem;
+    height: 50vh;
+}
+
+.skill {
+    text-align: center;
+    background-color: #FFF10D;
+    font-size: 2rem;
+    height: 50vh;
+}
+
+.talk {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 2rem;
+    /* height: 50vh; */
+}
+
+.talk h2 {
+    text-align: center;
+    padding: 20px;
+}
+
+.talk p {
+    position: relative;
+    left: 50%;
+}
+
+.contact {
+    width: 40%;
+    height: 50%;
+    display: block;
+    border: 1px solid red;
+    font-size: 2rem;
+}
+
+.contact input {
+    font-size: 2rem;
+}
+
+.medias {
+    border: 1px solid red;
+    width: 150px;
+    display: block;
+    position: relative;
+    bottom: 40%;
+    left: 80%;
+}
+
+.contact-form {
+    width: 30%;
+    padding: 20px;
+    margin: 0 0 20px 20px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 20px;
+    color: #000000;
+}
+
+input[type=text], textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    
+}
+  
+button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 2rem;
+}
+  
+button:hover {
+    background-color: #FFF10D;
+}
+  
