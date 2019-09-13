@@ -23,7 +23,7 @@ body {
 
 #last-name {
     position: relative;
-    left: 5%;
+    /* left: 5%; */
     font-family: 'Ubuntu', sans-serif;
     font-size: 7rem;
     text-transform: uppercase;
@@ -100,8 +100,25 @@ body {
     text-align: center;
     background-color: #CC016B;
     font-size: 2rem;
-    height: 50vh;
+    height: 100%;
     color: #ffffff;
+}
+
+.project h2 {
+    padding: 20px;
+}
+
+.project img {
+    position: relative;
+    width: 50%;
+    height: 500px;
+    border: 2px solid #ffffff;
+    margin-bottom: 20px;
+}
+
+.project p {
+    margin: 20px;
+    font-size: 3rem;
 }
 
 .skill {
@@ -109,13 +126,20 @@ body {
     background-color: #FFF10D;
     font-size: 2rem;
     height: 50vh;
+    padding: 50px;
+    color: #000000;
+}
+
+.skill ul {
+    list-style: none;
+    padding: 30px;
 }
 
 .talk {
     background-color: #000000;
     color: #ffffff;
     font-size: 2rem;
-    /* height: 50vh; */
+    height: 80vh;
 }
 
 .talk h2 {
@@ -128,31 +152,13 @@ body {
     left: 50%;
 }
 
-.contact {
-    width: 40%;
-    height: 50%;
-    display: block;
-    border: 1px solid red;
-    font-size: 2rem;
-}
-
-.contact input {
-    font-size: 2rem;
-}
-
-.medias {
-    border: 1px solid red;
-    width: 150px;
-    display: block;
-    position: relative;
-    bottom: 40%;
-    left: 80%;
-}
-
 .contact-form {
     width: 30%;
+    height: 70%;
     padding: 20px;
-    margin: 0 0 20px 20px;
+    display: inline-block;
+    position: relative;
+    left: 5%;
     border-radius: 5px;
     background-color: #ffffff;
     padding: 20px;
@@ -183,7 +189,13 @@ button {
 button:hover {
     background-color: #FFF10D;
 }
-  
+
+.medias {
+    width: 18%;
+    position: relative;
+    left: 42%;
+}
+
 .fa {
     padding: 20px;
     font-size: 30px;
@@ -201,7 +213,6 @@ button:hover {
     color: white;
 }
   
-
 .fa-github {
     background: #000000;
     color: white;
@@ -210,4 +221,12 @@ button:hover {
 .fa-google {
     background: #dd4b39;
     color: white;
+}
+
+.gif {
+    position: relative;
+    left: 5%;
+    bottom: 10%;
+    width: 300px;
+    height: 250px;
 }
