@@ -11,9 +11,16 @@ body {
 }
 
 .head {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     font-size: 4rem;
     height: 80vh;
     text-align: center;
+}
+
+.menu {
+    grid-row: 3 / 4;
 }
 
 #first-name {
@@ -22,22 +29,17 @@ body {
 }
 
 #last-name {
-    position: relative;
-    /* left: 5%; */
     font-family: 'Ubuntu', sans-serif;
     font-size: 7rem;
     text-transform: uppercase;
 }
 
 #stack {
-    position: relative;
-    top: 50px;
+    margin-top: 50px;
     color: rgb(204, 1, 69);
 }
 
 .menu a{
-    display: inline-block;
-    position: relative;
     top: 100px;
     padding: 20px;
     font-size: 2rem;
@@ -66,21 +68,18 @@ body {
 }
 
 .school, .work, .me {
-    display: inline-block;
     width: 25%;
     border-radius: 5px;
     list-style: none;
 }
 
 .me {
-    position: relative;
     top: 50px;
     width: 35%;
     text-transform: capitalize;
 }
 
 .school {
-    position: relative;
     right: 20%;
     bottom: 120px;
 }
@@ -91,12 +90,17 @@ body {
 }
 
 .work {
-    position: relative;
     left: 20%;
     bottom: 40px;
 }
 
 .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 1fr 1fr 30px;
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     background-color: #CC016B;
     font-size: 2rem;
@@ -105,13 +109,14 @@ body {
 }
 
 .project h2 {
+    grid-column: 1 / 4;
+    align-self: center;
     padding: 20px;
 }
 
 .project img {
-    position: relative;
-    width: 50%;
-    height: 500px;
+    width: 90%;
+    height: 300px;
     border: 2px solid #ffffff;
     margin-bottom: 20px;
 }
@@ -122,11 +127,23 @@ body {
 }
 
 .skill {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
     background-color: #FFF10D;
     font-size: 2rem;
     height: 50vh;
     padding: 50px;
+    color: #000000;
+}
+
+.skill > h2 {
+    grid-column: 1 / -1;
+}
+
+.skill > h3 {
+    list-style: disc;
     color: #000000;
 }
 
@@ -136,32 +153,29 @@ body {
 }
 
 .talk {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     background-color: #000000;
     color: #ffffff;
     font-size: 2rem;
     height: 80vh;
 }
 
-.talk h2 {
+.talk >  h2 {
+    grid-column: 1 / -1;
     text-align: center;
     padding: 20px;
 }
 
-.talk p {
-    position: relative;
-    left: 50%;
-}
-
 .contact-form {
-    width: 30%;
-    height: 70%;
-    padding: 20px;
+    grid-column: 2;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
     display: inline-block;
-    position: relative;
-    left: 5%;
     border-radius: 5px;
     background-color: #ffffff;
-    padding: 20px;
     color: #000000;
 }
 
@@ -191,15 +205,19 @@ button:hover {
 }
 
 .medias {
-    width: 18%;
-    position: relative;
-    left: 42%;
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 80px 100px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
 }
 
 .fa {
-    padding: 20px;
-    font-size: 30px;
-    width: 50px;
+    padding: 20px 10px 10px;
+    font-size: 1rem;
     text-align: center;
     text-decoration: none;
 }
@@ -214,19 +232,13 @@ button:hover {
 }
   
 .fa-github {
-    background: #000000;
+    grid-row: 2;
+    background: #2e2b2b;
     color: white;
 }
 
 .fa-google {
+    grid-row: 3;
     background: #dd4b39;
     color: white;
-}
-
-.gif {
-    position: relative;
-    left: 5%;
-    bottom: 10%;
-    width: 300px;
-    height: 250px;
 }
