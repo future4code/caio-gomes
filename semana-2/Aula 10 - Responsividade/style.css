@@ -1,0 +1,87 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: red;
+    height: 15vh;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 10px;
+    background-color: white;
+}
+
+
+.item-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 20vh;
+    margin: 10px;
+    font-size: 2rem;
+}
+
+.double-box {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1/4;
+    grid-row: 2;
+}
+
+.number-1, .number-4 {
+    background-color: blue;
+}
+
+.number-2, .number-5 {
+    background-color: yellow;
+}
+
+.number-3, .number-6 {
+    background-color: green;
+}
+
+.number-7, .number-8 {
+    background-color: black;
+    color: white;
+    /* width: 45vw; */
+    height: 45vh;
+}
+
+@media (max-width: 800px) {
+    section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+
+    .number-3, .number-6, .number-11 {
+        grid-column: 1 / -1;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    section, footer, main{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .number-7, .number-8 {
+        width: 100%;  /*Não consegui resolver o tamanho das divs*/
+        height: 20vh;
+        margin: 10px;
+    }
+}
