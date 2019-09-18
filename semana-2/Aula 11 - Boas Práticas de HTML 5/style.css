@@ -73,9 +73,17 @@ figcaption {
 }
 
 .video-interno {
+    grid-row: 2;
     display: grid;
     grid-template-rows: 1fr 3fr;
     justify-content: center;
+    align-items: center;
+}
+
+.videos {
+    grid-row: 2 / 4;
+    width: 80vw;
+    height: 50vh;
 }
 
 .im-footer {
@@ -89,13 +97,8 @@ figcaption {
     text-align: center;
 }
 
-.videos {
-    width: 80vw;
-    height: 50vh;
-}
-
 @media (max-width: 500px) {
-    main, .thumb-grid, .video-interno {
+    main, .thumb-grid {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -116,15 +119,15 @@ figcaption {
     .thumb {
         width: 100%;
         height: 30vh;
+        margin: 0;
+        padding: 0;
     }
 
+    .thumb{
+        transition: all .3s ease-in-out;
+    }
+    
     .im-footer {
         font-size: .8rem;
     }
-
-    .title-video {
-        
-    }
-
-
 }   
