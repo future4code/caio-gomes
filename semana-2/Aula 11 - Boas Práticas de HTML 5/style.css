@@ -98,12 +98,15 @@ figcaption {
 }
 
 @media (max-width: 500px) {
-    main, .thumb-grid {
+    main, .thumb-grid, .video-interno {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
     }
 
+    .content {
+        background-color: #000000;
+    }
     .menu-top {
         height: 10vh;;
     }
@@ -129,5 +132,14 @@ figcaption {
     
     .im-footer {
         font-size: .8rem;
+    }
+
+    .title-video {
+        font-size: 2rem;
+        color: white
+    }
+
+    .videos {
+        width: 100%;
     }
 }   
