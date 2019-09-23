@@ -28,5 +28,13 @@ function gerarTarefa(){
             document.getElementById("domingo").appendChild(novoItem);
         }
         document.querySelector("input").value = "";
+        
 }
 
+function apagarItens(){
+    const target = document.querySelector("li");
+    
+    if (target.parentNode) {
+        target.parentNode.removeChild(target);
+    }
+}
