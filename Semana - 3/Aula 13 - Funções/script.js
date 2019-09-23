@@ -11,20 +11,23 @@ function gerarTarefa (){
     const sextaFeira = document.getElementById("sexta");
     const sabadao = document.getElementById("sabado");
     const domingueira = document.getElementById("domingo")
+    document.querySelector("input").value = "";
 
         if (diaEscolhido === "segunda"){
-            alert("oi segunda");
+            segundaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
         }else if (diaEscolhido === "terca"){
-            alert("oi terça");
+            tercaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
         }else if (diaEscolhido === "quarta"){
-            alert("oi quarta");
+            quartaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
         }else if (diaEscolhido === "quinta"){
-            alert("oi quinta");
+            quintaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
         }else if (diaEscolhido === "sexta"){
-            alert("oi sexta");
+            sextaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
         }else if (diaEscolhido === "sabado"){
-            alert("oi sabado");
+            sabadao.innerHTML += "<li>" + valorDoInput + "</li>";
         }else {
-            alert("oi domingo");
+            domingueira.innerHTML += "<li>" + valorDoInput + "</li>";
         }
+
+        
 }
