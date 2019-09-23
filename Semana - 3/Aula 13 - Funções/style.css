@@ -60,6 +60,12 @@ section  div {
     font-size: 2rem;
     background-color: #465484;
     color: white;
+    box-shadow: 3px 3px 3px #333;
+    border-radius: 5px;
+}
+
+div p {
+    border-bottom: 3px double white;
 }
 
 #apagar {

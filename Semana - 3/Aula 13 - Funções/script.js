@@ -8,29 +8,24 @@ function semInput() {
 
 function gerarTarefa(){
     const valorDoInput = document.querySelector("input").value;
-    const diaEscolhido = document.querySelector("select").value;
-    const segundaFeira = document.getElementById("segunda");
-    const tercaFeira = document.getElementById("terca");
-    const quartaFeira = document.getElementById("quarta");
-    const quintaFeira = document.getElementById("quinta");
-    const sextaFeira = document.getElementById("sexta");
-    const sabadao = document.getElementById("sabado");
-    const domingueira = document.getElementById("domingo")
-    
-        if (diaEscolhido === "segunda"){
-            segundaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
-        }else if (diaEscolhido === "terca"){
-            tercaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
-        }else if (diaEscolhido === "quarta"){
-            quartaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
-        }else if (diaEscolhido === "quinta"){
-            quintaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
-        }else if (diaEscolhido === "sexta"){
-            sextaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
-        }else if (diaEscolhido === "sabado"){
-            sabadao.innerHTML += "<li>" + valorDoInput + "</li>";
+    const diaEscolhido = document.getElementById("diasDaSemana").value;
+    const novoItem = document.createElement('li');
+    novoItem.textContent = valorDoInput;
+        
+        if (diaEscolhido === "segunda") {
+            document.getElementById("segunda").appendChild(novoItem);
+        }else if (diaEscolhido === "terca") {
+            document.getElementById("terca").appendChild(novoItem);
+        }else if (diaEscolhido === "quarta") {
+            document.getElementById("quarta").appendChild(novoItem);
+        }else if (diaEscolhido === "quinta") {
+            document.getElementById("quinta").appendChild(novoItem);
+        }else if (diaEscolhido === "sexta") {
+            document.getElementById("sexta").appendChild(novoItem);
+        }else if (diaEscolhido === "sabado") {
+            document.getElementById("sabado").appendChild(novoItem);
         }else {
-            domingueira.innerHTML += "<li>" + valorDoInput + "</li>";
+            document.getElementById("domingo").appendChild(novoItem);
         }
         document.querySelector("input").value = "";
 }
