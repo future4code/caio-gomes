@@ -45,18 +45,18 @@ select {
 
 section {
     display: flex;
+    flex-wrap: wrap;
     margin: 10px;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 
-section  div {
+section > div {
     border: 3px solid black;
-    height: 25vh;
     margin: 10px;
     padding: 10px;
     height: 50vh;
-    width: 15vw;
+    width: 300px;
     font-size: 2rem;
     background-color: #465484;
     color: white;
@@ -77,8 +77,12 @@ div p {
     background-color: rgb(83, 11, 11);
 }
 
-input, select, button {
+input, select, button, #horas {
     height: 50%;
     border: none;
     padding: 0 10px;
+}
+
+#horas {
+    background-color: #465484;
 }
