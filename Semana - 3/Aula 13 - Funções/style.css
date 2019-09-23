@@ -1,30 +1,78 @@
 html, body {
     margin: 0;
     padding: 0;
+    font-family:Helvetica, sans-serif;
 }
 
 header {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    align-items: center;
+    /* margin: 20px; */
+    background-color: #DDCB93;
+    height: 10vh;
+}
+
+header label {
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 15px;
+    color: white;
+}
+
+input {
+    font-size: 2rem;
+}
+
+button {
+    cursor: pointer;
+    background-color: #3D4A74;
+    color: white;
+    font-size: 2rem;
+    border-radius: 5px;
+    margin: 0 20px;
+}
+
+button:hover {
+    background-color: #6d7cac;
+}
+
+select {
+    background-color: #C2492F;
+    color: white;
+    font-size: 1.5rem;
 }
 
 section {
     display: flex;
-    flex-wrap: wrap;
-    margin: 0 10px;
-    justify-content: center;
+    margin: 10px;
+    justify-content: space-between;
 }
 
 
-section > div {
-    border: 1px dashed black;
-    border-bottom: 0;
-    border-top: 0;
-    min-height: 25vh;
+section  div {
+    border: 3px solid black;
+    height: 25vh;
     margin: 10px;
     padding: 10px;
     height: 50vh;
-    min-width: 400px;
-    font-size: 30px;
+    width: 15vw;
+    font-size: 2rem;
+    background-color: #465484;
+    color: white;
+}
+
+#apagar {
+    background-color: rgb(189, 29, 29);
+    cursor: pointer;
+}
+
+#apagar:hover{
+    background-color: rgb(83, 11, 11);
+}
+
+input, select, button {
+    height: 50%;
+    border: none;
+    padding: 0 10px;
 }

@@ -22,16 +22,16 @@ function gerarTarefa(){
         }else if (diaEscolhido === "terca"){
             tercaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
         }else if (diaEscolhido === "quarta"){
-                quartaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
-            }else if (diaEscolhido === "quinta"){
-                quintaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
-            }else if (diaEscolhido === "sexta"){
-                sextaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
-            }else if (diaEscolhido === "sabado"){
-                sabadao.innerHTML += "<li>" + valorDoInput + "</li>";
-            }else {
-                domingueira.innerHTML += "<li>" + valorDoInput + "</li>";
-            }
-        
+            quartaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
+        }else if (diaEscolhido === "quinta"){
+            quintaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
+        }else if (diaEscolhido === "sexta"){
+            sextaFeira.innerHTML += "<li>" + valorDoInput + "</li>";
+        }else if (diaEscolhido === "sabado"){
+            sabadao.innerHTML += "<li>" + valorDoInput + "</li>";
+        }else {
+            domingueira.innerHTML += "<li>" + valorDoInput + "</li>";
+        }
         document.querySelector("input").value = "";
 }
+
