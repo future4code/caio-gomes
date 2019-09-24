@@ -20,13 +20,12 @@ function buscaItem(chave) {
         idade: document.getElementById("idade").value,
         email: document.getElementById("email").value
     }
-    console.log(cadastro);
+      
         salvaItem("Alunos", cadastro);
 }
 
 function alunosInscritos() {
     const inscritos = buscaItem("Alunos");
-    inscritos = document.createElement("div");
+    console.log(inscritos);
+    
 }
-
-
