@@ -7,34 +7,38 @@ function semInput() {
 }
 
 function gerarTarefa(){
-    const valorDoInput = document.querySelector("input").value;
-    const diaEscolhido = document.getElementById("diasDaSemana").value;
-    const novoItem = document.createElement('li');
-    novoItem.textContent = valorDoInput;
+    const nomeDaNovaTarefa = document.getElementById("novaTarefa").value;
+    const diaDaSemanaSelecionado = document.getElementById("diasDaSemana").value;
+    const listaDeTarefasSelecionada = document.querySelector("#" + diaDaSemanaSelecionado + " > .content");
+
+    const novasTarefas = document.createElement("li");
+        novasTarefas.innerText = nomeDaNovaTarefa
+        novasTarefas.onclick = riscaTarefa;
         
-        if (diaEscolhido === "segunda") {
-            document.getElementById("segunda").appendChild(novoItem);
-        }else if (diaEscolhido === "terca") {
-            document.getElementById("terca").appendChild(novoItem);
-        }else if (diaEscolhido === "quarta") {
-            document.getElementById("quarta").appendChild(novoItem);
-        }else if (diaEscolhido === "quinta") {
-            document.getElementById("quinta").appendChild(novoItem);
-        }else if (diaEscolhido === "sexta") {
-            document.getElementById("sexta").appendChild(novoItem);
-        }else if (diaEscolhido === "sabado") {
-            document.getElementById("sabado").appendChild(novoItem);
-        }else {
-            document.getElementById("domingo").appendChild(novoItem);
+        if(nomeDaNovaTarefa !== ""){
+            listaDeTarefasSelecionada.append(novasTarefas);
+            limpaCampo();
+        } else {
+            alert("Insira o nome da tarefa");
         }
-        document.querySelector("input").value = "";
+
+    }
+
+function limpaCampo(){
+    document.getElementById("novaTask").value = "";
+}
         
+function riscaTarefa(event){
+    const target = event.target;
+    target.classList.toggle("tarefa-feita");
 }
 
-function apagarItens(){
-    const target = document.querySelector("li");
-    
-    if (target.parentNode) {
-        target.parentNode.removeChild(target);
-    }
+function apagaTarefa(){
+    const todasAsTarefas = document.querySelectorAll(".content");
+        if(confirm("Quer apagar tudo?")){
+            for(let diaDaSemana of todasAsTarefas){
+                diaDaSemana.innerHTML = "";
+            }
+        }
+        
 }
