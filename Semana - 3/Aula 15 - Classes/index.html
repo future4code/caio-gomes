@@ -22,23 +22,18 @@
     <button id="btnPost" onclick="criarPost()">Postar</button>
     </section>
     <hr>
+    <h2>Posts Publicados:</h2>
     <ul id="post-aqui">
 
     </ul>
     
     <script>
 
-        function criarPost() { 
-            const tituloInformado = document.getElementById("titulo").value;
-            const autorInformado = document.getElementById("autor").value;
-            const conteudoInformado = document.getElementById("conteudo").value;
-            
-
-            class Post {
-                constructor(titulo, autor, conteudo){
-                    this.titulo = tituloInformado;
-                    this.autor = autorInformado;
-                    this.conteudo = conteudoInformado;
+       class Post {
+            constructor(titulo, autor, conteudo){
+                this.titulo = titulo;
+                this.autor = autor;
+                this.conteudo = conteudo;
                 }
                
                 postFeito(){
@@ -46,13 +41,18 @@
                         return postFoiFeito;
                     }
                 }   
+        const listaDePosts = [];
+       
+        function criarPost() { 
+            const tituloInformado = document.getElementById("titulo").value;
+            const autorInformado = document.getElementById("autor").value;
+            const conteudoInformado = document.getElementById("conteudo").value;
             
-            const post1 = new Post ("Titulo", "Autor", "Conteudo");
-            
+            const post1 = new Post (tituloInformado, autorInformado, conteudoInformado);
 
-            const listaDePosts = [post1];
+            listaDePosts.push(post1);
             console.log(listaDePosts);
-
+            
             const postAqui = document.getElementById("post-aqui");
             for(let posts of listaDePosts){
                 postAqui.innerHTML += "<li> " +
