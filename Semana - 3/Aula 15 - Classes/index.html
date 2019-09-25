@@ -8,6 +8,8 @@
     <title>Blog Post</title>
 </head>
 <body>
+    <h1>Escreva um Post</h1>
+    <section>
     <label for="titulo">Titulo:</label>
     <input type="text" id="titulo">
 
@@ -16,7 +18,48 @@
 
     <label for="conteudo">Conteúdo:</label>
     <textarea id="conteudo" cols="30" rows="10"></textarea>
+    
+    <button id="btnPost" onclick="criarPost()">Postar</button>
+    </section>
+    <hr>
+    <ul id="post-aqui">
+
+    </ul>
+    
     <script>
+
+        function criarPost() { 
+            const tituloInformado = document.getElementById("titulo").value;
+            const autorInformado = document.getElementById("autor").value;
+            const conteudoInformado = document.getElementById("conteudo").value;
+            
+
+            class Post {
+                constructor(titulo, autor, conteudo){
+                    this.titulo = tituloInformado;
+                    console.log(this.titulo)
+                    this.autor = autorInformado;
+                    console.log(this.autor);
+                    this.conteudo = conteudoInformado;
+                    console.log(this.conteudo);
+                }
+               
+                postFeito(){
+                    const postFoiFeito = "Titulo: " + this.titulo + " - " + " Autor: " + this.autor + " - " + " Conteúdo: " + this.conteudo;
+                        return postFoiFeito;
+                    }
+                }   
+            
+            const post1 = new Post ("Titulo", "Autor", "Conteudo");
+            
+            const listaDePosts = [post1];
+
+            const postAqui = document.getElementById("post-aqui");
+            for(let posts of listaDePosts){
+                postAqui.innerHTML += "<li> " + posts.postFeito() + "</li>";
+                
+            }
+        }
     </script>
 </body>
 </html>
