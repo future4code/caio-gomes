@@ -18,11 +18,42 @@
       <label for="idade">Email</label>
       <input type="text" id="email" name="email" placeholder="Email">
       <button onclick="cadastrar()">Cadastrar</button>
-      <!-- <a href="inscritos.html"> -->
-        <button id="botao-inscritos" onclick="alunosInscritos()">Inscritos</button>
-      <!-- </a> -->
+      <a href="inscritos.html">
+        <button id="botao-inscritos">Inscritos</button>
+      </a>
     </div>
+    <div id="teste"></div>
+    <script>
+       const listaDeInscritos = buscaItem("Alunos");
+
+        function cadastrar() {
+          const cadastro = {
+            nome: document.getElementById("nome").value,
+            idade: document.getElementById("idade").value,
+            email: document.getElementById("email").value
+          }
+    
+        listaDeInscritos.push(cadastro);
+
+        salvaItem("Alunos", listaDeInscritos);
+      }
+      
+    
   
-    <script src="script.js"></script>
+        function salvaItem(chave, item) {
+            if(item && chave) {
+            window.localStorage.setItem(chave, JSON.stringify(item));
+          }
+        }
+    
+        function buscaItem(chave) {
+            const valor = window.localStorage.getItem(chave);
+            if (valor) {
+              return JSON.parse(valor);
+            }
+            return [];
+          }
+    
+    </script>
   </body>
   </html>

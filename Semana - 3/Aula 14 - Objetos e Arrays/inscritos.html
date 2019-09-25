@@ -32,4 +32,29 @@
         <div class="container">
         </div>
         <a href="index.html"><button id="botao-voltar">Voltar</button></a>
-        </body></html>
+        
+        <script>
+   
+        const listaDeInscritos = buscaItem('Alunos');
+        
+        const container = document.querySelector(".container")
+
+        for(let inscrito of listaDeInscritos) {
+            container.innerHTML += "<div>" +
+                                      "<p> Nome: " + inscrito.nome + "</p>" +
+                                      "<p> Idade: " + inscrito.idade + "</p>" +
+                                      "<p> Email: " + inscrito.email + "</p>" +
+                                      "</div>"
+        }
+   
+        function buscaItem(chave) {
+        const valor = window.localStorage.getItem(chave);
+        if (valor) {
+          return JSON.parse(valor);
+        }
+          return [];
+      }
+
+        </script>
+       </body>
+</html>
