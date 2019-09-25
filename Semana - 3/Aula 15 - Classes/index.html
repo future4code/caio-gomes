@@ -41,6 +41,7 @@
                         return postFoiFeito;
                     }
                 }   
+        
         const listaDePosts = [];
        
         function criarPost() { 
@@ -48,16 +49,15 @@
             const autorInformado = document.getElementById("autor").value;
             const conteudoInformado = document.getElementById("conteudo").value;
             
-            const post1 = new Post (tituloInformado, autorInformado, conteudoInformado);
-
-            listaDePosts.push(post1);
+            const postNovo = new Post (tituloInformado, autorInformado, conteudoInformado);
+            listaDePosts.push(postNovo);
             console.log(listaDePosts);
             
             const postAqui = document.getElementById("post-aqui");
             for(let posts of listaDePosts){
-                postAqui.innerHTML += "<li> " +
-                                        posts.postFeito() + 
-                                        "</li>";
+                postAqui.innerHTML += "<li>" + "Título: " + tituloInformado + "</li>" +
+                                        "<li>" + "Autor: " + autorInformado  + "</li>" +
+                                        "<li>" + conteudoInformado + "</li>";
             }
             limpaCampo();
         }
