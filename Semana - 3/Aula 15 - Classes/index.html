@@ -11,13 +11,13 @@
     <h1>Escreva um Post</h1>
     <section>
     <label for="titulo">Titulo:</label>
-    <input type="text" id="titulo">
+    <input type="text" id="titulo" class="campo">
 
     <label for="autor">Autor:</label>
-    <input type="text" id="autor">
+    <input type="text" id="autor" class="campo">
 
     <label for="conteudo">Conteúdo:</label>
-    <textarea id="conteudo" cols="30" rows="10"></textarea>
+    <textarea id="conteudo" cols="30" rows="10" class="campo"></textarea>
     
     <button id="btnPost" onclick="criarPost()">Postar</button>
     </section>
@@ -37,11 +37,8 @@
             class Post {
                 constructor(titulo, autor, conteudo){
                     this.titulo = tituloInformado;
-                    console.log(this.titulo)
                     this.autor = autorInformado;
-                    console.log(this.autor);
                     this.conteudo = conteudoInformado;
-                    console.log(this.conteudo);
                 }
                
                 postFeito(){
@@ -52,13 +49,23 @@
             
             const post1 = new Post ("Titulo", "Autor", "Conteudo");
             
+
             const listaDePosts = [post1];
+            console.log(listaDePosts);
 
             const postAqui = document.getElementById("post-aqui");
             for(let posts of listaDePosts){
-                postAqui.innerHTML += "<li> " + posts.postFeito() + "</li>";
-                
+                postAqui.innerHTML += "<li> " +
+                                        posts.postFeito() + 
+                                        "</li>";
             }
+            limpaCampo();
+        }
+
+        function limpaCampo(){
+            document.getElementById("titulo").value = "";
+            document.getElementById("autor").value = "";
+            document.getElementById("conteudo").value = "";
         }
     </script>
 </body>

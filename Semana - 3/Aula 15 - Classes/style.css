@@ -1,6 +1,6 @@
-section {
+section, #post-aqui {
     display: flex;
     flex-direction: column;
     width: 300px;
-    
+
 }
