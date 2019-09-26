@@ -1,0 +1,39 @@
+section {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    font-family: Helvetica, sans-serif;
+
+}
+
+#post-aqui {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr;
+}
+
+div {
+    border: 1px solid black;
+    margin: 10px;
+    
+}
+
+p {
+    list-style: none;
+    padding: 10px;
+}
+
+p:first-child {
+    font-size: 2rem;
+    font-weight: bold;
+    color: red;
+}
+
+p:nth-child(2){
+    font-size: 1.5rem;
+}
+
+p:nth-child(3){
+    font-style: italic;
+}
