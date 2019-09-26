@@ -144,20 +144,23 @@
             const tipoDespesa = document.getElementById("filtro-tipo").value;
             const valorMinimo = document.getElementById("filtro-valor-minimo").value;
             const valorMaximo = document.getElementById("filtro-valor-maximo").value;
+            const novaDespesaFiltrada = document.getElementById("despesas-list-container");
 
             const despesaFiltrada = despesasAcrescentadas.filter((despesa, index, array) => {
-                if (despesa.valor >= parseInt(valorMinimo) && (despesa.tipo === tipoDespesa))  {
-                   return true
-                }
-                return false   
+                return (despesa.valor >= parseInt(valorMinimo) && despesa.tipo === tipoDespesa) ||
+                
+                (despesa.valor <= parseInt(valorMaximo) && despesa.tipo === tipoDespesa) ||
+                   
+                (despesa.tipo === tipoDespesa);
+                    
             })
+                
+                for(let i of despesaFiltrada){
+                    novaDespesaFiltrada.innerHTML += i.despesaFeita();
+                }
                 console.log(despesaFiltrada);
-            
-
-            // despesaFiltrada.innerHTML += despesaFeita();
-            
         }
-        
+
         function limparFiltros() {
             const tipoDespesa = document.getElementById("filtro-tipo").value = "";
             const valorMinimo = document.getElementById("filtro-valor-minimo").value = "";
