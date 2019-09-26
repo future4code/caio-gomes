@@ -16,7 +16,7 @@
                 <div>
                 <div class="input-container">
                     <p class="label-texto">Valor</p>
-                    <input id="valor">
+                    <input type="number" id="valor">
                 </div>
                 <div class="input-container">
                     <p class="label-texto">Tipo (Casa, Viagem, Rolês, Outros)</p>
@@ -58,8 +58,9 @@
                 <p class="label-texto">Valor Máximo</p>
                 <input id="filtro-valor-maximo">
               </div>
-              <button class="botao-comum" id="filtrar-btn">Filtrar</button>
+              <button class="botao-comum" onclick="filtraDespesa()" id="filtrar-btn">Filtrar</button>
               <button class="botao-comum" id="limpar-filtros-btn">Limpar Filtros</button>
+             
             </div>
       
             <div id="despesas-list-container">
@@ -94,6 +95,7 @@
 
 
         let despesasAcrescentadas = []
+        
 
         
         function alertaCamposVazios() {
@@ -142,6 +144,16 @@
                 console.log(despesaDetalhada);
             }
         }
+
+        function filtraDespesa() {
+            console.log(filtraDespesa);
+            const tipoDespesa = document.getElementById("filtro-tipo").value;
+            const valorMinimo = document.getElementById("filtro-valor-minimo").value;
+            const valorMaximo = document.getElementById("filtro-valor-maximo").value;
+        
+                const listaDeDespesas = despesasAcrescentadas.filter((valor, index, array) => {
+                   
+        } 
     
     </script>
 
