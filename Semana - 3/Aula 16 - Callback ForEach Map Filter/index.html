@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section class="cadastro">
+        
+        <h2>Controlador de Despesas</h2>
+        <h3>Cadastrar Despesa</h3>
+        
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor">
+
+        <label for="Tipo">Tipo(Casa, Viagem, Rolês, Outros</label>
+        <select name="tipo" id="tipo">
+            <option>Casa</option>
+            <option>Viagem</option>
+            <option>Rolês</option>
+            <option>Outros</option>
+        </select>
+
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao">
+
+        <button id="btn-despesa" onclick="criarDespesa()">Cadastrar Despesa</button>
+    </section>
+
+    <script>
+    
+        class Despesa {
+            constructor(valor, tipo, descricao){
+                this.valor = valor;
+                this.tipo = tipo;
+                this.descricao = descricao;
+            }
+        }
+
+        let despesasAcrescentadas = []
+
+        function criarDespesa() {
+            const valorDaDespesa = document.getElementById("valor").value;
+            const tipoDaDespesa = document.getElementById("tipo").value;
+            const descricaoDaDespesa = document.getElementById("descricao").value;
+
+            const novaDespesa = new Despesa (valorDaDespesa, tipoDaDespesa, descricaoDaDespesa);
+
+            despesasAcrescentadas.push(novaDespesa);
+            console.log(despesasAcrescentadas);
+
+            limpaCampos()
+        }
+
+        function limpaCampos(){
+            valorDaDespesa = document.getElementById("valor").value = "";
+            tipoDaDespesa = document.getElementById("tipo").value = "";
+            descricaoDaDespesa = document.getElementById("descricao").value = "";
+        }
+    
+    </script>
+
+</body>
+</html>
