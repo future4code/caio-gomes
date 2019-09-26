@@ -51,12 +51,12 @@
 
               <div class="input-container">
                 <p class="label-texto">Valor Mínimo</p>
-                <input id="filtro-valor-minimo">
+                <input type="number" id="filtro-valor-minimo">
               </div>
 
               <div class="input-container">
                 <p class="label-texto">Valor Máximo</p>
-                <input id="filtro-valor-maximo">
+                <input type="number" id="filtro-valor-maximo">
               </div>
               <button class="botao-comum" onclick="filtraDespesa()" id="filtrar-btn">Filtrar</button>
               <button class="botao-comum" id="limpar-filtros-btn">Limpar Filtros</button>
@@ -71,8 +71,8 @@
           <section class="custom-container" id="section-3">
           </section>
     </div>
+
     <script>
-    
         class Despesa {
             constructor(valor, tipo, descricao){
                 this.valor = valor;
@@ -85,18 +85,12 @@
                                      "<p>" + "Tipo: " + this.tipo + "</p>" +
                                      "<p>" + "Descrição: " + this.descricao + "</p>" +
                                      "</div>"
-
+                        
                         return despesas;
-                        console.log(despesas)
                 }   
-        
-        }       
-
-
-
+        }     
+                        
         let despesasAcrescentadas = []
-        
-
         
         function alertaCamposVazios() {
             const valorDaDespesa = document.getElementById("valor").value;
@@ -139,23 +133,26 @@
         function detalharDespesa() {
             const despesaDetalhada = document.getElementById("despesas-list-container");
 
+            despesaDetalhada.innerHTML = "";
+            
             for(let despesa of despesasAcrescentadas){
                 despesaDetalhada.innerHTML += despesa.despesaFeita();
-                console.log(despesaDetalhada);
             }
         }
-
+                
         function filtraDespesa() {
-            console.log(filtraDespesa);
             const tipoDespesa = document.getElementById("filtro-tipo").value;
             const valorMinimo = document.getElementById("filtro-valor-minimo").value;
             const valorMaximo = document.getElementById("filtro-valor-maximo").value;
-        
-                const listaDeDespesas = despesasAcrescentadas.filter((valor, index, array) => {
-                   
-        } 
-    
-    </script>
 
+            const despesaFiltrada = despesasAcrescentadas.filter((despesa, index, array) => {
+                if (despesa.valor > valorMinimo) {
+                  return true
+                }
+                return false
+                })
+            }
+        
+    </script>
 </body>
 </html>
