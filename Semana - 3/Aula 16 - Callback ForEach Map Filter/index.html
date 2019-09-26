@@ -4,31 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <section class="cadastro">
-        
-        <h2>Controlador de Despesas</h2>
-        <h3>Cadastrar Despesa</h3>
-        
-        <label for="valor">Valor:</label>
-        <input type="text" id="valor">
+    <body>
+        <div class="main-container">
+            <section class="custom-container" id="section-1">
+                <h2>Controlador de Despesas</h2>
+                <h3>Cadastrar despesa</h3>
+                <div>
+                <div class="input-container">
+                    <p class="label-texto">Valor</p>
+                    <input id="valor">
+                </div>
+                <div class="input-container">
+                    <p class="label-texto">Tipo (Casa, Viagem, Rolês, Outros)</p>
+                    <select id="tipo">
+                    <option value="Casa">Casa</option>
+                    <option value="Rolê">Rolê</option>
+                    <option value="Viagem">Viagem</option>
+                    <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="input-container">
+                    <p class="label-texto">Descrição</p>
+                    <input id="descricao">
+                </div>
+                </div>
+                <button class="botao-comum" id="cadastrar-despesa-btn" onclick="alertaCamposVazios()">Cadastrar Despesa</button>
+            </section>
+            <hr>
+          <section class="custom-container" id="section-2">
+            <h2>Despesas Detalhadas</h2>
+      
+            <div>
+              <div class="input-container">
+                <p class="label-texto">Tipo (Casa, Viagem, Rolês, Outros)</p>
+                <select id="filtro-tipo">
+                  <option value="Casa">Casa</option>
+                  <option value="Rolê">Rolê</option>
+                  <option value="Viagem">Viagem</option>
+                  <option value="Outros">Outros</option>
+                </select>
+              </div>
 
-        <label for="Tipo">Tipo(Casa, Viagem, Rolês, Outros</label>
-        <select name="tipo" id="tipo">
-            <option>Casa</option>
-            <option>Viagem</option>
-            <option>Rolês</option>
-            <option>Outros</option>
-        </select>
+              <div class="input-container">
+                <p class="label-texto">Valor Mínimo</p>
+                <input id="filtro-valor-minimo">
+              </div>
 
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao">
-
-        <button id="btn-despesa" onclick="criarDespesa()">Cadastrar Despesa</button>
-    </section>
-
+              <div class="input-container">
+                <p class="label-texto">Valor Máximo</p>
+                <input id="filtro-valor-maximo">
+              </div>
+              <button class="botao-comum" id="filtrar-btn">Filtrar</button>
+              <button class="botao-comum" id="limpar-filtros-btn">Limpar Filtros</button>
+            </div>
+      
+            <div id="despesas-list-container">
+                
+            </div>
+          </section>
+          <hr>
+          <section class="custom-container" id="section-3">
+          </section>
+    </div>
     <script>
     
         class Despesa {
@@ -37,9 +78,39 @@
                 this.tipo = tipo;
                 this.descricao = descricao;
             }
-        }
+                despesaFeita() {
+                    const despesas = "<div>" +
+                                     "<p>" + "R$ " + this.valor + "</p>" +
+                                     "<p>" + "Tipo: " + this.tipo + "</p>" +
+                                     "<p>" + "Descrição: " + this.descricao + "</p>" +
+                                     "</div>"
+
+                        return despesas;
+                        console.log(despesas)
+                }   
+        
+        }       
+
+
 
         let despesasAcrescentadas = []
+
+        
+        function alertaCamposVazios() {
+            const valorDaDespesa = document.getElementById("valor").value;
+            const tipoDaDespesa = document.getElementById("tipo").value;
+            const descricaoDaDespesa = document.getElementById("descricao").value;
+            if (valorDaDespesa === ""){
+                alert("Preencha o Valor!!!");
+            }else if (tipoDaDespesa === ""){
+                alert("Escolha o Tipo");
+            }else if (descricaoDaDespesa === ""){
+                alert("Preencha a Descrição!!!")
+            }else {
+                alert("Despesa Cadastrada com Sucesso :)")
+                criarDespesa();
+            }
+        }
 
         function criarDespesa() {
             const valorDaDespesa = document.getElementById("valor").value;
@@ -51,13 +122,25 @@
             despesasAcrescentadas.push(novaDespesa);
             console.log(despesasAcrescentadas);
 
-            limpaCampos()
+            despesasAcrescentadas.value = "";
+
+            limpaCampos();
+            detalharDespesa();
         }
 
         function limpaCampos(){
             valorDaDespesa = document.getElementById("valor").value = "";
             tipoDaDespesa = document.getElementById("tipo").value = "";
             descricaoDaDespesa = document.getElementById("descricao").value = "";
+        }
+
+        function detalharDespesa() {
+            const despesaDetalhada = document.getElementById("despesas-list-container");
+
+            for(let despesa of despesasAcrescentadas){
+                despesaDetalhada.innerHTML += despesa.despesaFeita();
+                console.log(despesaDetalhada);
+            }
         }
     
     </script>
