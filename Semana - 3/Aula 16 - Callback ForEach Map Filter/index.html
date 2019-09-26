@@ -59,7 +59,7 @@
                 <input type="number" id="filtro-valor-maximo">
               </div>
               <button class="botao-comum" onclick="filtraDespesa()" id="filtrar-btn">Filtrar</button>
-              <button class="botao-comum" id="limpar-filtros-btn">Limpar Filtros</button>
+              <button class="botao-comum" onclick="limparFiltros()" id="limpar-filtros-btn">Limpar Filtros</button>
              
             </div>
       
@@ -146,13 +146,23 @@
             const valorMaximo = document.getElementById("filtro-valor-maximo").value;
 
             const despesaFiltrada = despesasAcrescentadas.filter((despesa, index, array) => {
-                if (despesa.valor > valorMinimo) {
-                  return true
+                if (despesa.valor >= parseInt(valorMinimo) && (despesa.tipo === tipoDespesa))  {
+                   return true
                 }
-                return false
-                })
-            }
+                return false   
+            })
+                console.log(despesaFiltrada);
+            
+
+            // despesaFiltrada.innerHTML += despesaFeita();
+            
+        }
         
+        function limparFiltros() {
+            const tipoDespesa = document.getElementById("filtro-tipo").value = "";
+            const valorMinimo = document.getElementById("filtro-valor-minimo").value = "";
+            const valorMaximo = document.getElementById("filtro-valor-maximo").value = "";
+        }
     </script>
 </body>
 </html>
