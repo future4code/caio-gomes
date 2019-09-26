@@ -9,18 +9,18 @@
 </head>
 <body>
     <h1>Escreva um Post</h1>
-    <section>
-    <label for="titulo">Titulo:</label>
-    <input type="text" id="titulo" class="campo">
+        <section>
+        <label for="titulo">Titulo:</label>
+        <input type="text" id="titulo" class="campo">
 
-    <label for="autor">Autor:</label>
-    <input type="text" id="autor" class="campo">
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" class="campo">
 
-    <label for="conteudo">Conteúdo:</label>
-    <textarea id="conteudo" cols="30" rows="10" class="campo"></textarea>
-    
-    <button id="btnPost" onclick="criarPost()">Postar</button>
-    </section>
+        <label for="conteudo">Conteúdo:</label>
+        <textarea id="conteudo" cols="30" rows="10" class="campo"></textarea>
+        
+        <button id="btnPost" onclick="criarPost()">Postar</button>
+        </section>
     <hr>
     <h2>Posts Publicados:</h2>
     <section id="post-aqui">
@@ -28,65 +28,96 @@
     </section>
     
     <script>
+        function buscaItem(chave) {
+            const valor = window.localStorage.getItem(chave);
+                if (valor) {
+                    return JSON.parse(valor);
+                }
+                    return [];
+        }   
+
+        function salvaItem(chave, item) {
+            if(item && chave) {
+                window.localStorage.setItem(chave, JSON.stringify(item));
+            }
+        }
+
+
+
 
        class Post {
-            constructor(titulo, autor, conteudo){
+            constructor(titulo, autor, conteudo, urlDaIMagem){
                 this.titulo = titulo;
                 this.autor = autor;
                 this.conteudo = conteudo;
-                }
+                this.urlDaIMagem = urlDaIMagem;
+            }
                 
-                get meuPost() {
-                  return this.postFeito();
-              }
-
-                postFeito(){
-                    const postFoiFeito = {
-                      titulo : this.titulo,
-                      autor : this.autor,
-                      conteudo : this.conteudo
-                    } 
+            postFeito(){
+                const postFoiFeito = "<div>" +
+                                        "<p>" + "Título: " + this.titulo + "</p>" +
+                                        "<p>" + "Autor: " + this.autor + "</p>" +
+                                        "<p>" + this.conteudo + "</p>" +
+                                        "<img src=" + this.urlDaIMagem +">" + 
+                                        "</div>"
+                    
                     return postFoiFeito;
-                    }
-                }   
+            }
+        }   
                
                     
-        const listaDePosts = [];
 
+        let listaDePosts = [];
        
        function criarPost() { 
+            // Captura dados dos inputs
             const tituloInformado = document.getElementById("titulo").value;
             const autorInformado = document.getElementById("autor").value;
             const conteudoInformado = document.getElementById("conteudo").value;
             
-            const postNovo = new Post (tituloInformado, autorInformado, conteudoInformado);
+            // Cria instância
+            const postNovo = new Post (tituloInformado, autorInformado, conteudoInformado, "https://picsum.photos/200/200");
             
-            
-            listaDePosts.push(postNovo.meuPost);
-            
-            
-            
-            const postAqui = document.getElementById("post-aqui");
-            postAqui.innerHTML = "";
-            
-            for(let posts of listaDePosts){
-                postAqui.innerHTML +=  "<div>" +
-                                        "<p>" + "Título: " + posts.titulo + "</p>" +
-                                        "<p>" + "Autor: " + posts.autor + "</p>" +
-                                        "<p>" + posts.conteudo + "</p>";
-                                        "</div>"
-                console.log(posts)
-                }
-            limpaCampo();
-            
-        }    
-        
+            //Guarda instâncias no array
+            listaDePosts.push(postNovo);
+            console.log(listaDePosts);
 
-        function limpaCampo(){
+            // Armazena no LocalStorage todos os posts após inserir o recém criado
+            salvaItem("PostsSalvosNoLocalStorage", listaDePosts);
+
+            limpaCampo();
+            renderizaPosts();
+        }
+            
+            
+            
+        function renderizaPosts (){
+            const postAqui = document.getElementById("post-aqui");
+            
+            // Limpa área dos Posts para evitar duplicação
+            postAqui.innerHTML = "";
+
+            // Adiciona todos os posts na área de posts
+            for(let posts of listaDePosts){
+                const postComoInstancia = new Post(posts.titulo, posts.autor, posts.conteudo, posts.urlDaImagem);
+                postAqui.innerHTML += postComoInstancia.postFeito();
+                
+            }
+        }
+
+       function limpaCampo(){
             document.getElementById("titulo").value = "";
             document.getElementById("autor").value = "";
             document.getElementById("conteudo").value = "";
         }
+
+        function recuperaPosts() {
+            listaDePosts = buscaItem("PostsSalvosNoLocalStorage")
+            renderizaPosts();
+        }
+
+        // Quando recarrega página posts
+        window.onload = recuperaPosts;
     </script>
 </body>
 </html>
