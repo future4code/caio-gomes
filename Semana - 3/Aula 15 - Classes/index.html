@@ -23,9 +23,9 @@
     </section>
     <hr>
     <h2>Posts Publicados:</h2>
-    <ul id="post-aqui">
+    <section id="post-aqui">
 
-    </ul>
+    </section>
     
     <script>
 
@@ -35,32 +35,52 @@
                 this.autor = autor;
                 this.conteudo = conteudo;
                 }
-               
+                
+                get meuPost() {
+                  return this.postFeito();
+              }
+
                 postFeito(){
-                    const postFoiFeito = "Titulo: " + this.titulo + " - " + " Autor: " + this.autor + " - " + " Conteúdo: " + this.conteudo;
-                        return postFoiFeito;
+                    const postFoiFeito = {
+                      titulo : this.titulo,
+                      autor : this.autor,
+                      conteudo : this.conteudo
+                    } 
+                    return postFoiFeito;
                     }
                 }   
-        
+               
+                    
         const listaDePosts = [];
+
        
-        function criarPost() { 
+       function criarPost() { 
             const tituloInformado = document.getElementById("titulo").value;
             const autorInformado = document.getElementById("autor").value;
             const conteudoInformado = document.getElementById("conteudo").value;
             
             const postNovo = new Post (tituloInformado, autorInformado, conteudoInformado);
-            listaDePosts.push(postNovo);
-            console.log(listaDePosts);
+            
+            
+            listaDePosts.push(postNovo.meuPost);
+            
+            
             
             const postAqui = document.getElementById("post-aqui");
+            postAqui.innerHTML = "";
+            
             for(let posts of listaDePosts){
-                postAqui.innerHTML += "<li>" + "Título: " + tituloInformado + "</li>" +
-                                        "<li>" + "Autor: " + autorInformado  + "</li>" +
-                                        "<li>" + conteudoInformado + "</li>";
-            }
+                postAqui.innerHTML +=  "<div>" +
+                                        "<p>" + "Título: " + posts.titulo + "</p>" +
+                                        "<p>" + "Autor: " + posts.autor + "</p>" +
+                                        "<p>" + posts.conteudo + "</p>";
+                                        "</div>"
+                console.log(posts)
+                }
             limpaCampo();
-        }
+            
+        }    
+        
 
         function limpaCampo(){
             document.getElementById("titulo").value = "";

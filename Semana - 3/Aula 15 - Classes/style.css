@@ -1,4 +1,4 @@
-section, #post-aqui {
+section {
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -6,25 +6,34 @@ section, #post-aqui {
 
 }
 
-ul {
-    border: 1px solid black;
+#post-aqui {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr;
 }
 
-li {
+div {
+    border: 1px solid black;
+    margin: 10px;
+    
+}
+
+p {
     list-style: none;
     padding: 10px;
 }
 
-li:first-child {
+p:first-child {
     font-size: 2rem;
     font-weight: bold;
     color: red;
 }
 
-li:nth-child(2){
+p:nth-child(2){
     font-size: 1.5rem;
 }
 
-li:nth-child(3){
+p:nth-child(3){
     font-style: italic;
 }
