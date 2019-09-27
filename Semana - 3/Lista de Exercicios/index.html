@@ -201,28 +201,27 @@
                         nome: "José",
                         idade: 35,
                         email: "josebacana@gmail.com",
-                        endereco: "Rua Abecedário, 156"
+                        endereço: "Rua Abecedário, 156"
                     }
 
-                    function anonimizarPessoa() {
+                    function anonimizarPessoa(objeto) {
                         const anonimo = {
                             nome: "ANÔNIMO",
-                            idade: 35,
-                            email: "josebacana@gmail.com",
-                            endereco: "Rua Abecedário, 156"
+                            idade: pessoa.idade,
+                            email: pessoa.email,
+                            endereço: pessoa.endereço 
                         }
                             return anonimo
-                        
                     }
-
                     console.log(pessoa);
-                    console.log(anonimizarPessoa())
+                    console.log(anonimizarPessoa(pessoa))
 
 
 
                                                         // Exercícios de Funções de Array
 
                     // 1.
+                        
 
 
 
