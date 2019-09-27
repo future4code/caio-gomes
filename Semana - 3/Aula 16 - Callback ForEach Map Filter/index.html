@@ -152,19 +152,26 @@
                 (despesa.valor <= parseInt(valorMaximo) && despesa.tipo === tipoDespesa) ||
                    
                 (despesa.tipo === tipoDespesa);
-                    
             })
                 
                 for(let i of despesaFiltrada){
                     novaDespesaFiltrada.innerHTML += i.despesaFeita();
                 }
+                
                 console.log(despesaFiltrada);
+                limpaDiv();
+        }
+
+        function limpaDiv(id){
+            document.getElementById("despesas-list-container").innerHTML = ""; 
         }
 
         function limparFiltros() {
             const tipoDespesa = document.getElementById("filtro-tipo").value = "";
             const valorMinimo = document.getElementById("filtro-valor-minimo").value = "";
             const valorMaximo = document.getElementById("filtro-valor-maximo").value = "";
+
+            detalharDespesa();
         }
     </script>
 </body>
