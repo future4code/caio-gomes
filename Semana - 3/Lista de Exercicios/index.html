@@ -40,10 +40,118 @@
 
         // 4.
             /*É uma array com uma lista de números e duas váriaveis, uma propriedade Infinity e outra com 0;
-            Não entendi como funciona o Infinity;
+            Será impresso em primeiro: -10 (Porque o menor número da array vai tomar o lugar do infinity, sendo ele -10)
             Será impresso em segundo : 1590; (Porque é o último item da lista com número maior que zero)
             */
                                                         // Fim do exercicio de interpretação de código
+
+
+
+                                                        // Exercícios de Lógica de Programação
+
+            // 1.
+                /* For of; For; ForEach;
+            
+                const listaJogos = ["Final Fantasy", "Super Mario", "Zelda", "Sonic"];
+                
+                    for (let jogo of listaJogos) {
+                        console.log("Já Joguei " + jogo + " :)");
+                    }   
+                */
+            
+
+            // 2.
+                /*a) false
+                b) false
+                c) true
+                d) true
+                e) true
+                */
+
+            // 3.
+                // O código não funciona pois não está recebendo um valor, e o loop está infinito.
+                
+                /*const quantidadeDeNumerosPares = Number(prompt("Digite um número"));
+                    
+                    for (let i = 0; i<= quantidadeDeNumerosPares; i += 1) {
+                        if (i % 2 === 0) {
+                            console.log(i);
+                        }
+                    }
+                */
+            
+            // 4.
+                function classificaTriangulo(a, b, c){
+                    const ladoA = a;
+                    const ladoB = b;
+                    const ladoC = c;
+
+                    if (ladoA === ladoB && ladoB === ladoC){
+                        console.log("O triangulo é Equilátero");
+                    } else if (ladoA === ladoB || ladoB === ladoC || ladoC === ladoA) {
+                        console.log("O triangulo é Isósceles");
+                    } else {
+                        console.log("O triangulo é Escaleno");
+                    }
+                }
+                // classificaTriangulo(a, b, c);
+
+
+                // 5.
+                    /*function recebeDoisNumeros(num1, num2) {
+                        if (num1 > num2){
+                            console.log("O maior é: " + num1);
+                        } else {
+                            console.log("O maior é: " + num2);
+                        }
+                        if (num1 % num2){
+                            console.log(num1 + " não é divisível por " + num2);
+                        } else {
+                            console.log(num1 + " é divisível por " + num2)
+                        }
+                        if (num2 % num1) {
+                            console.log(num2 + " não é divisível por " + num1)
+                        } else {
+                            console.log(num2 + " é divisível por " + num1)
+                        }    
+                        
+                    }
+                    */
+                    //recebeDoisNumeros(20, 10);
+                        
+                                                 // Fim dos exercícios de lógica de programação
+
+
+                // Exercícios de Funções
+
+
+                // 1.
+
+                // function menorEmaiorNumero() {
+                //     const listaDeNumeros = [2, 5, 40, 12, 15, 50, 6, 108, 19];
+                //     const segundoMaiorNumero = [];
+                //     const segundoMenorNumero = [];
+
+                //        for(let numero of listaDeNumeros){
+                //            if(numero > {
+                //                segundoMaiorNumero.push(numero);
+                //            }else {
+                //                segundoMenorNumero.push(numero);
+                //            }
+                //        }
+                
+                //        console.log(segundoMaiorNumero);
+                //        console.log(segundoMenorNumero);
+                // }
+
+                //        menorEmaiorNumero();
+
+
+
+
+
+
+
 
 
     </script>
