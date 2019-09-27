@@ -197,7 +197,7 @@
 
 
                 // 4.
-                    const pessoa = {
+                    /*const pessoa = {
                         nome: "José",
                         idade: 35,
                         email: "josebacana@gmail.com",
@@ -215,17 +215,58 @@
                     }
                     console.log(pessoa);
                     console.log(anonimizarPessoa(pessoa))
-
+                    */
 
 
                                                         // Exercícios de Funções de Array
 
 
-                    // 1. 
+                    // 1. a e b)
 
-//    ?????
+                    /*const future = [
+                        { nome: "Pedro", idade: 20 },
+                        { nome: "João", idade: 10 },
+                        { nome: "Paula", idade: 12 },
+                        { nome: "Artur", idade: 89 } 
+                    ]
+                    
+                    const adultos = [];
+                    const adolescentes = [];
+                    const adultoFuture = future.filter((adulto, index, array) => {
+                        if (adulto.idade >= 20){
+                            adultos.push(adulto);
+                        } else {
+                            adolescentes.push(adulto);
+                        }
+                    })
+                    console.log(adultos);
+                    console.log(adolescentes);
+                    */
 
+                    // 2.
 
+                    const array = [1, 2, 3, 4, 5, 6];
+                    /*a)
+                        const arrayMultiplicado = array.map ((numero, index, array)=>{
+                            return numero * 2;
+                    })
+                        console.log(arrayMultiplicado)
+                    */
+    
+                     //b)
+                        /*const arrayTriplicado = array.map((numero, index, array)=>{
+                            return numero * 3
+                        })
+                            console.log(arrayTriplicado.join());
+                            console.log(typeof(arrayTriplicado.toString()));
+                        */
+                    
+                    //c)
+                        const arrayString = array.map((numero, index, array)=>{
+                            return numero % 2 === 0 
+                        })    
+    
+    
     </script>
 </body>
 </html>
