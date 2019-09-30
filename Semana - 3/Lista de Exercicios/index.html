@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+                                                // Exercícios de interpretação de código
+
+        // 1.
+            /*É uma função que converte Dólar para Real;
+            Ela recebe um parametro de valor em Dólar, no caso 100 Dólares, essa informação vem da const meuDinheiro.
+            Depois pede ao usuário o valor atual da cotação do Dólar e retorna o valor em reais, 
+            multiplicando o parametro recebido pela cotação atual do Dólar.
+            O valor impresso será por exemplo: "R$ 417" (Dólar hoje: 4,17).
+            */
+
+    
+        // 2.
+            /*É uma funcão que recebe um tipo de investimento e um valor, e trata caso a caso dependendo das informações informadas;
+            - Caso do novoMontante:
+                "Ações" (165);
+            - Caso do segundoMontante:
+              (Como não há caso para Tesouro direto,
+               irá retorna um alert com ("TIPO DE INVESTIMENTO INFORMADO INCORRETO");
+            */
+        
+        
+        // 3. 
+            /*É uma array principal com uma lista de números
+            e duas arrays vazias que receberão números dependendo da condição;
+            Será impresso  em primeiro : Quantidade total de números 14;
+            Será impresso em segundo :  6; (Pois é a quantidade de números pares da lista principal, que irá para a array1 após passar pelo for);
+            Será impresso em terceiro : 8; (São os números ímpares tratados pelo else e que vão para a array2) 
+            */
+
+        // 4.
+            /*É uma array com uma lista de números e duas váriaveis, uma propriedade Infinity e outra com 0;
+            Será impresso em primeiro: -10 (Porque o menor número da array vai tomar o lugar do infinity, sendo ele -10)
+            Será impresso em segundo : 1590; (Porque é o último item da lista com número maior que zero)
+            */
+                                                        // Fim do exercicio de interpretação de código
+
+
+
+                                                        // Exercícios de Lógica de Programação
+
+            // 1.
+                /* For of; For; ForEach;
+            
+                const listaJogos = ["Final Fantasy", "Super Mario", "Zelda", "Sonic"];
+                
+                    for (let jogo of listaJogos) {
+                        console.log("Já Joguei " + jogo + " :)");
+                    }   
+                */
+            
+
+            // 2.
+                /*a) false
+                b) false
+                c) true
+                d) true
+                e) true
+                */
+
+            // 3.
+                // O código não funciona pois não está recebendo um valor, e o loop está infinito.
+                
+                /*const quantidadeDeNumerosPares = Number(prompt("Digite um número"));
+                    
+                    for (let i = 0; i<= quantidadeDeNumerosPares; i += 1) {
+                        if (i % 2 === 0) {
+                            console.log(i);
+                        }
+                    }
+                */
+            
+            // 4.
+                function classificaTriangulo(a, b, c){
+                    const ladoA = a;
+                    const ladoB = b;
+                    const ladoC = c;
+
+                    if (ladoA === ladoB && ladoB === ladoC){
+                        console.log("O triangulo é Equilátero");
+                    } else if (ladoA === ladoB || ladoB === ladoC || ladoC === ladoA) {
+                        console.log("O triangulo é Isósceles");
+                    } else {
+                        console.log("O triangulo é Escaleno");
+                    }
+                }
+                // classificaTriangulo(a, b, c);
+
+
+                // 5.
+                    /*function recebeDoisNumeros(num1, num2) {
+                        if (num1 > num2){
+                            console.log("O maior é: " + num1);
+                        } else {
+                            console.log("O maior é: " + num2);
+                        }
+                        if (num1 % num2){
+                            console.log(num1 + " não é divisível por " + num2);
+                        } else {
+                            console.log(num1 + " é divisível por " + num2)
+                        }
+                        if (num2 % num1) {
+                            console.log(num2 + " não é divisível por " + num1)
+                        } else {
+                            console.log(num2 + " é divisível por " + num1)
+                        }    
+                        
+                    }
+                    */
+                    //recebeDoisNumeros(20, 10);
+                        
+                                                 // Fim dos exercícios de lógica de programação
+
+
+                                                    // Exercícios de Funções
+
+
+                // 1.
+
+                // function menorEmaiorNumero() {
+                //     const listaDeNumeros = [2, 5, 40, 12, 15, 50, 6, 108, 19];
+                //     const segundoMaiorNumero = [];
+                //     const segundoMenorNumero = [];
+
+                //        for(let numero of listaDeNumeros){
+                //            if(numero > {
+                //                segundoMaiorNumero.push(numero);
+                //            }else {
+                //                segundoMenorNumero.push(numero);
+                //            }
+                //        }
+                
+                //        console.log(segundoMaiorNumero);
+                //        console.log(segundoMenorNumero);
+                // }
+
+                //        menorEmaiorNumero();
+    
+                
+                // 2.
+                    /*const future = function(){
+                        alert("Hello Future4");
+                    }
+                    future();
+                    */
+                
+
+
+                // Exercícios de Objetos
+
+                // 1. 
+                    /*Podemos utilizar arrays para a criação de listas que podem conter coisas simples como números e strings,
+                    como pode conter objetos;
+                    Utilizamos objetos para representar entidades da vida real, como por exemplo caracteristicas de um carro, um animal etc.
+                    Objetos podem conter outros objetos, arrays e funções.
+                    */
+
+                
+                // 2.
+                
+                //  function criaRetangulo(lado1, lado2) {
+                //      const retangulo = {
+                //          largura: lado1,
+                //          altura: lado2,
+                //          perimetro : (2 * (lado1 + lado2)),
+                //          area: lado1 * lado2
+                //      }
+                //      return retangulo;
+                //  }
+                //    console.log(criaRetangulo(2, 4));
+
+                 
+                 // 3.
+                    /*const filmeFavorito = {
+                        titulo: "De olhos bem fechados",
+                        ano: 1999,
+                        diretor: "Stanley Kubrick",
+                        ator: ["Tom Cruise", " Sydney Pollack"],
+                        atriz: ["Nicole Kidman" + " e " + "Vinessa Shaw"]
+                    }
+
+                    console.log("Venha assistir ao filme " 
+                    + filmeFavorito.titulo + ", " + "de " + filmeFavorito.ano +
+                    ", dirigido por " + filmeFavorito.diretor + " e estrelado por " +
+                    filmeFavorito.ator + ", " + filmeFavorito.atriz + " ." )
+                    */
+
+
+                // 4.
+                    /*const pessoa = {
+                        nome: "José",
+                        idade: 35,
+                        email: "josebacana@gmail.com",
+                        endereço: "Rua Abecedário, 156"
+                    }
+
+                    function anonimizarPessoa(objeto) {
+                        const anonimo = {
+                            nome: "ANÔNIMO",
+                            idade: pessoa.idade,
+                            email: pessoa.email,
+                            endereço: pessoa.endereço 
+                        }
+                            return anonimo
+                    }
+                    console.log(pessoa);
+                    console.log(anonimizarPessoa(pessoa))
+                    */
+
+
+                                                        // Exercícios de Funções de Array
+
+
+                    // 1. a e b)
+
+                    /*const future = [
+                        { nome: "Pedro", idade: 20 },
+                        { nome: "João", idade: 10 },
+                        { nome: "Paula", idade: 12 },
+                        { nome: "Artur", idade: 89 } 
+                    ]
+                    
+                    const adultos = [];
+                    const adolescentes = [];
+                    const adultoFuture = future.filter((adulto, index, array) => {
+                        if (adulto.idade >= 20){
+                            adultos.push(adulto);
+                        } else {
+                            adolescentes.push(adulto);
+                        }
+                    })
+                    console.log(adultos);
+                    console.log(adolescentes);
+                    */
+
+                    // 2.
+
+                    const array = [1, 2, 3, 4, 5, 6];
+                    /*a)
+                        const arrayMultiplicado = array.map ((numero, index, array)=>{
+                            return numero * 2;
+                    })
+                        console.log(arrayMultiplicado)
+                    */
+    
+                     //b)
+                        const arrayTriplicado = array.map((numero, index, array)=>{
+                            return (numero * 3).toString();
+                        })
+                            console.log(arrayTriplicado);
+                            
+                  
+    </script>
+</body>
+</html>
