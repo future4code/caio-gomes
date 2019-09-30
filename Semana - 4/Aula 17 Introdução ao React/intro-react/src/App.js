@@ -30,7 +30,7 @@ function App() {
               <figcaption>Noite boa</figcaption>
             </figure>
             <figure>
-              <img src={imagem2} className="thumb" alt=""></img>
+              <img src={imagem7} className="thumb" alt=""></img>
               <figcaption>Floresta do Iluminado</figcaption>
             </figure>
             <figure>
@@ -50,7 +50,7 @@ function App() {
               <figcaption>Cidade Costeira</figcaption>
             </figure>
             <figure>
-              <img src={imagem7} className="thumb" alt=""></img>
+              <img src={imagem2} className="thumb" alt=""></img>
               <figcaption>Servidor Mr Robot</figcaption>
             </figure>
             <figure>
