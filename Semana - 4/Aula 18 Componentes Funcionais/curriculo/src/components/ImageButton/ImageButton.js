@@ -6,13 +6,11 @@ import PropTypes from 'prop-types';
 export function ImageButton(props) {
     return (
         <div>
-            <button>{props.botao}</button>
-            <img src={props.imagem}/>
+        {props.imagem}{props.botao}
         </div>
     )
 }
 
 ImageButton.propTypes = {
-    botao: PropTypes.string.isRequired,
-    imagem: PropTypes.string.isRequired,
+    botao: PropTypes.string.isRequired
 }

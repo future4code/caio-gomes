@@ -1,6 +1,5 @@
 import React from 'react';
 import './BigCard.css';
-import Cartman from '../img/cartman.jpg'
 import PropTypes from 'prop-types';
 
 export function BigCard(props) {

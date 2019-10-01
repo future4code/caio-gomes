@@ -1,6 +1,9 @@
 import React from 'react';
 import './SmallCard.css';
 import PropTypes from 'prop-types';
+import Email from './email.svg'
+import Home from './house.svg'
+
 
 
 export function SmallCard(props) {
