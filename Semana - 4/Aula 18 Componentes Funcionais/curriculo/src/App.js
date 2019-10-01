@@ -3,7 +3,7 @@ import './App.css';
 import { BigCard } from './components/BigCard/BigCard'
 import { SmallCard} from './components/SmallCard/SmallCard'
 import { ImageButton } from './components/ImageButton/ImageButton'
-
+import {PageSection} from './components/PageSection/PageSection'
 
 const smallCards = {
   imagem: 'https://picsum.photos/200/200/',
@@ -19,7 +19,7 @@ const smallCards2 = {
 
 const bigCard = {
   titulo : <h3>Caio Brian Gomes Gonçalves</h3>,
-  imagem : <img src="#" alt=""/>,
+  imagem : <img src="https://picsum.photos/200/200?a=r" alt=""/>,
   descricao : <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. 
     Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. 
     Mé faiz elementum girarzis, </p>
@@ -27,22 +27,22 @@ const bigCard = {
 
 const bigCard2 = {
   titulo : <h3>Livraria Saraiva</h3>,
-  imagem : <img src="./cartman.jpg" alt=""/>,
+  imagem : <img src="https://picsum.photos/200/200?a=r"/>,
   descricao : <p>Vendedor de livros</p>
 }
 
 const bigCard3 = {
   titulo : <h3>Livraria Leitura</h3>,
-  imagem : <img src="./cartman.jpg" alt=""/>,
+  imagem : <img src="https://picsum.photos/200/200?a=r"/>,
   descricao : <p>Vendedor de livros, também.</p>
 }
 
 const ImageButtons = {
-  botao : <button> <img src="#" alt=""/> Ver Mais</button>
+  botao : <button> <img src="https://picsum.photos/200/200?a=5"/> Ver Mais</button>
 }
 
 const ImageButtons2 = {
-  botao : <button> <img src="#" alt=""/> Facebook</button>
+  botao :  <button><img src="https://picsum.photos/200/200?a=1"/>Facebook</button>
 }
 
 function App() {
@@ -64,12 +64,6 @@ function App() {
   );
 }
 
-function PageSection (props) {
-  return(
-    <div>
-      {props.children}
-    </div>
-  )
-}
+
 
 export default App;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export function ImageButton(props) {
     return (
-        <div>
+        <div className="botao">
         {props.imagem}{props.botao}
         </div>
     )
