@@ -35,13 +35,15 @@ const BigCard1 = {
 const BigCard2 = {
   titulo : <h3>Livraria Saraiva</h3>,
   imagem : <img src={Emprego1}/>,
-  descricao : <p>Vendedor de livros</p>
+  descricao : <p>Mussum ipsum cacilds, vidis litro abertis. 
+    Consetis adipiscings elitis. Pra lá , depois divoltis porris</p>
 }
 
 const BigCard3 = {
   titulo : <h3>Livraria Leitura</h3>,
   imagem : <img src={Emprego2}/>,
-  descricao : <p>Vendedor de livros, também.</p>
+  descricao : <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. 
+    Pra lá , depois divoltis porris</p>
 }
 
 const ImageButtons = {
