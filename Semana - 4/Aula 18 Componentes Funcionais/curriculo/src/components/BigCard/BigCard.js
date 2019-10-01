@@ -5,11 +5,9 @@ import PropTypes from 'prop-types';
 export function BigCard(props) {
     return (
         <div className='big-card'>
-            <h3>{props.titulo}</h3>
-            <img src={props.imagem} />
-            <div className="description">
-                <p>{props.descricao}</p>
-            </div>
+            {props.titulo}
+            {props.imagem}
+            {props.descricao}
         </div>
     )
 }
