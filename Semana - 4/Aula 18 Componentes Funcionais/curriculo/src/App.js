@@ -49,18 +49,17 @@ function App() {
   return (
     <div className="App">
       <PageSection>
+        <h2>Dados Pessoais</h2>
         <BigCard titulo={bigCard.titulo} imagem={bigCard.imagem} descricao={bigCard.descricao}/>
         <SmallCard imagem={smallCards.imagem} titulo={smallCards.titulo} email={smallCards.endereço}/>
         <SmallCard imagem={smallCards2.imagem} titulo={smallCards2.titulo} email={smallCards2.endereço}/>
         <ImageButton botao={ImageButtons.botao}/>
-      </PageSection>
-      <PageSection2>
+       <h2>Experiências Profissionais</h2>
         <BigCard titulo={bigCard2.titulo} imagem={bigCard2.imagem} descricao={bigCard2.descricao}/>
         <BigCard titulo={bigCard3.titulo} imagem={bigCard3.imagem} descricao={bigCard3.descricao}/>
-      </PageSection2>
-      <PageSection3>
+        <h2>Minhas redes sociais</h2>
         <ImageButton botao={ImageButtons2.botao}/>
-      </PageSection3>
+      </PageSection>
     </div>
   );
 }
@@ -68,27 +67,9 @@ function App() {
 function PageSection (props) {
   return(
     <div>
-      <h2>Dados Pessoais</h2>
       {props.children}
     </div>
   )
 }
 
-function PageSection2 (props) {
-  return(
-    <div>
-      <h2>Experiências profissionais</h2>
-      {props.children}
-    </div>
-  )
-}
-
-function PageSection3 (props) {
-  return(
-    <div>
-      <h2>Minhas redes sociais</h2>
-      {props.children}
-    </div>
-  )
-}
 export default App;
