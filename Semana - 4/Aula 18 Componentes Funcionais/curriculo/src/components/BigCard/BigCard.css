@@ -1,0 +1,18 @@
+.big-card {
+    width: 400px;
+    height: 200px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 4fr;
+}
+
+.big-card img {
+    width: 80px;
+    border-radius: 60%;
+}
+
+.big-card h3 {
+    grid-row: 1;
+    grid-column: 1 / -1;
+}
