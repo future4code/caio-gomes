@@ -4,15 +4,19 @@ import { BigCard } from './components/BigCard/BigCard'
 import { SmallCard} from './components/SmallCard/SmallCard'
 import { ImageButton } from './components/ImageButton/ImageButton'
 import {PageSection} from './components/PageSection/PageSection'
+import Expand from './components/ImageButton/expand.svg'
+import Facebook from './components/ImageButton/facebook.png'
+import Email from './components/SmallCard/email.svg'
+import House from './components/SmallCard/house.svg'
 
 const smallCards = {
-  imagem: 'https://picsum.photos/200/200/',
+  imagem: <img src={Email}/>,
   titulo: 'Email: ',
   endereço: 'caiogomeslog@gmail.com'
 }
 
 const smallCards2 = {
-  imagem: 'https://picsum.photos/200/200?a=1',
+  imagem: <img src={House}/>,
   titulo: 'Endereço: ',
   endereço: 'Rua Palmeira Tucuim, 67'
 }
@@ -38,11 +42,11 @@ const bigCard3 = {
 }
 
 const ImageButtons = {
-  botao : <button> <img src="https://picsum.photos/200/200?a=5"/> Ver Mais</button>
+  botao : <button> <img src={Expand}/> Ver Mais</button>
 }
 
 const ImageButtons2 = {
-  botao :  <button><img src="https://picsum.photos/200/200?a=1"/>Facebook</button>
+  botao :  <button><img src={Facebook}/>Facebook</button>
 }
 
 function App() {
