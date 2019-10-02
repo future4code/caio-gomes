@@ -14,9 +14,6 @@ class App extends React.Component {
       curtidasAtuais: false,
       numeroCurtida : false,
       comentario : false,
-      numeroComentario: false,
-      numeroComment : 0,
-      
     };
   }
 
@@ -54,7 +51,7 @@ class App extends React.Component {
     let curtida = Favorite;
     let numero = 0;
     let comment;
-   
+    let numeroComment = 0
 
     if(this.state.curtidasAtuais){
       curtida = FavoriteBlack;
@@ -88,10 +85,8 @@ class App extends React.Component {
             </div>
             <div className="container-button">
               <img src={Comment} onClick={this.clicandoComentario}/>
-              <p>{this.numeroComment}</p>
-              
+              <p>{numeroComment}</p>
             </div>
-            
           </div>
           {comment}
         </div>
