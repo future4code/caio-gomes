@@ -14,6 +14,7 @@ class App extends React.Component {
       curtidasAtuais: false,
       numeroCurtida : false,
       comentario : false,
+      numeroDeVezesClicado: 0,
     };
   }
 
@@ -31,27 +32,24 @@ class App extends React.Component {
 
   clicandoComentario = () => {
     const mostrandoComentario = this.state.comentario;
-    const comentarioAtual = this.state.numeroComentario;
-    
+    const numeroDeComentario = this.state.numeroComentario;
     const novoComentario = {
       comentario: !mostrandoComentario,
-      numeroComentario: !comentarioAtual,
-
+      numeroComentario: !numeroDeComentario
     }
     this.setState(novoComentario)
   }
 
   comentei = () => {
-    const commentAtual = this.numeroComment;
-    this.setState({numeroComment: commentAtual + 1})
-  };
-
+    const numeroAtualComentario = this.state.numeroDeVezesClicado;
+    this.setState({numeroDeVezesClicado: numeroAtualComentario + 1})
+  }
 
   render(){
     let curtida = Favorite;
     let numero = 0;
     let comment;
-    let numeroComment = 0
+    
 
     if(this.state.curtidasAtuais){
       curtida = FavoriteBlack;
@@ -61,6 +59,7 @@ class App extends React.Component {
       numero = 1;
     }
 
+   
 
     if(this.state.comentario){
       comment = <div className="comment-container">
@@ -85,7 +84,7 @@ class App extends React.Component {
             </div>
             <div className="container-button">
               <img src={Comment} onClick={this.clicandoComentario}/>
-              <p>{numeroComment}</p>
+              <p>{this.state.numeroDeVezesClicado}</p>
             </div>
           </div>
           {comment}
@@ -95,3 +94,4 @@ class App extends React.Component {
   }
 }
 export default App;
+
