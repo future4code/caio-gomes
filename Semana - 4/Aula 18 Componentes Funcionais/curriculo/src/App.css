@@ -1,0 +1,9 @@
+* {
+    font-family: Helvetica, sans-serif;
+}
+
+.App {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
