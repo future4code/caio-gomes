@@ -9,18 +9,17 @@
 }
 
 .header-post {
-  width: 300px;
   height: 40px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
   padding-left: 10px;
 }
 
 .container {
-  border: 1px solid black;
+  border: 1px solid #C6C9CE;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   width: 300px;
 }
 
@@ -45,4 +44,20 @@
 .container-button{
   display: flex;
   align-items: center;
+}
+
+.container-button  img {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.comment-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.comment-container input {
+    flex: 1 1;
+    margin-right: 5px
 }
