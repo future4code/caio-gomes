@@ -1,0 +1,62 @@
+.App {
+  font-family: Helvetica, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.header-post {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.container {
+  border: 1px solid #C6C9CE;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+#imagem-post{
+  width: 300px;
+}
+
+#perfil {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.botao-post {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+  height: 40px;
+}
+
+.container-button{
+  display: flex;
+  align-items: center;
+}
+
+.container-button  img {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.comment-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.comment-container input {
+    flex: 1 1;
+    margin-right: 5px
+}
