@@ -15,7 +15,7 @@ class App extends React.Component {
       numeroCurtida : false,
       comentario : false,
       numeroDeVezesClicado: 0,
-    };
+     };
   }
 
   clicandoNoCurtir = () => {
@@ -32,10 +32,8 @@ class App extends React.Component {
 
   clicandoComentario = () => {
     const mostrandoComentario = this.state.comentario;
-    const numeroDeComentario = this.state.numeroComentario;
     const novoComentario = {
       comentario: !mostrandoComentario,
-      numeroComentario: !numeroDeComentario
     }
     this.setState(novoComentario)
   }
@@ -43,14 +41,18 @@ class App extends React.Component {
   comentei = () => {
     const numeroAtualComentario = this.state.numeroDeVezesClicado;
     this.setState({numeroDeVezesClicado: numeroAtualComentario + 1})
+    const mostrandoComentario = this.state.comentario;
+    const novoComentario = {
+      comentario: !mostrandoComentario,
+    }
+      this.setState(novoComentario)
   }
 
   render(){
     let curtida = Favorite;
     let numero = 0;
     let comment;
-    
-
+   
     if(this.state.curtidasAtuais){
       curtida = FavoriteBlack;
     }
@@ -59,14 +61,14 @@ class App extends React.Component {
       numero = 1;
     }
 
-   
-
     if(this.state.comentario){
       comment = <div className="comment-container">
       <input type="text" placeholder="Escreva seu comentário"/>
       <button onClick={this.comentei}>Comentar</button>
       </div>
     }
+
+
     
     
     return(
