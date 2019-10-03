@@ -9,6 +9,7 @@ const Container = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     width: 300px;
+    margin: 20px;
     
 `
 const PostHeader = styled.div`
@@ -53,7 +54,8 @@ export function Post(props){
             <ImagemPost src={props.imagem}/>
             <ContainerButton> 
             <BotaoPost>
-                <ImagemDoBotao src={props.imagemCurtir}  onClick={props.clicandoNoCurtir}alt=""/>
+                <ImagemDoBotao src={props.imagemCurtir}
+                  onClick={props.clicandoNoCurtir}/>
                 <p>{props.numeroCurtir}</p>
             </BotaoPost>
             <BotaoPost>
@@ -73,5 +75,5 @@ Post.propTypes = {
     numeroCurtir: PropTypes.number.isRequired,
     imagemComentario: PropTypes.string.isRequired,
     numeroComentario: PropTypes.string.isRequired,
-    clicandoNoCurtir: PropTypes.func.isRequired,
+    clicandoNoCurtir: PropTypes.func.isRequired
 }
