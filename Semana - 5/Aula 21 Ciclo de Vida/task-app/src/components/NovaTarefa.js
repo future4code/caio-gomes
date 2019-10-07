@@ -10,7 +10,11 @@ export function NovaTarefa (props){
 let content;
 
 if(props.tarefas) {
-  content = (<InputNovaTarefa/>)
+  content = (<InputNovaTarefa
+    onChangeTask={props.onChangeTask}
+    inputNovo={props.inputNovo}
+    gerarTarefa={props.gerarTarefa}
+  />)
 }
    return( 
       <div>

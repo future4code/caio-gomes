@@ -13,7 +13,7 @@ export function InputNovaTarefa (props) {
         onChange={props.onChangeTask}
         value={props.inputNovo}
         />
-        <button>Criar!</button>
+        <button onClick={props.gerarTarefa}>Criar!</button>
       </div>
     )
   }
