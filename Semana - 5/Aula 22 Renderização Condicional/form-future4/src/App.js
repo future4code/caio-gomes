@@ -17,19 +17,28 @@ class App extends React.Component {
     }
   }
  
-  componentDidUpdate(event) {
-    this.setState({tipoDeEstudo: event.target.value})
-    
-    console.log("Fui Atualizado!");
-  }
+ 
 
-  // mudandoValorOption = (event) => {
-  //   this.setState({tipoDeEstudo: event.target.value})
-  //   console.log(this.state.tipoDeEstudo)
-  // }
-
+  mudandoValorOption = (event) => {
+    this.setState({tipoDeEstudo: event.target.value}, () => {
+      console.log(this.state.tipoDeEstudo)
+      })
+    }
+  
  clickButtonContinue = () => {
   
+   if (this.state.tipoDeEstudo === "medioCompleto"){
+     return <FormEtapa3/>
+  } else if (this.state.tipoDeEstudo === "medioIncompleto"){
+     return <FormEtapa3/>
+   } else if (this.state.tipoDeEstudo === "superiorIncompleto"){
+      return <FormEtapa2/>
+   }else if (this.state.tipoDeEstudo === "superiorCompleto"){
+      return<FormEtapa2/>
+  } else {
+      console.log("Selecione uma escolaridade")
+  }
+
 }
  
 
@@ -38,12 +47,11 @@ render() {
   
 
   return (
-   
-     <div className="App">
+    <div className="App">
         <FormEtapa1
-      
-        onChangeValueOption={this.componentDidUpdate}
+          onChangeValueOption={this.mudandoValorOption}
         />
+        {this.clickButtonContinue()}
         <button onClick={this.clickButtonContinue}>Continuar</button>
       </div>
     );

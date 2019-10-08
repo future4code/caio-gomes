@@ -21,13 +21,14 @@ export function FormEtapa1(props) {
                 <input type="text"/>
                 <p>2. Qual sua idade?</p>
                 <input type="text"/>
-                <p>3. Qual seu email??</p>
+                <p>3. Qual seu email?</p>
                 <input type="text"/>
             </div>
             <div>
+                <p> Selecione sua escolaridade: </p>
                 <select onChange={props.onChangeValueOption}>
-                    <option value="#">Selecione sua escolaridade:</option>
-
+                    <option value=""></option>
+                    
                     <option value="medioIncompleto">Ensino Médio Incompleto</option>
 
                     <option value="medioCompleto">Ensino Médio Completo</option>
