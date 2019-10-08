@@ -52,14 +52,8 @@ class App extends React.Component {
         <Tarefas>
           {this.state.listaDeTarefas.map((tarefa, index) => {
             return <div>
-              <p key={index}>{tarefa}</p>
+              <li key={index}>{tarefa}</li>
               <button onClick={this.state.editarTarefa}>editar</button>
-                if () {
-                  <React.Fragment>
-                    <input type="text" value={this.state.inputTarefa}/>
-                    <button>Salvar</button>
-                  </React.Fragment>
-                }
               <button>apagar</button>
               </div>
             }
