@@ -18,8 +18,6 @@ class App extends React.Component {
   
  
 render() {  
-    
-
   return (
      <div className="App">
         <FormEtapa1
@@ -29,6 +27,8 @@ render() {
         superiorCompleto={this.state.ensinoSuperiorCompleto}
         onClickButtonContinue={this.clickButtonContinue}
         />
+        <FormEtapa2/>
+        <FormEtapa3/>
       </div>
     );
   }

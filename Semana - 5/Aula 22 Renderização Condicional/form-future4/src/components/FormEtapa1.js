@@ -1,18 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
+const FormContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`
 
 export function FormEtapa1(props) {
     return (
-        <div>
+        <FormContainer>
             <h1>Etapa 1 - DADOS GERAIS</h1>
             <div>
                 <p>1. Qual seu nome?</p>
                 <input type="text"/>
                 <p>2. Qual sua idade?</p>
                 <input type="text"/>
-                <p>3. Qual seu email?</p>
+                <p>3. Qual seu email??</p>
                 <input type="text"/>
             </div>
             <div>
@@ -27,7 +30,7 @@ export function FormEtapa1(props) {
                 </select>
                 <button onClick={props.onClickButtonContinue}>Continuar</button>
             </div>
-        </div>
+        </FormContainer>
     )
 }
 export default FormEtapa1;
