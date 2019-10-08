@@ -1,13 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
 `
 
+
+
+
 export function FormEtapa1(props) {
+  
     return (
+        
         <FormContainer>
             <h1>Etapa 1 - DADOS GERAIS</h1>
             <div>
@@ -19,16 +25,18 @@ export function FormEtapa1(props) {
                 <input type="text"/>
             </div>
             <div>
-                <select name="escolaridade" id="escolaridade">
-                    <option value={props.medioIncompleto}>Ensino Médio Incompleto</option>
+                <select onChange={props.onChangeValueOption}>
+                    <option value="#">Selecione sua escolaridade:</option>
 
-                    <option value={props.medioCompleto}>Ensino Médio Completo</option>
+                    <option value="medioIncompleto">Ensino Médio Incompleto</option>
 
-                    <option value={props.superiorIncompleto}>Ensino Superior Incompleto</option>
+                    <option value="medioCompleto">Ensino Médio Completo</option>
 
-                    <option value={props.superiorCompleto}>Ensino Superior Completo</option>
+                    <option value="superiorIncompleto">Ensino Superior Incompleto</option>
+
+                    <option value="superiorCompleto">Ensino Superior Completo</option>
                 </select>
-                <button onClick={props.onClickButtonContinue}>Continuar</button>
+                
             </div>
         </FormContainer>
     )

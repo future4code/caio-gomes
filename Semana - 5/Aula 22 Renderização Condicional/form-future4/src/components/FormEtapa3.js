@@ -19,7 +19,6 @@ export function FormEtapa3(props) {
 
                     <option value="">Não fiz curso complementar</option>
                 </select>
-                <button>Continuar</button>
             </div>
         </div>
     )
