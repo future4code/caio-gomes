@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 
+
 const ExtratoContainer = styled.div`
     border: 1px solid red;
     display: flex;
@@ -9,6 +10,11 @@ const ExtratoContainer = styled.div`
     margin: 10px;
     padding: 5px;
 `
+
+const DespesaNovaContainer = styled.div`
+    border: 1px solid purple;
+`
+
 
 
 export function Extrato(props) {
@@ -24,8 +30,9 @@ export function Extrato(props) {
             </select>
             <input type="number" placeholder="Filtrar por Valor Mínimo" />
             <input type="number" placeholder="Filtrar por Valor Máximo" />
+            <DespesaNovaContainer>{props.novaDespesa}</DespesaNovaContainer>
             <button>Voltar</button>
-           
+
         </ExtratoContainer>
     )
 }

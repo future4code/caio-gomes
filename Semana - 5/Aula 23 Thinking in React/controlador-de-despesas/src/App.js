@@ -8,32 +8,40 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listaDespesas: [],
+      listaDespesas: [{
+        valorDaDespesa: "",
+        tipoDaDespesa: "",
+        descricaoDaDespesa: ""
+      }],
     }
 
   }
 
   adicionarDespesa = (novaDespesa) => {
     const novaListaDespesa = [...this.state.listaDespesas, novaDespesa]
-    this.setState({ listaDespesas: novaListaDespesa })
+    this.setState(this.state.listaDespesas = novaListaDespesa)
     console.log(this.state.listaDespesas)
   }
 
 
 
   render() {
-    const despesasFeitas = this.state.listaDespesas.map((despesa, index) => {
-      return <div key={index}>{despesa} </div>
+    const novaLista = this.state.listaDespesas.map((despesa, index) => {
+      return <div key={index}>
+        <p>Valor da despesa em R$ :{despesa.valorDaDespesa}</p>
+        <p>Tipo da Despesa :{despesa.tipoDaDespesa}</p>
+        <p>Descrição da despesa :{despesa.descricaoDaDespesa}</p>
+      </div >
     })
+
     return (
-      <div className="App">
+      <div className="App" >
 
         <Cadastro
           criarDespesa={this.adicionarDespesa}
         />
-        {despesasFeitas}
         <Extrato
-          
+          novaDespesa={novaLista}
         />
       </div>
     );
