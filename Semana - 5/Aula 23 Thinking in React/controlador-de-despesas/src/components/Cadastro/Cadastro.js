@@ -47,13 +47,12 @@ export class Cadastro extends React.Component {
 
     aoClicarEmSalvar = () => {
         const novaDespesa = {
-            id: Date.now(),
             valorDaDespesa: this.state.valorDaDespesa,
             tipoDaDespesa: this.state.tipoDaDespesa,
             descricaoDaDespesa: this.state.descricaoDaDespesa
         };
-        this.props.criarDespesa(novaDespesa);
         console.log(novaDespesa)
+        this.props.criarDespesa(novaDespesa);
     }
 
 
