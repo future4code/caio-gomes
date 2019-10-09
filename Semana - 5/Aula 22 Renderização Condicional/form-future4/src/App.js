@@ -10,6 +10,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       tipoDeEstudo: "",
+      etapaAtual: false,
       ensinoMedioIncompleto: false,
       ensinoMedioCompleto: false,
       ensinoSuperiorIncompleto: false,
@@ -21,39 +22,43 @@ class App extends React.Component {
 
   mudandoValorOption = (event) => {
     this.setState({tipoDeEstudo: event.target.value}, () => {
-      console.log(this.state.tipoDeEstudo)
+    console.log(this.state.tipoDeEstudo)
       })
     }
   
- clickButtonContinue = () => {
-  
-   if (this.state.tipoDeEstudo === "medioCompleto"){
-     return <FormEtapa3/>
-  } else if (this.state.tipoDeEstudo === "medioIncompleto"){
-     return <FormEtapa3/>
-   } else if (this.state.tipoDeEstudo === "superiorIncompleto"){
-      return <FormEtapa2/>
-   }else if (this.state.tipoDeEstudo === "superiorCompleto"){
-      return<FormEtapa2/>
-  } else {
-      console.log("Selecione uma escolaridade")
-  }
-
+  clickButtonContinue = () => {
+    if (this.state.tipoDeEstudo === "medioCompleto"){
+      this.setState({ensinoMedioCompleto: true})
+      this.setState({etapaAtual: false})
+    } else if (this.state.tipoDeEstudo === "medioIncompleto") {
+      this.setState({ensinoMedioIncompleto: true})
+      this.setState({etapaAtual: false})
+    } else if (this.state.tipoDeEstudo === "superiorIncompleto") {
+      this.setState({ensinoSuperiorIncompleto: true})
+      this.setState({etapaAtual: true})
+    } else if (this.state.tipoDeEstudo === "superiorCompleto") {
+      this.setState({ensinoSuperiorCompleto: true})
+      this.setState({etapaAtual: true})
+    }
 }
  
 
 render() {  
-
+  let etapa;
+  if (this.state.etapaAtual){
+    etapa = <FormEtapa2/>
+  } else {
+    etapa = <FormEtapa3/>
+  }
   
-
   return (
     <div className="App">
         <FormEtapa1
-          onChangeValueOption={this.mudandoValorOption}
+        onChangeValueOption={this.mudandoValorOption}
         />
-        {this.clickButtonContinue()}
+        {etapa}    
         <button onClick={this.clickButtonContinue}>Continuar</button>
-      </div>
+    </div>
     );
   }
 }
