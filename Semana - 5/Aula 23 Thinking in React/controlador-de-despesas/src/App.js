@@ -8,11 +8,9 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listaDespesas: [{
-        valorDaDespesa: "",
-        tipoDaDespesa: "",
-        descricaoDaDespesa: ""
-      }],
+      etapaCadastro: true,
+      etapaExtrato: false,
+      listaDespesas: [],
     }
 
   }
@@ -24,9 +22,18 @@ export class App extends React.Component {
   }
 
 
+  mudaTela = () => {
+    const novoEstado = this.state.etapaExtrato
+    this.setState(
+      {
+        etapaExtrato: !novoEstado,
+        etapaCadastro: novoEstado,
+      })
+  }
 
   render() {
-    const novaLista = this.state.listaDespesas.map((despesa, index) => {
+
+  const novaLista = this.state.listaDespesas.map((despesa, index) => {
       return <div key={index}>
         <p>Valor da despesa em R$ :{despesa.valorDaDespesa}</p>
         <p>Tipo da Despesa :{despesa.tipoDaDespesa}</p>
@@ -35,14 +42,20 @@ export class App extends React.Component {
     })
 
     return (
-      <div className="App" >
 
-        <Cadastro
-          criarDespesa={this.adicionarDespesa}
-        />
-        <Extrato
-          novaDespesa={novaLista}
-        />
+      <div className="App" >
+        {this.state.etapaCadastro
+          && <Cadastro
+            criarDespesa={this.adicionarDespesa}
+            aoClicarEmConsultar={this.mudaTela}
+          />
+        }
+        {this.state.etapaExtrato
+          && <Extrato
+            novaDespesa={novaLista}
+            aoClicarEmVoltar={this.mudaTela}
+          />
+        }
       </div>
     );
   }

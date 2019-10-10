@@ -31,7 +31,7 @@ export function Extrato(props) {
             <input type="number" placeholder="Filtrar por Valor Mínimo" />
             <input type="number" placeholder="Filtrar por Valor Máximo" />
             <DespesaNovaContainer>{props.novaDespesa}</DespesaNovaContainer>
-            <button>Voltar</button>
+            <button onClick={props.aoClicarEmVoltar}>Voltar</button>
 
         </ExtratoContainer>
     )

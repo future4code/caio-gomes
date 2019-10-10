@@ -55,8 +55,6 @@ export class Cadastro extends React.Component {
         this.props.criarDespesa(novaDespesa);
     }
 
-
-
     render() {
         return (
             <CadastroContainer>
@@ -84,7 +82,7 @@ export class Cadastro extends React.Component {
                     onChange={this.aoDescreverDespesa}
                 />
                 <button onClick={this.aoClicarEmSalvar}>Salvar</button>
-                <button>Consultar Extrato</button>
+                <button onClick={this.props.aoClicarEmConsultar}>Consultar Extrato</button>
             </CadastroContainer >
 
         )
