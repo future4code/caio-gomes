@@ -2,7 +2,14 @@ import React from 'react';
 import './App.css';
 import { Cadastro } from './components/Cadastro/Cadastro'
 import { Extrato } from './components/Extrato/Extrato';
+import styled from 'styled-components'
 
+
+const ContainerNovaDespesa = styled.div`
+  border: 1px solid black;
+  margin: 10px;
+  padding: 5px;
+`
 
 export class App extends React.Component {
   constructor(props) {
@@ -34,11 +41,11 @@ export class App extends React.Component {
   render() {
 
   const novaLista = this.state.listaDespesas.map((despesa, index) => {
-      return <div key={index}>
+      return <ContainerNovaDespesa key={index}>
         <p>Valor da despesa em R$ :{despesa.valorDaDespesa}</p>
         <p>Tipo da Despesa :{despesa.tipoDaDespesa}</p>
         <p>Descrição da despesa :{despesa.descricaoDaDespesa}</p>
-      </div >
+      </ContainerNovaDespesa >
     })
 
     return (

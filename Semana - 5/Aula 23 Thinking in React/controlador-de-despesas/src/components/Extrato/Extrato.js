@@ -4,18 +4,29 @@ import styled from 'styled-components'
 
 
 const ExtratoContainer = styled.div`
-    border: 1px solid red;
+    border: 3px  black;
     display: flex;
-    flex-direction:column;
-    margin: 10px;
+    flex-direction: column;
+    align-items: center;
     padding: 5px;
+    width: 50vw;
+    background-color: #FFCD00;
+    font-family: Helvetica, sans-serif;
 `
 
 const DespesaNovaContainer = styled.div`
-    border: 1px solid purple;
+    display: flex;
+    flex-wrap: wrap;
 `
-
-
+const Botoes = styled.button`
+    width: 40%;
+    height: 40px;
+    border: none;
+    font-size: 1.5rem;
+    background-color: #D5000E;
+    color: white;
+    cursor: pointer;
+`
 
 export function Extrato(props) {
     return (
@@ -30,8 +41,10 @@ export function Extrato(props) {
             </select>
             <input type="number" placeholder="Filtrar por Valor Mínimo" />
             <input type="number" placeholder="Filtrar por Valor Máximo" />
-            <DespesaNovaContainer>{props.novaDespesa}</DespesaNovaContainer>
-            <button onClick={props.aoClicarEmVoltar}>Voltar</button>
+            <DespesaNovaContainer>
+                {props.novaDespesa}
+            </DespesaNovaContainer>
+            <Botoes onClick={props.aoClicarEmVoltar}>Voltar</Botoes>
 
         </ExtratoContainer>
     )

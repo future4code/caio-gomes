@@ -1,8 +1,10 @@
 .App {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
   padding: 20px;
+  height: 100vh;
+  background-color: #5CC8F4;
 }
 
