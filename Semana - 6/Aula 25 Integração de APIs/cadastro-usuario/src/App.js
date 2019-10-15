@@ -23,6 +23,7 @@ class App extends React.Component {
     this.state = {
       name: '',
       email: '',
+      changePage: false,
     };
   }
 
@@ -66,13 +67,21 @@ class App extends React.Component {
 
   }
 
-  
-  
-  
-  
+
+  clickChangePage = () => {
+    const viewPage = !this.state.changePage;
+    this.setState({ changePage: viewPage })
+  }
+
+
   render() {
-    return (
-      <Container>
+    const currentPage = this.state.changePage ?
+      <div>
+        <Lista />
+        <button onClick={this.clickChangePage}>Ir para página de Cadastro</button>
+      </div>
+      :
+      <React.Fragment>
         <Cadastro
           userName={this.state.name}
           userEmail={this.state.email}
@@ -80,9 +89,12 @@ class App extends React.Component {
           onChangeUserEmail={this.onChangeUserEmail}
           clickButtonSave={this.clickSaveUser}
         />
-        <button>Ir para página de lista</button>
-        
-        <Lista />
+        <button onClick={this.clickChangePage}>Ir para página de lista</button>
+      </React.Fragment>
+
+    return (
+      <Container>
+        {currentPage}
       </Container>
     )
   }

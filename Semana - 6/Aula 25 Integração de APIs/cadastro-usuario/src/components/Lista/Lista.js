@@ -21,6 +21,8 @@ class Lista extends React.Component {
 		this.getListUser();
 	}
 
+
+
 	getListUser = () => {
 
 		const request = axios.get(
@@ -47,7 +49,7 @@ class Lista extends React.Component {
 
 	deleteUser = userId => {
 		const request = axios.delete(
-			`https://us-central1-future4-users.cloudfunctions.net/api/users/deleteUser?${userId}`,
+			`https://us-central1-future4-users.cloudfunctions.net/api/users/deleteUser?id=${userId}`,
 			{
 				headers: {
 					'api-token': "c28d8d1f8a5fa4268324d365a6a5be87"
@@ -56,36 +58,34 @@ class Lista extends React.Component {
 		);
 		request
 			.then(response => {
-				console.log(response);
+				window.alert("Usuário deletado com sucesso", response);
 			})
 			.catch(error => {
-				console.log(error);
+				window.alert("Erro! Usuário não foi deletado", error);
 			});
 	};
 
 
+	
+	
 
-
-
-
-
-
-
-render() {
-	const userListNew = this.state.listUser.map((user, id) => {
-			const funcaoIntermediaria = () => {
-				this.deleteUser(user.id)
+	render() {
+		const userListNew = this.state.listUser.map(
+			user => {
+				const funcaoIntermediaria = () => {
+					this.deleteUser(user.id);
+				};
+				return <li> {user.name} <button onClick={funcaoIntermediaria}>X</button></li>;
 			}
-		return <li key={id}> {user.name} <button onClick={funcaoIntermediaria}>X</button></li>
-	})
+		);
 
-	return (
-		<ListaContainer>
-			<h2>Usuários Cadastrados:</h2>
-			<ul>{userListNew}</ul>
-		</ListaContainer>
-	)
-}
+		return (
+			<ListaContainer>
+				<h2>Usuários Cadastrados:</h2>
+				<ul>{userListNew}</ul>
+			</ListaContainer>
+		)
+	}
 }
 
 export default Lista;
