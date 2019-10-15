@@ -39,7 +39,7 @@ const ContainerListaPage = styled.div`
 
 const ButtonChangePage = styled.button`
   height: 50px;
-  width: 60%;
+  width: 70%;
   align-self: center;
   font-size:1.5rem;
   font-weight: bold;
@@ -88,7 +88,7 @@ class App extends React.Component {
           'api-token': "c28d8d1f8a5fa4268324d365a6a5be87"
         }
       }
-    );
+    ); 
 
     request
       .then(response => {
@@ -97,7 +97,7 @@ class App extends React.Component {
       })
       .catch(error => {
         window.alert("Erro ao cadastrar usuário, tente novamente", error);
-      });
+      });this.setState({name: '', email: ''})
 
   }
 

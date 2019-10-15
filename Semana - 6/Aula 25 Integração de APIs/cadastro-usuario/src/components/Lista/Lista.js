@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+// import deleteImg from '../Img/delete.svg'
 
 const ListaContainer = styled.div`
   display: flex;
@@ -29,9 +30,9 @@ const NameUser = styled.li`
 `
 
 const ButtonDelete = styled.button`
-	align-self: baseline;
-	width: 20px;
-	height: 20px;
+	box-sizing: border-box;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	color: #fff;
 	background-color: red;
@@ -94,6 +95,7 @@ class Lista extends React.Component {
 			.catch(error => {
 				window.alert("Erro! Usuário não foi deletado", error);
 			});
+
 	};
 
 	render() {

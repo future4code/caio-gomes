@@ -15,7 +15,7 @@ const ButtonSaveUser = styled.button`
 	align-self: center;
 	margin: 10px;
 	font-size: 2rem;
-	width: 60%;
+	width: 40%;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 	color: #fff;
