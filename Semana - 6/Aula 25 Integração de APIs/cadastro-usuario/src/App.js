@@ -7,15 +7,52 @@ import axios from 'axios'
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  height: 50vh;
+  width: 40vw;
+  border-radius: 5px;
   margin: 10px;
   padding: 10px;
-  border: 1px solid red;
+  background-color: #464B4D;
 `
 
+const ContainerCadastroPage = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+`
 
+const ContainerListaPage = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+`
 
+const ButtonChangePage = styled.button`
+  height: 50px;
+  width: 60%;
+  align-self: center;
+  font-size:1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background-color: #F0687C;
+  color: #FFFCEE;
+  margin-bottom: 20px;
+
+  &:hover {
+		background-color: #B63D65;
+	}
+`
 
 class App extends React.Component {
   constructor() {
@@ -27,19 +64,16 @@ class App extends React.Component {
     };
   }
 
-
   onChangeUserName = (event) => {
     this.setState({ name: event.target.value })
     console.log(this.state.name)
   }
 
-
   onChangeUserEmail = (event) => {
     this.setState({ email: event.target.value })
     console.log(this.state.email)
   }
-
-
+  
   clickSaveUser = () => {
     const data = {
       name: this.state.name,
@@ -74,14 +108,15 @@ class App extends React.Component {
   }
 
 
+
   render() {
     const currentPage = this.state.changePage ?
-      <div>
+      <ContainerListaPage>
         <Lista />
-        <button onClick={this.clickChangePage}>Ir para página de Cadastro</button>
-      </div>
+        <ButtonChangePage onClick={this.clickChangePage}>Ir para página de Cadastro</ButtonChangePage>
+      </ContainerListaPage>
       :
-      <React.Fragment>
+      <ContainerCadastroPage>
         <Cadastro
           userName={this.state.name}
           userEmail={this.state.email}
@@ -89,8 +124,8 @@ class App extends React.Component {
           onChangeUserEmail={this.onChangeUserEmail}
           clickButtonSave={this.clickSaveUser}
         />
-        <button onClick={this.clickChangePage}>Ir para página de lista</button>
-      </React.Fragment>
+        <ButtonChangePage onClick={this.clickChangePage}>Ir para página de lista</ButtonChangePage>
+      </ContainerCadastroPage>
 
     return (
       <Container>

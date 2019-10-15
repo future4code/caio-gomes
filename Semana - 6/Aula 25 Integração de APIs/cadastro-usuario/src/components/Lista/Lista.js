@@ -3,11 +3,42 @@ import styled from 'styled-components'
 import axios from 'axios'
 
 const ListaContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    border: 1px solid blue;
+  display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	height: 40vh;
+	padding: 5px;
+	border-bottom: 1px dashed #fff;
+`
+const TitleUser = styled.h2`
+	font-size: 1.5rem;
+	align-self: center;
+	color: #fff;
+`
+const ListUser = styled.ul`
+	font-size: 1.5rem;
+	color: #fff;
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+`
+const NameUser = styled.li`
+	padding: 5px;
+	align-self: baseline;
 `
 
+const ButtonDelete = styled.button`
+	align-self: baseline;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	color: #fff;
+	background-color: red;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+`
 
 class Lista extends React.Component {
 	constructor() {
@@ -65,24 +96,27 @@ class Lista extends React.Component {
 			});
 	};
 
-
-	
-	
-
 	render() {
-		const userListNew = this.state.listUser.map(
-			user => {
-				const funcaoIntermediaria = () => {
+		const userListNew = this.state.listUser.map((
+			user, id) => {
+			const funcaoIntermediaria = () => {
+				const deleteUser = window.confirm("Tem certeza de que deseja deletar?");
+				if (deleteUser) {
 					this.deleteUser(user.id);
-				};
-				return <li> {user.name} <button onClick={funcaoIntermediaria}>X</button></li>;
-			}
-		);
+				} else {
+					window.alert("Nada foi apagado")
+				}
+			};
+			return <NameUser key={id}> {user.name} <ButtonDelete onClick={funcaoIntermediaria}>X</ButtonDelete></NameUser>;
+		}
+		)
 
 		return (
 			<ListaContainer>
-				<h2>Usuários Cadastrados:</h2>
-				<ul>{userListNew}</ul>
+				<TitleUser>Usuários Cadastrados</TitleUser>
+
+				<ListUser>{userListNew}</ListUser>
+
 			</ListaContainer>
 		)
 	}
