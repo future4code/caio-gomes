@@ -6,7 +6,6 @@ import axios from 'axios'
 const ListaContainer = styled.div`
   display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	width: 100%;
 	height: 40vh;
 	padding: 5px;
@@ -17,28 +16,40 @@ const TitleUser = styled.h2`
 	align-self: center;
 	color: #fff;
 `
-const ListUser = styled.ul`
+const ListUser = styled.div`
 	font-size: 1.5rem;
 	color: #fff;
 	margin: 5px;
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 `
-const NameUser = styled.li`
+const NameUser = styled.p`
 	padding: 5px;
+	margin: 10px;
 	align-self: baseline;
+	border-bottom: 1px solid #fff;
+	cursor: pointer;
+
+	&:hover {
+		font-weight: bold;
+	}
 `
 
 const ButtonDelete = styled.button`
 	box-sizing: border-box;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 	border-radius: 50%;
 	color: #fff;
 	background-color: red;
 	font-weight: bold;
 	border: none;
 	cursor: pointer;
+	margin-left: 10px;
+
+	&:hover {
+		font-weight: bold;
+	}
 `
 
 class Lista extends React.Component {
@@ -50,34 +61,27 @@ class Lista extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getListUser();
+		this.getUserList()
 	}
 
-
-
-	getListUser = () => {
-
-		const request = axios.get(
-			"https://us-central1-future4-users.cloudfunctions.net/api/users/getAllUsers",
-			{
-				headers: {
-					'api-token': "c28d8d1f8a5fa4268324d365a6a5be87"
+	getUserList = () => {
+		axios.
+			get(
+				"https://us-central1-future4-users.cloudfunctions.net/api/users/getAllUsers",
+				{
+					headers: {
+						'api-token': "c28d8d1f8a5fa4268324d365a6a5be87"
+					}
 				}
-			}
-		);
-
-		request
+			)
 			.then(response => {
 				console.log(response);
 				this.setState({ listUser: response.data.result });
-
 			})
 			.catch(error => {
 				console.log(error);
 			});
-
 	}
-
 
 	deleteUser = userId => {
 		const request = axios.delete(
@@ -91,11 +95,8 @@ class Lista extends React.Component {
 		request
 			.then(response => {
 				window.alert("Usuário deletado com sucesso", response);
-			})
-			.catch(error => {
-				window.alert("Erro! Usuário não foi deletado", error);
 			});
-
+		this.getUserList();
 	};
 
 	render() {
@@ -105,20 +106,21 @@ class Lista extends React.Component {
 				const deleteUser = window.confirm("Tem certeza de que deseja deletar?");
 				if (deleteUser) {
 					this.deleteUser(user.id);
-				} else {
-					window.alert("Nada foi apagado")
-				}
+				} 
 			};
-			return <NameUser key={id}> {user.name} <ButtonDelete onClick={funcaoIntermediaria}>X</ButtonDelete></NameUser>;
+			return <NameUser key={id}>
+				{user.name}
+					<ButtonDelete
+						onClick={funcaoIntermediaria}> x
+					</ButtonDelete>
+				</NameUser>;
 		}
 		)
 
 		return (
 			<ListaContainer>
 				<TitleUser>Usuários Cadastrados</TitleUser>
-
 				<ListUser>{userListNew}</ListUser>
-
 			</ListaContainer>
 		)
 	}

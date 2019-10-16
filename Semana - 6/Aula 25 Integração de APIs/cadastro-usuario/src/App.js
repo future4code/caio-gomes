@@ -74,7 +74,7 @@ class App extends React.Component {
     console.log(this.state.email)
   }
   
-  clickSaveUser = () => {
+  clickSaveUser = async () => {
     const data = {
       name: this.state.name,
       email: this.state.email

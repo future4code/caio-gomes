@@ -20,7 +20,7 @@ const ButtonSaveUser = styled.button`
 	font-family: Arial, Helvetica, sans-serif;
 	color: #fff;
 	padding: 5px;
-	border: none;
+	border: 1px solid #fff;
 	cursor: pointer;
 	background-color: #000;
 	transition: 0.3s all;
