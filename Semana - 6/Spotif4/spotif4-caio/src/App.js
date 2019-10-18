@@ -4,11 +4,16 @@ import ListAllPlaylists from './Components/ListAllPlaylists/ListAllPlaylists.js'
 import axios from 'axios'
 import styled from 'styled-components'
 import Header from './Components/Header/Header.js';
+import AddNewMusic from './Components/AddNewMusic/AddNewMusic.js';
+import MusicPlayer from './Components/MusicPlayer/MusicPlayer.js';
 
 
 const Container = styled.div`
-  display: flex;
-  `
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  
+`
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +21,11 @@ class App extends React.Component {
     this.state = {
       showAllPlaylists: [],
       playlistName: '',
+      musicName: '',
+      nameArtist: '',
+      linkMusic: '',
+      playlistSelected: {},
+      allMusicList: [],
     }
   }
 
@@ -33,8 +43,7 @@ class App extends React.Component {
 
     request
       .then(response => {
-        window.alert("A playlist foi adicionada com sucesso!", response);
-        this.getAllPlaylists();
+        this.getAllPlaylists(response);
 
       }).catch(error => {
         window.alert("Erro ao adicionar Playlist, tente novamente", error);
@@ -65,7 +74,66 @@ class App extends React.Component {
       })
   }
 
+  clickAddMusic = () => {
+    const data = {
+      playlistId: this.state.playlistSelected.id,
+      music: {
+        name: this.state.musicName,
+        artist: this.state.nameArtist,
+        url: this.state.linkMusic,
+      }
+    }
+    axios
+      .put("https://us-central1-spotif4.cloudfunctions.net/api/playlists/addMusicToPlaylist", data,
+      {
+        headers: {
+          'auth': "c28d8d1f8a5fa4268324d365a6a5be87"
+        }
+      }).then(response => {
+        this.setState( {playlistSelected: response.config.data});
+      }) 
+      this.getAllMusics(this.state.playlistSelected.id);
+
+      
+  }
+
+  onChangeMusic = (event) => {
+    this.setState({ musicName: event.target.value })
+  }
+
+  onChangeName = (event) => {
+    this.setState({ nameArtist: event.target.value })
+
+  }
+
+  onChangeLink = (event) => {
+    this.setState({ linkMusic: event.target.value })
+  }
+
+  clickForAddNewMusic = (playlist) => {
+    this.setState({playlistSelected: playlist})
+    this.getAllMusics(playlist.id);
+  }
+  
+  getAllMusics = playlistId => {
+    axios
+      .get(`https://us-central1-spotif4.cloudfunctions.net/api/playlists/getPlaylistMusics/${playlistId}`,
+        {
+          headers: {
+            'auth': "c28d8d1f8a5fa4268324d365a6a5be87"
+          }
+        })
+      .then(response => {
+        this.setState({ allMusicList: response.data.result.musics})
+      })
+  }
+
+
+
+
   render() {
+
+    console.log(this.state)
     return (
       <React.Fragment>
         <Header />
@@ -74,13 +142,25 @@ class App extends React.Component {
             value={this.state.playlistName}
             onChange={this.onChangeNamePlaylist}
             onClick={this.clickAddPlaylist}
-
-
           />
           <ListAllPlaylists
             showAllPlaylists={this.state.showAllPlaylists}
             getAllPlaylists={this.getAllPlaylists}
+            clickForAddNewMusic={this.clickForAddNewMusic}
           />
+          {this.state.playlistSelected.name && (
+            <AddNewMusic
+            musicName={this.state.musicName}
+            onChangeMusic={this.onChangeMusic}
+            nameArtist={this.state.nameArtist}
+            onChangeName={this.onChangeName}
+            linkMusic={this.state.linkMusic}
+            onChangeLink={this.onChangeLink}
+            clickAddMusic={this.clickAddMusic}
+            selectedPlaylistName={this.state.playlistSelected.name}
+          />
+          )}
+            <MusicPlayer/>
         </Container>
       </React.Fragment>
     )
