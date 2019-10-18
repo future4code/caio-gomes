@@ -1,17 +1,21 @@
 import React from 'react'
+import Sound from 'react-sound';
 
-function MusicPlayer (props) {
-    
-    
-    
-    
-    return(
+function MusicPlayer(props) {
+
+
+
+    const newListMusics = props.listAllMusic.map((musics) => {
+        return <div key={musics.id}>
+            <p>Nome da música: {musics.name}</p>
+            <p>Nome do artista: {musics.artist}</p>
+            <audio src={musics.url} controls/>
+        </div>
+    })
+
+    return (
         <div>
-            <h1>Músicas</h1>
-            <p>Playlist:</p>
-            <p>Nome Da música:{props.newMusic}</p>
-            <p>Nome do Artista:{props.newArtist}</p>
-            <audio src={props.newAudio}></audio>
+            {newListMusics}
         </div>
     )
 }

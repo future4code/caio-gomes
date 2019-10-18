@@ -133,7 +133,7 @@ class App extends React.Component {
 
   render() {
 
-    console.log(this.state)
+    console.log(this.state.allMusicList)
     return (
       <React.Fragment>
         <Header />
@@ -160,7 +160,9 @@ class App extends React.Component {
             selectedPlaylistName={this.state.playlistSelected.name}
           />
           )}
-            <MusicPlayer/>
+            <MusicPlayer
+            listAllMusic={this.state.allMusicList}
+            />
         </Container>
       </React.Fragment>
     )
