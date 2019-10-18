@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const ContainerAddPlaylist = styled.div`
-    border: 1px solid black;
-    width: 30%;
+    border-right: 3px solid black;
+    width: 20%;
     display: flex;
     flex-direction: column;
+		height: 100vh;
 `
 
 function AddPlaylist (props){

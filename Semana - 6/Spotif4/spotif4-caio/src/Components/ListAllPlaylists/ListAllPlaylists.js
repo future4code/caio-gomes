@@ -3,8 +3,10 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 const ContainerAllPlaylists = styled.div`
-    border: 1px solid red;
+    border: 3px solid red;
     width: 30%;
+    height: 50vh;
+    margin: 20px;
 `
 
 function ListAllPlaylists(props) {
