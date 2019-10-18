@@ -43,17 +43,17 @@ class PokemonAPI extends React.Component {
     render() {
         return (
             <ContainerPokemons>
+             
                 {this.state.pokemonList.map((pokemon) => {
                     return (
                         <p
                             key={pokemon.name}
                         >
-                            <img src={this.state.pokemonValue}/>
+                           
                             {pokemon.name}
                         </p>
                     )
                 })}
-                
             </ContainerPokemons>
         )
     }
