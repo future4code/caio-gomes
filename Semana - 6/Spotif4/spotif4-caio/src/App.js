@@ -9,9 +9,11 @@ import MusicPlayer from './Components/MusicPlayer/MusicPlayer.js';
 
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 1fr 2fr;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #66ACCB;
+ 
   
 `
 
