@@ -14,9 +14,6 @@ import { REMOVE_COMPLETE_TASKS } from '../constants/actionTypes'
 export const newTasksAction = tasks =>  {
 	return {
 		type: NEW_TASK,
-		payload: {
-			tasks: tasks,
-		}
 	}
 }
 
@@ -61,7 +58,6 @@ export const editTaskAction = tasks => {
 		type: EDIT_TASK,
 		payload: {
 			tasks: tasks,
-			
 		}
 	}
 }

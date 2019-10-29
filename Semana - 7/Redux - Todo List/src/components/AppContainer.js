@@ -2,6 +2,8 @@ import React from 'react';
 import NewTask from './TextField/NewTask';
 import MenuTask from './MenuTaskOption/MenuTask';
 import styled from 'styled-components';
+import CreateTaskButton from './CreateTaskBtn/CreateTaskBtn';
+import ListTasks from './ListTasks/ListTasks';
 
 
 
@@ -24,6 +26,8 @@ function AppContainer () {
 		<Container>
 			<Title>4Tasks</Title>
 			<NewTask/>
+			<CreateTaskButton/>
+			<ListTasks/>
 			<MenuTask/>
 		</Container>
 	)

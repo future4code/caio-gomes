@@ -14,7 +14,7 @@ const tasks = (state = initialState, action) => {
 		case "DELETE_TASK":
 			return state;
 		case "EDIT_TASK":
-			return { ...state, task: action.value }
+			return { ...state, task: action.payload.tasks }
 		case "MARK_ALL_TASK_COMPLETE":
 			return state;
 		case "NEW_TASK":

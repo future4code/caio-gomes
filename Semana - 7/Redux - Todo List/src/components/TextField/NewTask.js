@@ -1,11 +1,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
 import { editTaskAction } from '../../actions'
 import tasks from '../../reducers/tasks';
-
 
 const ContainerNewTask = styled.div`
 	width: 80%;
@@ -21,14 +19,8 @@ const StyledTextField = styled(TextField)`
 		outline: none
 	}
 `
-const StyledButton = styled(Button)`
-	width: 50%;
-	margin: 10px;
-	align-self: center;
-`
-
-
 const NewTask = props => {
+	
 	const handleNewTask = event => {
 		props.editTextTask(event.target.value);
 	};
@@ -43,27 +35,23 @@ const NewTask = props => {
 				variant="outlined"
 				onChange={handleNewTask}
 				/>
-			<StyledButton
-				variant="contained" 
-				color="primary"
-			> 
-			Criar Tarefa </StyledButton>
+			
 		</ContainerNewTask>
 	)
 };
 
 const mapStateToProps = state => {
+	console.log(state.tasks)
 	return {
 	  task: state.tasks.task
 	};
 };
 
 const mapDispatchToProps = dispatch => {
+	console.log(tasks)
 	return {
 		editTextTask: task => dispatch(editTaskAction(task))
 	};
   };
 
-console.log(tasks.task);
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
+  export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
