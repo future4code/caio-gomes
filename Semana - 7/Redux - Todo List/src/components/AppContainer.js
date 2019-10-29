@@ -1,8 +1,8 @@
 import React from 'react';
 import NewTask from './TextField/NewTask';
 import MenuTask from './MenuTaskOption/MenuTask';
-// import ListTasks from './ButtonsForEachTask/ListTasks';
 import styled from 'styled-components';
+
 
 
 const Container = styled.div`
@@ -24,7 +24,6 @@ function AppContainer () {
 		<Container>
 			<Title>4Tasks</Title>
 			<NewTask/>
-			{/* <ListTasks/> */}
 			<MenuTask/>
 		</Container>
 	)

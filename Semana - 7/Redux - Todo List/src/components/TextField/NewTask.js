@@ -2,6 +2,9 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux'
+import { editTaskAction } from '../../actions'
+import tasks from '../../reducers/tasks';
 
 
 const ContainerNewTask = styled.div`
@@ -25,16 +28,10 @@ const StyledButton = styled(Button)`
 `
 
 
-const handleNewTask = (event) => {
-	return {
-		type: "EDIT_TASK",
-		value: event.target.value
+const NewTask = props => {
+	const handleNewTask = event => {
+		props.editTextTask(event.target.value);
 	};
-
-};
-
-const NewTask = () => {
-	
 	
 	return (
 		<ContainerNewTask>
@@ -42,9 +39,9 @@ const NewTask = () => {
 				type="text"
 				label="Crie uma nova tarefa"
 				placeholder="digite a tarefa"
-				// value={state.task}
+				value={props.task}
 				variant="outlined"
-				// onChange={(event)=>dispatch(handleNewTask(event))}
+				onChange={handleNewTask}
 				/>
 			<StyledButton
 				variant="contained" 
@@ -53,6 +50,20 @@ const NewTask = () => {
 			Criar Tarefa </StyledButton>
 		</ContainerNewTask>
 	)
-}
+};
 
-export default NewTask;
+const mapStateToProps = state => {
+	return {
+	  task: state.tasks.task
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		editTextTask: task => dispatch(editTaskAction(task))
+	};
+  };
+
+console.log(tasks.task);
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewTask);

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useReduxState } from '../../redux/react-redux-f4';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -11,10 +10,7 @@ const ButtonMenu = styled(Button)`
 	margin: 5px;
 
 `
-
 const MenuTask = () => {
-	const state = useReduxState();
-
 	return (
 		<ContainerMenu>
 			<ButtonMenu>Marcar todas as tarefas</ButtonMenu>

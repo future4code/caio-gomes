@@ -61,6 +61,7 @@ export const editTaskAction = tasks => {
 		type: EDIT_TASK,
 		payload: {
 			tasks: tasks,
+			
 		}
 	}
 }
