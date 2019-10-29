@@ -1,13 +1,14 @@
 import React from 'react';
 import { useReduxState } from '../../redux/react-redux-f4';
 import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
 
 const ContainerMenu = styled.div`
 	display: flex;
-	border: 1px solid red;
+	
 `
-const ButtonMenu = styled.button`
-
+const ButtonMenu = styled(Button)`
+	margin: 5px;
 
 `
 
@@ -16,10 +17,16 @@ const MenuTask = () => {
 
 	return (
 		<ContainerMenu>
-			<ButtonMenu>Marcar todas como completas</ButtonMenu>
-			<ButtonMenu>Todas</ButtonMenu>
-			<ButtonMenu>Pendentes</ButtonMenu>
-			<ButtonMenu>Completas</ButtonMenu>
+			<ButtonMenu>Marcar todas as tarefas</ButtonMenu>
+			<ButtonMenu
+				variant="outlined" color="secondary"
+			>Todas</ButtonMenu>
+			<ButtonMenu
+				variant="outlined" color="secondary"
+			>Pendentes</ButtonMenu>
+			<ButtonMenu
+				variant="outlined" color="secondary"
+			>Completas</ButtonMenu>
 			<ButtonMenu>Remover completas</ButtonMenu>
 		</ContainerMenu>
 	)

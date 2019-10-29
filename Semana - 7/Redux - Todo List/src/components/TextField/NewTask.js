@@ -1,16 +1,28 @@
 import React from 'react';
-import { useDispatch, useReduxState } from "../../redux/react-redux-f4";
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
+
+
+const ContainerNewTask = styled.div`
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+`
 
 const StyledTextField = styled(TextField)`
 	color: gray;
-
+	width: 100%;
 	&:focus{
 		outline: none
 	}
 `
-
+const StyledButton = styled(Button)`
+	width: 50%;
+	margin: 10px;
+	align-self: center;
+`
 
 
 const handleNewTask = (event) => {
@@ -22,21 +34,24 @@ const handleNewTask = (event) => {
 };
 
 const NewTask = () => {
-	const dispatch = useDispatch();
-	const state = useReduxState();
+	
 	
 	return (
-		<div>
+		<ContainerNewTask>
 			<StyledTextField
 				type="text"
 				label="Crie uma nova tarefa"
 				placeholder="digite a tarefa"
-				value={state.task}
+				// value={state.task}
 				variant="outlined"
-				onChange={(event)=>dispatch(handleNewTask(event))}
+				// onChange={(event)=>dispatch(handleNewTask(event))}
 				/>
-			<button onClick={()=>dispatch(createNewTask())}> Criar Tarefa </button>
-		</div>
+			<StyledButton
+				variant="contained" 
+				color="primary"
+			> 
+			Criar Tarefa </StyledButton>
+		</ContainerNewTask>
 	)
 }
 

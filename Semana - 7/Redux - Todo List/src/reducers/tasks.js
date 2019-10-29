@@ -1,15 +1,9 @@
-import React from 'react';
-import { useDispatch, useReduxState } from "../redux/react-redux-f4";
-import TextField from '@material-ui/core/TextField';
-import styled from 'styled-components';
-
 const initialState = {
 	task: '',
 	listTasks: [],
 };
 
-export function reducer(state = initialState, action) {
-	console.log(state)
+const tasks = (state = initialState, action) => {
 	switch (action.type) {
 		case "ALL_TASKS":
 			return state;
@@ -34,3 +28,4 @@ export function reducer(state = initialState, action) {
 	}
 }
 
+export default tasks;
