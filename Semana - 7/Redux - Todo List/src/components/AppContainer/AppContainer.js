@@ -1,8 +1,8 @@
 import React from 'react';
-import { useReduxState, Provider, useDispatch } from "../redux/react-redux-f4";
-import NewTask from './NewTask';
-import MenuTask from './MenuTask';
-import ListTasks from './ListTasks';
+import { useReduxState, Provider, useDispatch } from "../../redux/react-redux-f4";
+import NewTask from '../TextField/NewTask';
+import MenuTask from '../MenuTaskOption/MenuTask';
+import ListTasks from '../ButtonsForEachTask/ListTasks';
 import styled from 'styled-components';
 
 

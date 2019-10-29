@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useReduxState } from "../redux/react-redux-f4";
+import { useDispatch, useReduxState } from "../../redux/react-redux-f4";
 import styled from 'styled-components';
 
 

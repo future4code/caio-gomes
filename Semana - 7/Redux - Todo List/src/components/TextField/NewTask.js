@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useReduxState } from "../redux/react-redux-f4";
+import { useDispatch, useReduxState } from "../../redux/react-redux-f4";
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 
@@ -11,11 +11,6 @@ const StyledTextField = styled(TextField)`
 	}
 `
 
-const createNewTask = () => {
-	return {
-		type: "NEW_TASK",
-	};
-};
 
 
 const handleNewTask = (event) => {
