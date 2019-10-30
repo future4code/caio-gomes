@@ -1,28 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
+import Checkbox from '@material-ui/core/Checkbox';
 
-
-const StyledList = styled.div`
-	height: 30vh;
-	border: 1px solid red;
-	width: 90%;
+const ListTaskContainer = styled.div`
+	margin: 5px;
+	border: 1px solid black;
+	box-shadow: 1px 1px #888888;
+	width: 50%;
 	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
+	justify-content: space-between;
 	align-items: center;
+`
+const DeleteBtn = styled(DeleteForeverRoundedIcon)`
+	margin: 5px;
+	font-size: 30px;
+	cursor: pointer;
+	transition: all .2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.2);
+		}
 `
 
 
-const ListTasks = props => {
+class ListTasks extends React.Component {
 	
-	const taskList = props.tasks.task.map()
-	
-	return (
-		<StyledList>
-			<h3>Lista de Tasks:</h3>
-		</StyledList>
-	)
+	render() {
+		return this.props.task.map((tasks, index) => (
+			<ListTaskContainer key={index}>
+				
+				<Checkbox/>
+				<p>{tasks}</p>
+				<DeleteBtn/>
+			</ListTaskContainer>	
+		))
+	}
 }
 
 
