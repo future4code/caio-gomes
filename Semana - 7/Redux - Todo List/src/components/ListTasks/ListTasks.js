@@ -1,17 +1,22 @@
-import React from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable indent */
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+import React from 'react'
+import styled from 'styled-components'
+import { connect } from 'react-redux'
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
-import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox'
+
 
 const ListTaskContainer = styled.div`
 	margin: 5px;
 	border: 1px solid black;
 	box-shadow: 1px 1px #888888;
-	width: 50%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
 `
 const DeleteBtn = styled(DeleteForeverRoundedIcon)`
 	margin: 5px;
@@ -22,29 +27,25 @@ const DeleteBtn = styled(DeleteForeverRoundedIcon)`
         &:hover {
           transform: scale(1.2);
 		}
-`
-
+` 
 
 class ListTasks extends React.Component {
-	
 	render() {
-		return this.props.task.map((tasks, index) => (
-			<ListTaskContainer key={index}>
-				
-				<Checkbox/>
-				<p>{tasks}</p>
-				<DeleteBtn/>
-			</ListTaskContainer>	
-		))
+		return this.props.tasksLists.map(task => 
+			<ListTaskContainer>
+				<Checkbox />
+				<p>{task.text}</p>
+				<DeleteBtn />
+			</ListTaskContainer>
+		)	
 	}
 }
 
-
-const mapStateToProps = state => {
+function mapStateToProps(state) {
 	console.log(state)
 	return {
-	  task: state.tasks.listTasks
-	};
-};
+		tasksLists: state.tasks
+	}
+}
 
-export default connect(mapStateToProps, null)(ListTasks);
+export default connect(mapStateToProps)(ListTasks)

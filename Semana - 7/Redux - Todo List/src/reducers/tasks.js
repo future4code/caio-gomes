@@ -1,31 +1,19 @@
-const initialState = {
-	task: '',
-	listTasks: [],
-};
+/* eslint-disable no-case-declarations */
+const initialState = []
 
-const tasks = (state = initialState, action) => {
+const taskReducer = (state = initialState, action) => {
+	console.log(action)
 	switch (action.type) {
-		case "ALL_TASKS":
-			return state;
-		case "CHECK_TASK":
-			return state;
-		case "COMPLETE_TASKS":
-			return state;
-		case "DELETE_TASK":
-			return state;
-		case "EDIT_TASK":
-			return { ...state, task: action.payload.tasks }
-		case "MARK_ALL_TASK_COMPLETE":
-			return state;
-		case "NEW_TASK":
-			return { ...state, listTasks: [...state.listTasks, state.task], task: "" }
-		case "PENDING_TASKS":
-			return state;
-		case "REMOVE_COMPLETE_TASKS":
-			return state;
-		default:
-			return state;
+	case 'ADD_TASK':
+		const newTask = {
+			text: action.payload.text,
+			id: Date.now(),
+			checked: false
+		}
+		return [newTask, ...state]
+	default:
+		return state
 	}
 }
 
-export default tasks;
+export default taskReducer

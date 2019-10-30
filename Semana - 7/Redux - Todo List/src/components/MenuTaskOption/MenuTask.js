@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
 
 const ContainerMenu = styled.div`
 	display: flex;
@@ -28,4 +28,4 @@ const MenuTask = () => {
 	)
 }
 
-export default MenuTask;
+export default MenuTask

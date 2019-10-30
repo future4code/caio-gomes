@@ -7,8 +7,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import AppContainer from './components/AppContainer'
 import styled from 'styled-components'
 import { Provider } from 'react-redux'
-import { createStore } from "redux";
-import rootReducer from './reducers';
+import { createStore } from 'redux'
+import rootReducer from './reducers'
 
 
 
@@ -26,9 +26,9 @@ const jss = create({
 })
 
 const devTools =
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
-const store = createStore(rootReducer, devTools);
+const store = createStore(rootReducer, devTools)
 
 const theme = createMuiTheme()
 

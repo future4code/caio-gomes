@@ -1,9 +1,12 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import styled from 'styled-components';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React from 'react'
+import TextField from '@material-ui/core/TextField'
+import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { editTaskAction } from '../../actions'
-import tasks from '../../reducers/tasks';
+import { addTask } from '../../actions/index'
+import Button from '@material-ui/core/Button'
+
 
 const ContainerNewTask = styled.div`
 	width: 80%;
@@ -19,39 +22,53 @@ const StyledTextField = styled(TextField)`
 		outline: none
 	}
 `
-const NewTask = props => {
+const StyledButton = styled(Button)`
+	width: 35%;
+	margin: 10px;
+	align-self: center;
+`
+
+class NewTask extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			taskValue: ''
+		}
+	}
+
+	onChangeTask = event => {
+		this.setState({ taskValue: event.target.value })
+	}
+
+	onClickCreateTask = () => {
+		this.props.addNewTask(this.state.taskValue)
+		this.setState({taskValue: ""})
+	}
 	
-	const handleNewTask = event => {
-		props.editTextTask(event.target.value);
-	};
-	
-	return (
-		<ContainerNewTask>
-			<StyledTextField
-				type="text"
-				label="Crie uma nova tarefa"
-				placeholder="digite a tarefa"
-				value={props.task}
-				variant="outlined"
-				onChange={handleNewTask}
+	render() {
+		return (
+			<ContainerNewTask>
+				<StyledTextField
+					label={'Qual sua Tarefa'}
+					multiline
+					onChange={this.onChangeTask}
+					value={this.state.taskValue}
 				/>
-			
-		</ContainerNewTask>
-	)
-};
+				<StyledButton
+					variant="contained"
+					color="primary"
+					onClick={this.onClickCreateTask}
+				>
+					Criar Tarefa
+				</StyledButton>
+			</ContainerNewTask>
+		)
+	}
+}
 
-const mapStateToProps = state => {
-	console.log(state.tasks)
-	return {
-	  task: state.tasks.task
-	};
-};
+const mapDispatchToProps = (dispatch) => ({
+	addNewTask: (text) => dispatch(addTask(text))
+})
 
-const mapDispatchToProps = dispatch => {
-	console.log(tasks)
-	return {
-		editTextTask: task => dispatch(editTaskAction(task))
-	};
-  };
-
-  export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
+export default connect(null, mapDispatchToProps)(NewTask)

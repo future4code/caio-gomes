@@ -1,9 +1,0 @@
-export const ALL_TASKS = "ALL_TASKS";
-export const CHECK_TASK = "CHECK_TASK";
-export const COMPLETE_TASKS = "COMPLETE_TASK";
-export const DELETE_TASK = "DELETE_TASK";
-export const EDIT_TASK = "EDIT_TASK";
-export const MARK_ALL_TASK_COMPLETE = "MARK_ALL_TASK_COMPLETE";
-export const NEW_TASK = "NEW_TASK";
-export const PENDING_TASKS = "PENDING_TASKS";
-export const REMOVE_COMPLETE_TASKS = "REMOVE_COMPLETE_TASKS";
