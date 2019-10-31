@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import Checkbox from '@material-ui/core/Checkbox'
+import { checkTask, deleteTask } from '../../actions'
 
 
 const ListTaskContainer = styled.div`
@@ -30,12 +31,22 @@ const DeleteBtn = styled(DeleteForeverRoundedIcon)`
 ` 
 
 class ListTasks extends React.Component {
+
+	onClickDelete = (id) => {
+		this.props.taskDelete(id)
+	}
+
 	render() {
+
 		return this.props.tasksLists.map(task => 
-			<ListTaskContainer>
-				<Checkbox />
+			<ListTaskContainer key={task.id}>
+				<Checkbox
+				
+				/>
 				<p>{task.text}</p>
-				<DeleteBtn />
+				<DeleteBtn 
+					onClick={this.onClickDelete}
+				/>
 			</ListTaskContainer>
 		)	
 	}
@@ -48,4 +59,11 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(ListTasks)
+const mapDispatchToProps = dispatch => {
+  return {
+		checkTask: id => dispatch(checkTask(id)),
+		taskDelete: id => dispatch(deleteTask(id))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListTasks)
