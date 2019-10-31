@@ -8,6 +8,7 @@ import {
   UserAge,
   UserCardWrapper,
   UserName,
+  UserBio
 } from './styled'
 
 class UserSwipeCard extends Component {
@@ -30,6 +31,7 @@ class UserSwipeCard extends Component {
           <TitleWrapper>
             <UserName>{userToSwipe.name},</UserName>
             <UserAge>{userToSwipe.age}</UserAge>
+            <UserBio>{userToSwipe.bio}</UserBio>
           </TitleWrapper>
         </InfoWrapper>
       </UserCardWrapper>)

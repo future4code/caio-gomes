@@ -71,6 +71,7 @@ export const InfoWrapper = styled.div`
 
 export const TitleWrapper = styled.div`
   display: flex;
+	flex-wrap: wrap;
   align-items: baseline;
 `
 
@@ -82,4 +83,7 @@ export const UserName = styled.div`
 export const UserAge = styled.div`
   margin-left: 10px;
 	font-size: 20px;
+`
+export const UserBio = styled.div`
+	margin-top: 10px;
 `
