@@ -22,7 +22,6 @@ export class SwipeScreen extends Component {
 		if ((!this.props.profileToSwipe && this.props.getProfileToSwipe)) {
 			this.props.getProfileToSwipe()
 		}
-	
 	}
 
 	componentDidUpdate(prevProps, prevState, snapshot) {

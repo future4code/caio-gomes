@@ -19,7 +19,6 @@ class UserSwipeCard extends Component {
     }
   }
 
-
   render() {
     const { userToSwipe, animationDirection: animation } = this.props
 

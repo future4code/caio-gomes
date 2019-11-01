@@ -6,6 +6,7 @@ import {mdiAccountSwitch} from '@mdi/js'
 import {updateCurrentPage} from '../../actions/route'
 import {Avatar, List, ListItem, ListText, MatchIcon} from './styled'
 import { getMatches } from '../../actions/profiles'
+import ProfileScreen	from '../ProfileScreen'
 
 class MatchScreen extends Component {
 	componentDidMount() {
@@ -13,9 +14,11 @@ class MatchScreen extends Component {
 			this.props.getMatches()
 		}
 	}
-
+	
+	
 	render() {
-		const {goToSwipeScreen, matches} = this.props
+		const {goToSwipeScreen, matches, goToProfileScreen} = this.props
+		
 
 		return (
 			<div>
@@ -28,7 +31,7 @@ class MatchScreen extends Component {
 				/>
 				<List>
 					{matches && matches.map((match, id) => (
-						<ListItem key={id}>
+						<ListItem key={id} onClick={goToProfileScreen}>
 							<Avatar src={match.photo}/>
 							<ListText>{match.name}</ListText>
 						</ListItem>
@@ -46,7 +49,6 @@ MatchScreen.propTypes = {
 }
 
 const mapStateToProps = state => {
-	console.log(state)
 	return{ 
 		matches: state.profiles.allNewPersonLiked
 	}
@@ -54,6 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
 	goToSwipeScreen: () => dispatch(updateCurrentPage('SwipeScreen')),
+	goToProfileScreen: () => dispatch(updateCurrentPage('ProfileScreen')),
 	getMatches: () => dispatch(getMatches())
 })
 

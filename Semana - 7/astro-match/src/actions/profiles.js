@@ -7,26 +7,19 @@ const clearProfiles = (id) => ({
   }
 })
 
-export const clearSwipes = (id) => async (dispatch,getState) => {
-	const response = await axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/clear',
-	{
-		'header': "Content-Type: application/json"
-	},
-	{
-		'data': {
-			id
-		}
-	},
+export const clearSwipes = (id) => async (dispatch) => {
+	axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/clear',
+		{
+			'header': "Content-Type: application/json"
+		},
+		{
+			'data': {
+				id
+			}
+		},
 	)
-	console.log(response)
-	dispatch(clearProfiles(id))
-
-
+		dispatch(clearProfiles(id))
 }
-
-
-
-
 
 const choosePersonAction = (newPerson) => ({
   type: "CURRENT_PERSON",
@@ -35,14 +28,12 @@ const choosePersonAction = (newPerson) => ({
   }
 });
 
-export const fetchPerson = () => async (dispatch, getState) => {
+export const fetchPerson = () => async (dispatch) => {
   const response = await axios.get(
     'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/person')
 
   dispatch(choosePersonAction(response.data.profile))
-
 }
-
 
 const chooseProfile = (id, choice) => ({
 	type: "CHOOSE_PROFILE",
@@ -53,9 +44,8 @@ const chooseProfile = (id, choice) => ({
 })
 
 export const profileChoosed = (id, choice) => async (dispatch, getState) => {
-
 	const personLike = getState().profiles.newPerson
-	await axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/choose-person/",
+		await axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/choose-person/",
 		{
 			'header': "Content-Type: application/json"
 		},
@@ -69,7 +59,6 @@ export const profileChoosed = (id, choice) => async (dispatch, getState) => {
 	);
 }
 
-
 const matchProfile = (matches) => ({
 	type: "GET_MATCHES",
 	payload: {
@@ -77,12 +66,16 @@ const matchProfile = (matches) => ({
 	}
 })
 
-export const getMatches = () => async (dispatch, getState) => {
+export const getMatches = () => async (dispatch) => {
 	const response = await axios.get(
 		'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/matches'
 	)
-
 	dispatch(matchProfile(response.data.matches))
-
-	
 }
+
+export const profileMatched = (profile) => ({
+	type: "PROFILE_MATCHED",
+	payload: {
+		profile,
+	}
+})
