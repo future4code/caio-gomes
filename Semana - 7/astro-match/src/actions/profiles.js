@@ -76,6 +76,6 @@ export const getMatches = () => async (dispatch) => {
 export const profileMatched = (profile) => ({
 	type: "PROFILE_MATCHED",
 	payload: {
-		profile,
+		profile
 	}
 })

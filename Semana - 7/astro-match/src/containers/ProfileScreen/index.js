@@ -1,28 +1,34 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { profileMatched } from '../../actions/profiles'
+import styled from 'styled-components'
+
+
+const ImageProfile = styled.img`
+  width: 400px;
+  height: 300px;
+`
 
 class ProfileScreen extends React.Component {
   render() {
+    const profile = this.props.profileMatched
     return (
       <div>
-        <h1>to fazendo o perfil ainda :/</h1>
-        {/* {profileMatched && profileMatched.map((info, id) => 
-         <div key={id}> 
-          <img src={info.photo}/> 
-          <p>{info.name}</p>
-          <p>{info.bio}</p>
-        </div>
-        )} */}
+        <ImageProfile src={profile.photo}/>
+        <h1>{profile.name}, <span>{profile.age}</span></h1>
+        <p>{profile.bio}</p>
       </div>
     )
   }
 }
 
 
-const mapStateToProps = (state) => ({
-  profileMatched : state.allNewPersonLiked
-})
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {  
+  profileMatched : state.profiles.selectedPerson
+}
+}
 
 const mapDispatchToProps = (dispatch) => ({
   matchedProfile : (id) => dispatch(profileMatched(id))

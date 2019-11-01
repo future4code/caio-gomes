@@ -1,6 +1,7 @@
 const initialState = {
   newPerson: {},
-  allNewPersonLiked: []
+  allNewPersonLiked: [],
+  selectedPerson: {}
 }
 
 const profiles = (state = initialState, action) => {
@@ -27,7 +28,7 @@ const profiles = (state = initialState, action) => {
       return { ...state, allNewPersonLiked: clearAllProfiles};
       
     case "PROFILE_MATCHED":
-      return { ...state, allNewPersonLiked: action.payload.profile}
+      return { ...state, selectedPerson: action.payload.profile}
       
     default:
       return state;
