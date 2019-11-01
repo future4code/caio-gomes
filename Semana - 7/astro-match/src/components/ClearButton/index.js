@@ -18,6 +18,13 @@ ClearButtonWrapper.propTypes = {
 	clearSwipes: PropTypes.func.isRequired
 }
 
+
+function mapStatetoProps(state) {
+	return {
+		clearMaches: state.allNewPersonLiked
+	}
+}
+
 function mapDispatchToProps(dispatch) {
 	return {
 		clearSwipes: () => dispatch(clearSwipes()),

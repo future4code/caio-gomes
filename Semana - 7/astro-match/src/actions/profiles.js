@@ -1,9 +1,30 @@
 import axios from 'axios'
 
+const clearProfiles = (id) => ({
+  type: "CLEAR_PROFILES",
+  payload: {
+    id,
+  }
+})
 
-export const clearSwipes = () => async (dispatch) => {
-	await axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/clear')
+export const clearSwipes = (id) => async (dispatch,getState) => {
+	const response = await axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/clear',
+	{
+		'header': "Content-Type: application/json"
+	},
+	{
+		'data': {
+			id
+		}
+	},
+	)
+	console.log(response)
+	dispatch(clearProfiles(id))
+
+
 }
+
+
 
 
 
@@ -13,7 +34,6 @@ const choosePersonAction = (newPerson) => ({
     newPerson, 
   }
 });
-
 
 export const fetchPerson = () => async (dispatch, getState) => {
   const response = await axios.get(
@@ -27,16 +47,42 @@ export const fetchPerson = () => async (dispatch, getState) => {
 const chooseProfile = (id, choice) => ({
 	type: "CHOOSE_PROFILE",
 	payload: {
-		id: id,
-		choice, choice
+		id,
+		choice,
 	}
 })
 
 export const profileChoosed = (id, choice) => async (dispatch, getState) => {
-	await axios.post(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/choose-person/${id}/${choice}`,
+
+	const personLike = getState().profiles.newPerson
+	await axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/choose-person/",
 		{
-			'header': "Conten-Type: application/json"
+			'header': "Content-Type: application/json"
 		},
-			dispatch(chooseProfile(id, choice))
+		{
+			'data': {
+				'id' : id,
+				'choice': choice
+			}
+		},
+			dispatch(chooseProfile(id, choice, personLike))
 	);
+}
+
+
+const matchProfile = (matches) => ({
+	type: "GET_MATCHES",
+	payload: {
+		matches,
+	}
+})
+
+export const getMatches = () => async (dispatch, getState) => {
+	const response = await axios.get(
+		'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/caio/matches'
+	)
+
+	dispatch(matchProfile(response.data.matches))
+
+	
 }

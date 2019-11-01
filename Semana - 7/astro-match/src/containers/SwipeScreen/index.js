@@ -8,7 +8,7 @@ import {mdiAccountMultipleCheck} from '@mdi/js'
 import {swipeLeft, swipeRight} from '../../components/UserSwipeCard/styled'
 import {updateCurrentPage} from '../../actions/route'
 import {Loader} from '../../components/Loader'
-import { fetchPerson } from '../../actions/profiles'
+import { fetchPerson, profileChoosed } from '../../actions/profiles'
 
 export class SwipeScreen extends Component {
 	constructor(props) {
@@ -19,9 +19,10 @@ export class SwipeScreen extends Component {
 	}
 
 	componentDidMount() {
-		if (!this.props.profileToSwipe && this.props.getProfileToSwipe) {
+		if ((!this.props.profileToSwipe && this.props.getProfileToSwipe)) {
 			this.props.getProfileToSwipe()
 		}
+	
 	}
 
 	componentDidUpdate(prevProps, prevState, snapshot) {
@@ -37,9 +38,10 @@ export class SwipeScreen extends Component {
 			this.setState({currentAnimation: currentAnimation})
 		}
 
-		if (this.props.profileToSwipe) {
+		if (this.props.profileToSwipe && option === 'like') {
 			this.props.chooseProfile(this.props.profileToSwipe.id, option === 'like')
 		}
+		this.props.getProfileToSwipe();
 	}
 
 	render() {
@@ -63,7 +65,9 @@ export class SwipeScreen extends Component {
 					/> : (<Loader/>)}
 					<ButtonsWrapper>
 						<OptionButton onClick={this.onChooseOption('dislike')} option="dislike">X</OptionButton>
-						<OptionButton onClick={this.onChooseOption('like')} option="like">♥️</OptionButton>
+						<OptionButton onClick={this.onChooseOption('like')} option="like">
+							<span aria-label="like" role="img">️♥️</span>
+						</OptionButton>
 					</ButtonsWrapper>
 				</ContentWrapper>
 			</SwipeScreenWrapper>
@@ -71,12 +75,12 @@ export class SwipeScreen extends Component {
 	}
 }
 
-// SwipeScreen.propTypes = {
-// 	goToMatchScreen: PropTypes.func.isRequired,
-// 	chooseProfile: PropTypes.func.isRequired,
-// 	getProfileToSwipe: PropTypes.func.isRequired,
-// 	profileToSwipe: PropTypes.object,
-// }
+SwipeScreen.propTypes = {
+	goToMatchScreen: PropTypes.func.isRequired,
+	chooseProfile: PropTypes.func.isRequired,
+	getProfileToSwipe: PropTypes.func.isRequired,
+	profileToSwipe: PropTypes.object,
+}
 
 const mapStateToProps = (state) => ({
 	profileToSwipe: state.profiles.newPerson
@@ -86,7 +90,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		goToMatchScreen: () => dispatch(updateCurrentPage('MatchScreen')),
 		getProfileToSwipe: () => dispatch(fetchPerson()),
-		chooseProfile: (id) => dispatch(),
+		chooseProfile: (id, choice) => dispatch(profileChoosed(id, choice)),
 	}
 }
 
