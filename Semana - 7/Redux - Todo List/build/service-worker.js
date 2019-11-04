@@ -11,29 +11,29 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js')
 
 importScripts(
-  "/precache-manifest.fc50ac55eeaf885ac0133ca4066f72a9.js"
-);
+	'/precache-manifest.8965b5d2c94c86b7d6e916015e2474e3.js'
+)
 
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-});
+	if (event.data && event.data.type === 'SKIP_WAITING') {
+		self.skipWaiting()
+	}
+})
 
-workbox.core.clientsClaim();
+workbox.core.clientsClaim()
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
  * See https://goo.gl/S9QRab
  */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+self.__precacheManifest = [].concat(self.__precacheManifest || [])
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/index.html"), {
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL('/index.html'), {
   
-  blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
-});
+	blacklist: [/^\/_/,/\/[^/?]+\.[^/]+$/],
+})
