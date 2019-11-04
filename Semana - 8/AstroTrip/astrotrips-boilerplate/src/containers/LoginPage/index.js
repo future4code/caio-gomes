@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import TextField from "@material-ui/core/TextField";
@@ -14,7 +14,7 @@ const LoginWrapper = styled.form`
   display: grid;
 `;
 
-class LoginPage extends Component {
+class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
