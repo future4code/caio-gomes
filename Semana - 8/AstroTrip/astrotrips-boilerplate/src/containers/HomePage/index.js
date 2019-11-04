@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import { push, replace, goBack } from 'connected-react-router'
+import { routes } from '../Router'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -10,11 +13,17 @@ class HomePage extends React.Component {
       <div>
         <h1>AstroTrip</h1>
         <h2>Encontre as melhores viagens espaciais!</h2>
-        <button>Quero ser Tripulante!</button>
+        <button onClick={this.props.goToListTrips}>Quero ser Tripulante!</button>
         <button>Sou o Capitão!</button>
       </div>
     )
   }
 }
 
-export default HomePage;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    goToListTrips: () => dispatch(replace(routes.trips))
+  }
+}
+export default connect (null, mapDispatchToProps)(HomePage);
