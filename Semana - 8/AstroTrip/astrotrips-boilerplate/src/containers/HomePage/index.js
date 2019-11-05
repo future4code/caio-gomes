@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { routes } from '../Router'
-import { HomeContainer, AstroTrip, StyledButton, ContainerBtn } from './style'
+import { HomeContainer, AstroTrip, StyledButton, ContainerBtn, SubTitle, ContainerTitles, AstronautaImg } from './style'
+import Astronauta from './astronauta.png'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -12,16 +13,19 @@ class HomePage extends React.Component {
   render() {
     return (
       <HomeContainer>
-        <AstroTrip>AstroTrip</AstroTrip>
-        <h2>Encontre as melhores viagens espaciais!</h2>
+        <ContainerTitles>
+          <AstroTrip>AstroTrip</AstroTrip>
+          <SubTitle>"Encontre as melhores viagens espaciais!"</SubTitle>
+        </ContainerTitles>
         <ContainerBtn>
           <StyledButton
             variant="contained"
-            onClick={this.props.goToListTrips}>Quero ser Tripulante!</StyledButton>
+            onClick={this.props.goToListTrips}>QUERO SER TRIPULANTE!</StyledButton>
           <StyledButton
             variant="contained"
-          >Sou o Capitão!</StyledButton>
+          >SOU O CAPITÃO!</StyledButton>
         </ContainerBtn>
+        <AstronautaImg src={Astronauta}/>
       </HomeContainer>
     )
   }

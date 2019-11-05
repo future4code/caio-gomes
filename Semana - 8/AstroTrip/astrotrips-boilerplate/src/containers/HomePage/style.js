@@ -2,6 +2,9 @@ import styled from 'styled-components'
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Astronauta } from './astronauta.png'
+import 'typeface-ubuntu';
+
 
 export const HomeContainer = styled.div`
   background-color: #1582AD;
@@ -9,21 +12,35 @@ export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  justify-content: center;
+  z-index: 1;
 `
+export const SubTitle = styled.h2`
+  color: #fff;
+  font-size: 2rem;
+  font-family: 'Ubuntu';
+    
+  `
+export const ContainerTitles = styled.div`
+  margin: 20px;
+  z-index: 2;
+  `
 
 export const AstroTrip = styled.h1`
   color: #fff;
-  margin: 0;
+  margin: 20px;
   font-size: 5rem;
-
+  font-family: 'Ubuntu';
 `
 export const StyledButton = styled.button`
   color: #fff;
   background-color: #F67F20;
+  box-shadow: 10px 10px 10px #2A3439;
   width: 400px;
   height: 150px;
   font-size: 2rem;
+  font-family: 'Ubuntu';
+  font-weight: bold;
   border: none;
   margin: 5px;
   cursor: pointer;
@@ -37,4 +54,15 @@ export const ContainerBtn = styled.div`
   display: flex;
   justify-content: space-between;
   width: 70%;
+  z-index: 2;
+`
+export const AstronautaImg = styled.img`
+  /* width: 50%; */
+  height: 100vh;
+  z-index: 1;
+  position: absolute;
+  opacity: 0.1;
+  align-self: center;
+  bottom: 0;
+  position: fixed;
 `
