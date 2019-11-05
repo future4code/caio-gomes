@@ -1,13 +1,10 @@
 import styled from 'styled-components'
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Astronauta } from './astronauta.png'
 import 'typeface-ubuntu';
 
 
 export const HomeContainer = styled.div`
-  background-color: #1582AD;
+  background-image: linear-gradient(180deg, #010e13, #217ea3 35%, #91c7dd 71%, #f0f3f5);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,6 +32,7 @@ export const AstroTrip = styled.h1`
 export const StyledButton = styled.button`
   color: #fff;
   background-color: #F67F20;
+  border-radius: 5px;
   box-shadow: 10px 10px 10px #2A3439;
   width: 400px;
   height: 150px;
@@ -65,4 +63,24 @@ export const AstronautaImg = styled.img`
   align-self: center;
   bottom: 0;
   position: fixed;
+`
+
+export const RocketImg = styled.img`
+  width: 100px;
+  z-index: 2;
+  -webkit-animation:  1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+    -webkit-animation:  1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+
+    @-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+
 `

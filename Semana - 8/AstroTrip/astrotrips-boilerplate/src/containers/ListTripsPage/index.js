@@ -4,6 +4,7 @@ import { fetchTrips } from "../../actions"
 import { fetchDetailTrip } from '../../actions'
 import { push } from 'connected-react-router'
 import { routes } from '../Router'
+import { ListContainer, TitleListTrip, TripsContainer, TripName, DescriptionTrip, BtnHome } from './style'
 
 class ListTripsPage extends React.Component {
   constructor(props) {
@@ -19,16 +20,18 @@ class ListTripsPage extends React.Component {
   
   render() {
     return (
-      <div>
-        <h1>Viagens</h1>
+      <ListContainer>
+        <TitleListTrip>Viagens espetaculares da AstroTrip</TitleListTrip>
         {this.props.listTrips.map((trips) => {
-          return <div key={trips.name} >
-            <h2 
-            onClick={this.props.getListDetail(trips.id), this.onClickTripDetail}>{trips.name}</h2>
-          </div>
+          return <TripsContainer key={trips.name} >
+            <TripName 
+            onClick={this.props.getListDetail(trips.id), this.onClickTripDetail}>{trips.name}
+            </TripName>
+            <DescriptionTrip>{trips.description}</DescriptionTrip>
+          </TripsContainer>
         })}
-        <button onClick={this.props.goToHome}>HOME</button>
-      </div>
+        <BtnHome onClick={this.props.goToHome}>Voltar Para Casa</BtnHome>
+      </ListContainer>
     )
   }
 }

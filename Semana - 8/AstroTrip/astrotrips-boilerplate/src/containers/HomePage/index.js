@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { routes } from '../Router'
-import { HomeContainer, AstroTrip, StyledButton, ContainerBtn, SubTitle, ContainerTitles, AstronautaImg } from './style'
+import { HomeContainer, AstroTrip, StyledButton, ContainerBtn, SubTitle, ContainerTitles, AstronautaImg, RocketImg } from './style'
 import Astronauta from './astronauta.png'
+import Rocket from './rocket.svg'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class HomePage extends React.Component {
     return (
       <HomeContainer>
         <ContainerTitles>
-          <AstroTrip>AstroTrip</AstroTrip>
+          <AstroTrip>AstroTrip<span> <RocketImg src={Rocket} /></span></AstroTrip>
           <SubTitle>"Encontre as melhores viagens espaciais!"</SubTitle>
         </ContainerTitles>
         <ContainerBtn>
@@ -25,7 +26,7 @@ class HomePage extends React.Component {
             variant="contained"
           >SOU O CAPITÃO!</StyledButton>
         </ContainerBtn>
-        <AstronautaImg src={Astronauta}/>
+        <AstronautaImg src={Astronauta} />
       </HomeContainer>
     )
   }
