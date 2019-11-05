@@ -1,45 +1,49 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { fetchCandidates } from '../../actions'
+import { push } from 'connected-react-router'
+import { routes } from '../Router'
 
 class TripDetailPage extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount () {
-    return this.props.getAllCandidates()
-  }
-
   render() {
+    const details = this.props.tripSelected
+    
     return (
       <div>
-        <h1>AstroTrip</h1>
-        {this.props.listCandidate.map((candidate)=> { 
-          return <div>
-            <li>{candidate.name}</li>
-            <li>{candidate.country}</li>
-            <li>{candidate.applicationText}</li>
-            <li>{candidate.profession}</li>
-            <li>{candidate.age}</li>
-          </div>
-          }
-          )
-        }
+        <h1>Detalhe das viagens</h1>
+        <h3>{details.name}</h3>
+        <p>Nome do Planeta:{details.planet}</p>
+        <p>Descrição:{details.description}</p>
+        <p>Data da Viagem: {details.date}</p>
+        <p>Duração da Viagem:{details.durationInDays}</p>
+        <div>
+          {this.props.candidateTrip.map((candidate) => {
+            return <div>
+              <p>{candidate.name}</p>
+              <p>{candidate.age}</p>
+              <p>{candidate.country}</p>
+              <p>{candidate.applicationText}</p>
+            </div>
+          })}
+        </div>
+        <button onClick={this.props.goToHome}>HOME</button>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state.trips.allTrips)
-  return {
-    listCandidate: state.trips.allTrips
+ return {
+    tripSelected: state.trips.selectedTrip,
+    candidateTrip: state.trips.selectedTrip.candidates || []
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  getAllCandidates: (id) => dispatch(fetchCandidates(id))
+  goToHome: () => dispatch(push(routes.root))
 })
 
 export default connect (mapStateToProps,mapDispatchToProps) (TripDetailPage);

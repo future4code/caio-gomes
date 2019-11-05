@@ -8,8 +8,6 @@ import CreateTrip from '../CreateTrip';
 import ListTripsPage from '../ListTripsPage';
 import TripDetailsPage from '../TripDetailsPage';
 
-
-
 export const routes = {
   root: "/",
   form: "/application-form",

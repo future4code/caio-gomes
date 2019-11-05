@@ -1,17 +1,14 @@
 const initialState = {
-  allTrips: []
+  allTrips: [],
+  selectedTrip: {}
 }
 
 const trips = (state = initialState, action) => {
   switch (action.type) {
     case "LIST_TRIPS":
       return { ...state, allTrips: action.payload.trips}
-    case "LIST_CANDIDATES":
-      const tripsCandidates = {
-        id: action.payload.id
-      }
-      const newTripCandidates = [...state.allTrips, tripsCandidates];
-      return { ...state, allTrips: newTripCandidates};
+    case "LIST_DETAILS":
+      return { ...state, selectedTrip: action.payload.detailTrips}
       default:
       return state;
     }
