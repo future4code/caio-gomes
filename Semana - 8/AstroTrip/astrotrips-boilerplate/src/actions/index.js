@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const getTrips = trips => ({
-  type: "LIST_TRIPS",
+  type: "SET_TRIPS",
   payload: {
     trips,
   }
@@ -15,10 +15,10 @@ export const fetchTrips = () => async (dispatch) => {
   )
 }
 
-const getCandidate = (detailTrips) => ({
-  type: "LIST_DETAILS",
+const getCandidate = (tripId) => ({
+  type: "SET_LIST_DETAILS",
   payload: {
-    detailTrips
+    tripId
    }
 });
 

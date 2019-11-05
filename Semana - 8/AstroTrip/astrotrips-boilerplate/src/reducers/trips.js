@@ -5,10 +5,10 @@ const initialState = {
 
 const trips = (state = initialState, action) => {
   switch (action.type) {
-    case "LIST_TRIPS":
+    case "SET_TRIPS":
       return { ...state, allTrips: action.payload.trips}
-    case "LIST_DETAILS":
-      return { ...state, selectedTrip: action.payload.detailTrips}
+    case "SET_LIST_DETAILS":
+      return { ...state, selectedTrip: action.payload.tripId}
       default:
       return state;
     }

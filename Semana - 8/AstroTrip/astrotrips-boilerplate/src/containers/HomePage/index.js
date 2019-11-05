@@ -1,7 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux'
-import { push, replace, goBack } from 'connected-react-router'
+import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 import { routes } from '../Router'
+import { HomeContainer, AstroTrip, StyledButton, ContainerBtn } from './style'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -10,20 +11,25 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>AstroTrip</h1>
+      <HomeContainer>
+        <AstroTrip>AstroTrip</AstroTrip>
         <h2>Encontre as melhores viagens espaciais!</h2>
-        <button onClick={this.props.goToListTrips}>Quero ser Tripulante!</button>
-        <button>Sou o Capitão!</button>
-      </div>
+        <ContainerBtn>
+          <StyledButton
+            variant="contained"
+            onClick={this.props.goToListTrips}>Quero ser Tripulante!</StyledButton>
+          <StyledButton
+            variant="contained"
+          >Sou o Capitão!</StyledButton>
+        </ContainerBtn>
+      </HomeContainer>
     )
   }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    goToListTrips: () => dispatch(replace(routes.trips))
+    goToListTrips: () => dispatch(push(routes.trips))
   }
 }
-export default connect (null, mapDispatchToProps)(HomePage);
+export default connect(null, mapDispatchToProps)(HomePage);

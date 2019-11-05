@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import { fetchTrips } from "../../actions"
 import { fetchDetailTrip } from '../../actions'
-import { push, replace } from 'connected-react-router'
+import { push } from 'connected-react-router'
 import { routes } from '../Router'
 
 class ListTripsPage extends React.Component {
@@ -13,6 +13,10 @@ class ListTripsPage extends React.Component {
   componentDidMount () {
     this.props.getAllTrips()
   }
+  onClickTripDetail = () => {
+    this.props.goToTripDetail()
+  }
+  
   render() {
     return (
       <div>
@@ -20,7 +24,7 @@ class ListTripsPage extends React.Component {
         {this.props.listTrips.map((trips) => {
           return <div key={trips.name} >
             <h2 
-            onClick={() => {this.props.goToTripDetail(); this.props.getListDetail(trips.id)}}>{trips.name}</h2>
+            onClick={this.props.getListDetail(trips.id), this.onClickTripDetail}>{trips.name}</h2>
           </div>
         })}
         <button onClick={this.props.goToHome}>HOME</button>
@@ -37,7 +41,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getAllTrips: () => dispatch(fetchTrips()),
-  goToTripDetail: () => dispatch(replace(routes.detail)),
+  goToTripDetail: () => dispatch(push(routes.detail)),
   getListDetail: (detailTrips) => dispatch(fetchDetailTrip(detailTrips)),
   goToHome: () => dispatch(push(routes.root))
 })
