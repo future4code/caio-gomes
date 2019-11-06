@@ -30,3 +30,33 @@ export const fetchDetailTrip = (id) => async (dispatch) => {
     )
     console.log(response)
 }
+
+const createNewTrip = (name, planet, date, description, durationInDays) => ({
+  type: "SET_NEW_TRIP",
+  payload: {
+    name,
+    planet,
+    date,
+    description,
+    durationInDays
+  }
+});
+
+export const setNewTrip = (name, planet, date, description, durationInDays) => async (dispatch) => {
+   await axios.post (
+    "https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/trips",
+    {
+      'header': "Content-Type: application/json"
+    },
+    {
+      'data': {
+        'name': name,
+        'planet': planet,
+        'date': date,
+        'description': description,
+        'durationInDays': durationInDays
+      }
+    },
+      dispatch(createNewTrip(name, planet, date, description, durationInDays))  
+  )
+}

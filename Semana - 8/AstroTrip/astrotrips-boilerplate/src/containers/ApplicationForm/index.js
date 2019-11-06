@@ -8,10 +8,19 @@ class ApplicationForm extends React.Component {
   render() {
     return (
       <div>
-        <h1>AstroTrip</h1>
-        <h2>Encontre as melhores viagens espaciais!</h2>
-        <button>Quero ser Tripulante!</button>
-        <button>Sou o Capitão!</button>
+        <h1>Inscreva-se em uma das nossas Trips</h1>
+        <form>
+          <input type="text" name="nome"/>
+          <input type="text" name="nome"/>
+          <input type="text" name="nome"/>
+          <input type="text" name="nome"/>
+          <select>
+          
+          </select>
+          <select>
+
+          </select>
+        </form>
       </div>
     )
   }
@@ -19,3 +28,9 @@ class ApplicationForm extends React.Component {
 
 export default ApplicationForm;
 
+//  name: "Soter Padua",
+// 	age: 23,
+// 	applicationText: "Sou um bom candidato por X, Y e Z", // Resposta de "porque sou um bom candidato(a)?"
+// 	profession: "Capturador de Bug",
+// 	country: "Brasil",
+// 	trip: "tripId",
