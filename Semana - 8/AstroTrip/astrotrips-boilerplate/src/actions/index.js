@@ -25,8 +25,14 @@ const getTrips = trips => ({
 });
 
 export const fetchTrips = () => async (dispatch) => {
+  const token = window.localStorage.getItem('token')
   const response = await axios.get(
-    "https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/trips")
+    "https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/trips", 
+    {
+      headers: {
+        auth: token
+      }
+    })
 
   dispatch(getTrips(response.data.trips)
   )
@@ -40,30 +46,38 @@ const getCandidate = (tripId) => ({
 });
 
 export const fetchDetailTrip = (id) => async (dispatch) => {
+  const token = window.localStorage.getItem('token')
   const response = await axios.get(
-    `https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/trip/${id}`)
+    `https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/trip/${id}`,
+    {
+      headers: {
+        auth: token
+      }
+    })
 
   dispatch(getCandidate(response.data.trip)
   )
-  console.log(response)
 }
 
-
 export const setNewTrip = (trip) => async () => {
+  console.log(trip)
+  const token = window.localStorage.getItem('token')
+  const data = {
+    name: trip.nameValue,
+    planet: trip.planetValue,
+    date: trip.dateValue,
+    description: trip.descriptionValue,
+    durationInDays: trip.durationInDaysValue,
+  }
   await axios.post(
-    "https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/trips",
+    `https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/trips`,
+    data,
     {
-      'header': "Content-Type: application/json"
-    },
-    {
-      'data': {
-        'name': trip.nameValue,
-        'planet': trip.planetValue,
-        'date': trip.dateValue,
-        'description': trip.descriptionValue,
-        'durationInDays': trip.durationInDaysValue,
+      headers: {
+        auth: token
       }
     },
+    
   )
 }
 
@@ -87,8 +101,6 @@ export const applyToTrip = (trip, id) => async () => {
 
 export const login = (email, password) => async (dispatch) => {
   try {
-    console.log(email)
-    console.log(password)
     dispatch(clearErrorMessageAction());
     const response = await axios.post(
       "https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/login",
@@ -105,7 +117,6 @@ export const login = (email, password) => async (dispatch) => {
     window.localStorage.setItem("token", response.data.token);
     dispatch(push(routes.trips));
   } catch (e) {
-    console.log(e.message);
-    dispatch(setErrorMessageAction(e.message));
+   dispatch(setErrorMessageAction(e.message));
   }
 };

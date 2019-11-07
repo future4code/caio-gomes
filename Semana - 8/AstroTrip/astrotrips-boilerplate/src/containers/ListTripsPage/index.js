@@ -1,17 +1,18 @@
 import React from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { fetchTrips } from "../../actions"
 import { fetchDetailTrip } from '../../actions'
 import { push } from 'connected-react-router'
 import { routes } from '../Router'
-import { ListContainer, TitleListTrip, TripsContainer, TripName, DescriptionTrip, BtnHome } from './style'
+import { ListContainer, TitleListTrip, TripsContainer, TripName, WrapperAllTRips, BtnHome } from './style'
 
 class ListTripsPage extends React.Component {
   constructor(props) {
     super(props);
+   
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const token = window.localStorage.getItem("token");
 
     if (!token) {
@@ -19,20 +20,24 @@ class ListTripsPage extends React.Component {
     }
     this.props.getAllTrips()
   }
- 
+
   render() {
-    return (
+   return (
       <ListContainer>
         <TitleListTrip>Lista de Viagens Disponíveis</TitleListTrip>
-        {this.props.listTrips.map((trips) => {
-          return <TripsContainer key={trips.name} >
-            <TripName 
-            onClick={this.props.getListDetail(trips.id), this.props.goToTripDetail}>{trips.name}
-            </TripName>
-            <DescriptionTrip>{trips.description}</DescriptionTrip>
-          </TripsContainer>
-        })}
-        <BtnHome onClick={this.props.goToHome}>Voltar Para Casa</BtnHome>
+        <WrapperAllTRips>
+          {this.props.listTrips.map((trips) => {
+            return <TripsContainer key={trips.name} >
+              <TripName
+                onClick={
+                  this.props.getListDetail(trips.id),
+                  this.props.goToTripDetail}
+                >{trips.name}
+              </TripName>
+            </TripsContainer>
+          })}
+        </WrapperAllTRips>
+        <BtnHome onClick={this.props.goToHome}>HOME</BtnHome>
       </ListContainer>
     )
   }
@@ -51,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
   goToHome: () => dispatch(push(routes.root)),
   goToLogin: () => dispatch(push(routes.login))
 })
-export default connect (mapStateToProps, mapDispatchToProps)(ListTripsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ListTripsPage)

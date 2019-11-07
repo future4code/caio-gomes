@@ -15,7 +15,6 @@ export const routes = {
   create: "/trips/create",
   trips: "/trips/list",
   detail: "/trips/details"
-  // Outras rotas aqui
 };
 
 function Router(props) {

@@ -1,7 +1,7 @@
 const initialState = {
   allTrips: [],
   selectedTrip: {},
-  // loginError: undefined
+  loginError: undefined,
 }
 
 const trips = (state = initialState, action) => {
@@ -19,10 +19,10 @@ const trips = (state = initialState, action) => {
         durationInDays: action.payload.durationInDays
       }
       return [newTrip, ...state.allTrips]
-    // case "SET_ERROR_MESSAGE":
-    //   return { ...state, loginError: action.payload.message };
-    // case "CLEAR_ERROR_MESSAGE":
-    //   return { ...state, loginError: undefined };
+    case "SET_ERROR_MESSAGE":
+      return { ...state, loginError: action.payload.message };
+    case "CLEAR_ERROR_MESSAGE":
+      return { ...state, loginError: undefined };
     default:
       return state;
   }
