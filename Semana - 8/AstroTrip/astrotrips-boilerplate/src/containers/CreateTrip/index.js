@@ -14,7 +14,7 @@ class CreateTrip extends React.Component {
         planetValue: "",
         dateValue: "",
         descriptionValue: "",
-        durationDaysValue: "",
+        durationInDaysValue: "",
       },
       labelWidth: 0,
     }
@@ -23,7 +23,6 @@ class CreateTrip extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.createNewTrip(this.state.form)
-    console.log(this.state.form)
   }
 
   handleInputChange = event => {
@@ -98,9 +97,9 @@ class CreateTrip extends React.Component {
           <label htmlFor="durationDaysValue">Duração da Viagem</label>
           <input
             required
-            name="durationDaysValue"
+            name="durationInDaysValue"
             label="Duração da viagem"
-            value={this.state.form.durationDaysValue}
+            value={this.state.form.durationInDaysValue}
             onChange={this.handleInputChange}
             min="50"
             type="number"
