@@ -1,18 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import styled from "styled-components";
+import { LoginContainer, LoginForm, StyledInput, StyledBtn, StyledTitle, Wrapper, BtnHome, ErrorMessage } from './style'
+import { routes } from '../Router'
+import { login } from '../../actions'
 
-const LoginWrapper = styled.form`
-  width: 100%;
-  height: 100vh;
-  gap: 10px;
-  place-content: center;
-  justify-items: center;
-  display: grid;
-`;
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -29,29 +21,58 @@ class LoginPage extends React.Component {
     });
   };
 
+  onSubmitLogin = (event) => {
+    event.preventDefault()
+    const { email, password } = this.state;
+    this.props.doLogin(email, password);
+  };
+
   render() {
     const { email, password } = this.state;
+    const { errorMessage } = this.props;
 
     return (
-      <LoginWrapper>
-        <TextField
-          onChange={this.handleFieldChange}
-          name="email"
-          type="email"
-          label="E-mail"
-          value={email}
-        />
-        <TextField
-          onChange={this.handleFieldChange}
-          name="password"
-          type="password"
-          label="Password"
-          value={password}
-        />
-        <Button>Login</Button>
-      </LoginWrapper>
+      <Wrapper>
+        <LoginContainer>
+          <LoginForm onSubmit={this.onSubmitLogin}>
+            <StyledTitle>Suas Credenciais, Capitão</StyledTitle>
+            <StyledInput
+              required
+              placeholder="Email"
+              onChange={this.handleFieldChange}
+              name="email"
+              type="email"
+              label="E-mail"
+              value={email}
+            />
+            <StyledInput
+              required
+              placeholder="Password"
+              onChange={this.handleFieldChange}
+              name="password"
+              type="password"
+              label="Password"
+              value={password}
+            />
+            <StyledBtn type="submit">Login</StyledBtn>
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+          </LoginForm>
+        </LoginContainer>
+        <BtnHome onClick={this.props.goToHome}>HOME</BtnHome>
+      </Wrapper>
     );
   }
 }
 
-export default LoginPage;
+const mapStateToProps = state => {
+  return {
+    errorMessage: state.trips.loginError
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  goToHome: () => dispatch(push(routes.root)),
+  doLogin: (email, password) => dispatch(login(email, password))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

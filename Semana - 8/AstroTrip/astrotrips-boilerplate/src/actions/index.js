@@ -1,4 +1,21 @@
 import axios from 'axios'
+import { push } from "connected-react-router";
+import { routes } from "../containers/Router";
+
+const setErrorMessageAction = message => {
+  return {
+    type: "SET_ERROR_MESSAGE",
+    payload: {
+      message
+    }
+  };
+};
+
+const clearErrorMessageAction = () => {
+  return {
+    type: "CLEAR_ERROR_MESSAGE"
+  };
+};
 
 const getTrips = trips => ({
   type: "SET_TRIPS",
@@ -67,3 +84,28 @@ export const applyToTrip = (trip, id) => async () => {
     }
   )
 }
+
+export const login = (email, password) => async (dispatch) => {
+  try {
+    console.log(email)
+    console.log(password)
+    dispatch(clearErrorMessageAction());
+    const response = await axios.post(
+      "https://us-central1-missao-newton.cloudfunctions.net/futureX/caio/login",
+      {
+        'header': "Content-type: application/json"
+      },
+      {
+        'data': {
+          email,
+          password
+        }
+      }
+    );
+    window.localStorage.setItem("token", response.data.token);
+    dispatch(push(routes.trips));
+  } catch (e) {
+    console.log(e.message);
+    dispatch(setErrorMessageAction(e.message));
+  }
+};

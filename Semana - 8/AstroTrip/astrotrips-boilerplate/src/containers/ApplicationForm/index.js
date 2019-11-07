@@ -1,10 +1,11 @@
 import React from 'react';
 import { CountryList } from './countryList'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
+import { routes } from '../Router'
 import { fetchTrips, applyToTrip } from '../../actions'
-import { FormContainer } from './style'
-
-
+import { FormContainer, Wrapper, StyledSelect, ButtonSend, StyledLabel, StyledOption, StyledTitle, BtnHome } from './style'
+import TextField from '@material-ui/core/TextField';
 
 class ApplicationForm extends React.Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class ApplicationForm extends React.Component {
         profession: "",
         country: "",
       },
-     
     }
   }
 
@@ -27,82 +27,93 @@ class ApplicationForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.form)
-    console.log(this.state.tripChoosed)
     this.props.applyTrip(this.state.form, this.state.form.TripId)
+    window.alert("Sua requisição foi feita com sucesso, aguarde a nossa resposta")
+    this.props.goToHome()
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({ form: { ...this.state.form, [name]: value } });
-    console.log(event.target.value)
   }
 
-
   render() {
-
     return (
-      <div>
-        <h1>Inscreva-se em uma das nossas Trips</h1>
+      <Wrapper>
+        <StyledTitle>Inscreva-se em uma das nossas Trips</StyledTitle>
         <FormContainer onSubmit={this.handleSubmit}>
-          <input
+          <TextField
             required
+            label="Qual seu Nome?"
+            variant="outlined"
+            margin="normal"
             type="text"
             name="name"
             placeholder="seu nome"
             value={this.state.form.name}
             onChange={this.handleInputChange}
           />
-          <input
+          <TextField
             required
+            label="Qual sua idade?"
+            margin="normal"
+            variant="outlined"
             value={this.state.form.age}
             name="age"
             placeholder="sua idade"
             onChange={this.handleInputChange}
-            type="number" />
-          <textarea
+            type="number"
+          />
+          <TextField
+            multiline
+            variant="outlined"
+            label="Descreva porque quer fazer parte dessa Trip"
+            rows="4"
             required
+            margin="normal"
             value={this.state.form.aplication}
             name="aplication"
             onChange={this.handleInputChange}
             rows="5"
-            placeholder="descreva porque quer fazer parte da trip"
           />
-          <input
+          <TextField
             required
+            variant="outlined"
+            label="Qual sua Profissão?"
+            margin="normal"
             value={this.state.form.profession}
             name="profession"
             onChange={this.handleInputChange}
             placeholder="Profissão"
             type="text" />
-          <label htmlFor="country">Qual o seu país?</label>
-          <select
+          <StyledLabel htmlFor="country">Qual o seu país?</StyledLabel>
+          <StyledSelect
             required
             value={this.state.form.country}
             name="country"
             onChange={this.handleInputChange}
             name="country">
-            <option value=""></option>
+            <StyledOption value=""></StyledOption>
             {CountryList.map((country, i) => {
-              return <option key={i}>{country}</option>
+              return <StyledOption key={i}>{country}</StyledOption>
             })}
-          </select>
-          <label htmlFor="tripId">Escolha uma Trip</label>
-          <select
+          </StyledSelect>
+          <StyledLabel htmlFor="tripId">Escolha uma Trip:</StyledLabel>
+          <StyledSelect
             required
             onChange={this.handleInputChange}
             name="tripId">
-            <option value=""></option>
+            <StyledOption value=""></StyledOption>
             {this.props.listTrips.map((trips) => {
-              return <option
+              return <StyledOption
                 value={trips.id}
-                key={trips.name}>{trips.name} - {trips.planet}</option>
+                key={trips.name}>{trips.name} - Planeta: {trips.planet}</StyledOption>
             })}
-          </select>
-          <button type="submit">Enviar</button>
+          </StyledSelect>
+          <ButtonSend type="submit">ENVIAR</ButtonSend>
         </FormContainer>
-
-      </div >
+        <BtnHome onClick={this.props.goToHome}>HOME</BtnHome>
+      </Wrapper >
     )
   }
 }
@@ -115,8 +126,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getAllTrips: () => dispatch(fetchTrips()),
-  applyTrip: (trip, id) => dispatch(applyToTrip(trip, id))
-
+  applyTrip: (trip, id) => dispatch(applyToTrip(trip, id)),
+  goToHome: () => dispatch(push(routes.root))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationForm);

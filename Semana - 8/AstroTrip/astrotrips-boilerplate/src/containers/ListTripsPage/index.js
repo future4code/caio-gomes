@@ -12,20 +12,22 @@ class ListTripsPage extends React.Component {
   }
 
   componentDidMount () {
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      this.props.goToLogin();
+    }
     this.props.getAllTrips()
   }
-  onClickTripDetail = () => {
-    this.props.goToTripDetail()
-  }
-  
+ 
   render() {
     return (
       <ListContainer>
-        <TitleListTrip>Viagens espetaculares da AstroTrip</TitleListTrip>
+        <TitleListTrip>Lista de Viagens Disponíveis</TitleListTrip>
         {this.props.listTrips.map((trips) => {
           return <TripsContainer key={trips.name} >
             <TripName 
-            onClick={this.props.getListDetail(trips.id), this.onClickTripDetail}>{trips.name}
+            onClick={this.props.getListDetail(trips.id), this.props.goToTripDetail}>{trips.name}
             </TripName>
             <DescriptionTrip>{trips.description}</DescriptionTrip>
           </TripsContainer>
@@ -46,6 +48,7 @@ const mapDispatchToProps = dispatch => ({
   getAllTrips: () => dispatch(fetchTrips()),
   goToTripDetail: () => dispatch(push(routes.detail)),
   getListDetail: (detailTrips) => dispatch(fetchDetailTrip(detailTrips)),
-  goToHome: () => dispatch(push(routes.root))
+  goToHome: () => dispatch(push(routes.root)),
+  goToLogin: () => dispatch(push(routes.login))
 })
 export default connect (mapStateToProps, mapDispatchToProps)(ListTripsPage)

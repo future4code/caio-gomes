@@ -21,9 +21,10 @@ class HomePage extends React.Component {
         <ContainerBtn>
           <StyledButton
             variant="contained"
-            onClick={this.props.goToListTrips}>QUERO SER TRIPULANTE!</StyledButton>
+            onClick={this.props.goToApplicationForm}>QUERO SER TRIPULANTE!</StyledButton>
           <StyledButton
             variant="contained"
+            onClick={this.props.goToLoginPage}
           >SOU O CAPITÃO!</StyledButton>
         </ContainerBtn>
         <AstronautaImg src={Astronauta} />
@@ -34,7 +35,8 @@ class HomePage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    goToListTrips: () => dispatch(push(routes.trips))
+    goToApplicationForm: () => dispatch(push(routes.form)),
+    goToLoginPage: () => dispatch(push(routes.login))
   }
 }
 export default connect(null, mapDispatchToProps)(HomePage);
