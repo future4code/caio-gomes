@@ -52,6 +52,7 @@ class ApplicationForm extends React.Component {
             placeholder="seu nome"
             value={this.state.form.name}
             onChange={this.handleInputChange}
+            inputProps={{ pattern: "[A-Za-zÀ-ú ']{3,}" }}
           />
           <TextField
             required
@@ -63,6 +64,7 @@ class ApplicationForm extends React.Component {
             placeholder="sua idade"
             onChange={this.handleInputChange}
             type="number"
+            inputProps={{min: "18"}}
           />
           <TextField
             multiline
@@ -75,6 +77,7 @@ class ApplicationForm extends React.Component {
             name="aplication"
             onChange={this.handleInputChange}
             rows="5"
+            inputProps={{pattern: "[A-Za-zÀ-ú ']{3,}"}}
           />
           <TextField
             required
@@ -85,6 +88,7 @@ class ApplicationForm extends React.Component {
             name="profession"
             onChange={this.handleInputChange}
             placeholder="Profissão"
+            inputProps={{ pattern: "[A-Za-zÀ-ú ']{10,}" }}
             type="text" />
           <StyledLabel htmlFor="country">Qual o seu país?</StyledLabel>
           <StyledSelect

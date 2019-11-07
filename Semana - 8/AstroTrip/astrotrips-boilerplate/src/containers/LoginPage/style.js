@@ -59,8 +59,8 @@ export const StyledBtn = styled.button`
     background: rgba(20, 20, 20, .8);
     padding: 10px 80px;
   }
-  `
-  export const BtnHome = styled.button`
+`
+export const BtnHome = styled.button`
   border: 1px solid white;
   width: 200px;
   height: 80px;
@@ -76,7 +76,7 @@ export const StyledBtn = styled.button`
     font-weight: bold;
     border: 1px solid #0AB4B4;
   }
-  `
-  export const ErrorMessage = styled.p`
+`
+export const ErrorMessage = styled.p`
   color: red;
 `;
