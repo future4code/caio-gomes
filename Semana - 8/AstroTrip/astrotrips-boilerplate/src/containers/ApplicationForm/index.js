@@ -17,7 +17,7 @@ class ApplicationForm extends React.Component {
         profession: "",
         country: "",
       },
-        tripChoosed: ""
+     
     }
   }
 
@@ -27,7 +27,9 @@ class ApplicationForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.applyTrip(this.state.form, this.state.tripChoosed)
+    console.log(this.state.form)
+    console.log(this.state.tripChoosed)
+    this.props.applyTrip(this.state.form, this.state.form.TripId)
   }
 
   handleInputChange = event => {
@@ -80,6 +82,7 @@ class ApplicationForm extends React.Component {
             name="country"
             onChange={this.handleInputChange}
             name="country">
+            <option value=""></option>
             {CountryList.map((country, i) => {
               return <option key={i}>{country}</option>
             })}
@@ -87,14 +90,13 @@ class ApplicationForm extends React.Component {
           <label htmlFor="tripId">Escolha uma Trip</label>
           <select
             required
-            value={this.state.tripChoosed}
-            name="tripChoosed"
             onChange={this.handleInputChange}
             name="tripId">
+            <option value=""></option>
             {this.props.listTrips.map((trips) => {
-              return <option 
-              value={trips.id}
-              key={trips.id}>{trips.name} - {trips.planet}</option>
+              return <option
+                value={trips.id}
+                key={trips.name}>{trips.name} - {trips.planet}</option>
             })}
           </select>
           <button type="submit">Enviar</button>
@@ -106,7 +108,6 @@ class ApplicationForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     listTrips: state.trips.allTrips
   }
