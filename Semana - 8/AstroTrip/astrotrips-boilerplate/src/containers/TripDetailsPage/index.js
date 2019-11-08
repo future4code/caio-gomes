@@ -4,14 +4,23 @@ import { push } from 'connected-react-router'
 import { routes } from '../Router'
 import {
   DetailContainer, TextItem, TitleTrip,
-  ContainerCandidate, WrapperCandidates,
-  BtnContainer, BtnHome, TitleDetailTrip, TextItemCandidate, DetailTripWrapper
+  ContainerCandidate, Grid,
+  BtnContainer, BtnHome, TitleDetailTrip,
+  TextItemCandidate, DetailTripWrapper,
+   BtnListTrip, Span, Button, ItemCandidade, ContainerButton
 } from './style'
-import Button from '@material-ui/core/Button'
 
 class TripDetailPage extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      this.props.goToLogin();
+    }
   }
 
   render() {
@@ -22,30 +31,35 @@ class TripDetailPage extends React.Component {
         <TitleDetailTrip>Detalhe das viagens e Seus Candidatos</TitleDetailTrip>
         <DetailTripWrapper>
           <TitleTrip>{details.name}</TitleTrip>
-          <TextItem>Nome do Planeta:{details.planet}</TextItem>
-          <TextItem>Descrição:{details.description}</TextItem>
-          <TextItem>Data da Viagem: {details.date}</TextItem>
-          <TextItem>Duração da Viagem:{details.durationInDays}</TextItem>
+          <TextItem><Span>Nome do Planeta:</Span> {details.planet}</TextItem>
+          <TextItem><Span>Descrição:</Span>  {details.description}</TextItem>
+          <TextItem><Span>Data da Viagem: </Span> {details.date}</TextItem>
+          <TextItem><Span>Duração da Viagem: </Span> {details.durationInDays} dias</TextItem>
         </DetailTripWrapper>
-        <WrapperCandidates>
-          {this.props.candidateTrip.map((candidate) => {
+        <Grid>
+        {this.props.candidateTrip.map((candidate) => {
             return <ContainerCandidate>
+              <ItemCandidade>Nome</ItemCandidade>
               <TextItemCandidate>{candidate.name}</TextItemCandidate>
+              <ItemCandidade>Idade</ItemCandidade>
               <TextItemCandidate>{candidate.age}</TextItemCandidate>
+              <ItemCandidade>País</ItemCandidade>
               <TextItemCandidate>{candidate.country}</TextItemCandidate>
+              <ItemCandidade>Motivação</ItemCandidade>
               <TextItemCandidate>{candidate.applicationText}</TextItemCandidate>
               <BtnContainer>
                 <Button
-                  variant="contained" color="primary"
                 >APROVAR</Button>
                 <Button
-                  variant="contained" color="primary"
                 >REJEITAR</Button>
               </BtnContainer>
             </ContainerCandidate>
           })}
-        </WrapperCandidates>
-        <BtnHome onClick={this.props.goToHome}>HOME</BtnHome>
+          </Grid>
+       <ContainerButton>
+          <BtnHome onClick={this.props.goToHome}>HOME</BtnHome>
+          <BtnListTrip onClick={this.props.goToListTrip}>VOLTAR A LISTA DE VIAGEM</BtnListTrip>
+        </ContainerButton>
       </DetailContainer>
     )
   }
@@ -53,13 +67,15 @@ class TripDetailPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tripSelected: state.trips.selectedTrip,
+    tripSelected: state.trips.selectedTrip || [],
     candidateTrip: state.trips.selectedTrip.candidates || []
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  goToHome: () => dispatch(push(routes.root))
+  goToHome: () => dispatch(push(routes.root)),
+  goToLogin: () => dispatch(push(routes.login)),
+  goToListTrip: () => dispatch(push(routes.trips))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripDetailPage);

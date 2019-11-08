@@ -3,7 +3,7 @@ import 'typeface-ubuntu';
 
 export const Wrapper = styled.div`
   height: 100vh;
-  background-color: #2A3439;
+  background-image: linear-gradient(180deg, #0B132B, #1C2541 35%, #3A506B 71%, #3A506B);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,7 +25,7 @@ export const LoginForm = styled.form`
   border-right: 5px solid #fff;
 
   &:hover{
-    border-right: 5px solid #0AB4B4;
+    border-right: 5px solid #257FA5;
   }
 `
 export const StyledTitle = styled.h1`
@@ -46,7 +46,7 @@ export const StyledInput = styled.input`
   font-family: 'Ubuntu';
 `
 export const StyledBtn = styled.button`
-  border: 1px solid rgba(10, 180, 180, 1);
+  border: 1px solid #257FA5;
   background: rgba(20, 20, 20, .6);
   font-size: 18px;
   color: white;
@@ -74,7 +74,7 @@ export const BtnHome = styled.button`
   
   &:hover{
     font-weight: bold;
-    border: 1px solid #0AB4B4;
+    border: 1px solid #257FA5;
   }
 `
 export const ErrorMessage = styled.p`

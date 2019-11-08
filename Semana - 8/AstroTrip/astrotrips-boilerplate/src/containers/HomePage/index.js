@@ -2,7 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { routes } from '../Router'
-import { HomeContainer, AstroTrip, StyledButton, ContainerBtn, SubTitle, ContainerTitles, AstronautaImg, RocketImg } from './style'
+import {
+  HomeContainer, AstroTrip, StyledButton,
+  ContainerBtn, SubTitle,
+  ContainerTitles,
+  AstronautaImg, RocketImg, StyledBtnBlack
+} from './style'
 import Astronauta from './astronauta.png'
 import Rocket from './rocket.svg'
 
@@ -22,10 +27,10 @@ class HomePage extends React.Component {
           <StyledButton
             variant="contained"
             onClick={this.props.goToApplicationForm}>QUERO SER TRIPULANTE!</StyledButton>
-          <StyledButton
+          <StyledBtnBlack
             variant="contained"
             onClick={this.props.goToLoginPage}
-          >SOU O CAPITÃO!</StyledButton>
+          >SOU O CAPITÃO!</StyledBtnBlack>
         </ContainerBtn>
         <AstronautaImg src={Astronauta} />
       </HomeContainer>

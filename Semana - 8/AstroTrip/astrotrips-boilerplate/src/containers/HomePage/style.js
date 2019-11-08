@@ -1,7 +1,5 @@
 import styled from 'styled-components'
-import React from 'react'
 import 'typeface-ubuntu';
-
 
 export const HomeContainer = styled.div`
   background-image: linear-gradient(180deg, #010e13, #217ea3 35%, #91c7dd 71%, #f0f3f5);
@@ -48,6 +46,26 @@ export const StyledButton = styled.button`
     font-size: 2.2rem;
   }
 `
+export const StyledBtnBlack = styled.button`
+  color: #fff;
+  background-color: #F67F20;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px #2A3439;
+  width: 400px;
+  height: 150px;
+  font-size: 2rem;
+  font-family: 'Ubuntu';
+  font-weight: bold;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.08s ease-in;
+  
+  &:hover {
+    background-color: #2A3439;
+  }
+  
+`
 export const ContainerBtn = styled.div`
   display: flex;
   justify-content: space-between;
@@ -55,7 +73,6 @@ export const ContainerBtn = styled.div`
   z-index: 2;
 `
 export const AstronautaImg = styled.img`
-  /* width: 50%; */
   height: 100vh;
   z-index: 1;
   position: absolute;

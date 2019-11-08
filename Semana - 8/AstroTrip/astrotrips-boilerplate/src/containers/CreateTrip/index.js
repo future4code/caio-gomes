@@ -1,5 +1,10 @@
 import React from 'react';
-import { Container, FormTripContainer, Title, StyledTextField } from './style'
+import {
+  Container, FormTripContainer,
+  Title, StyledTextField, ButtonSend,
+  StyledSelect, StyledOption,
+  InputDuration, StyledLabel, BtnGoBack
+} from './style'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { routes } from '../Router'
@@ -20,59 +25,70 @@ class CreateTrip extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      this.props.goToLogin();
+    }
+  }
+
   handleSubmit = event => {
     event.preventDefault();
     this.props.createNewTrip(this.state.form)
+    window.alert("Viagem Criada com sucesso, Capitão!")
+    this.props.goToListTrip()
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({ form: { ...this.state.form, [name]: value } });
-    console.log(event.target.value)
   }
 
   render() {
-    console.log(this.state)
     return (
       <Container>
         <Title>Criar nova Viagem</Title>
         <FormTripContainer onSubmit={this.handleSubmit}>
-
+          <StyledLabel htmlFor="nameValue">Título da Trip</StyledLabel>
           <StyledTextField
             required
             title="Digite no mínimo 5 letras"
             name="nameValue"
             type="text"
-            label="Nome da Viagem"
+            label="Título"
             placeholder="Digite o nome da viagem"
             margin="normal"
             variant="outlined"
             value={this.state.form.nameValue}
             onChange={(event) => this.handleInputChange(event)}
-            inputProps={{ pattern: "^[a-zA-Z ]{5,30}$" }}
+            inputProps={{ pattern: "[A-Za-zÀ-ú ']{3,}" }}
           />
-          <label htmlFor="planetValue">Escolha um planeta</label>
-          <select
+          <StyledLabel htmlFor="planetValue">Escolha um planeta:</StyledLabel>
+          <StyledSelect
             name="planetValue"
             onChange={this.handleInputChange}
             value={this.state.form.planetValue}
             required
           >
-            <option required value="mercurio"> Mercúrio </option>
-            <option value="venus">Vênus</option >
-            <option value="terra">Terra</option >
-            <option value="marte">Marte</option >
-            <option value="jupiter">Júpiter</option>
-            <option value="saturno">Saturno </option>
-            <option value="urano"> Urano </option>
-            <option value="netuno"> Netuno </option>
-          </select>
-
+            <StyledOption value=""></StyledOption>
+            <StyledOption value="mercurio"> Mercúrio </StyledOption>
+            <StyledOption value="venus">Vênus</StyledOption >
+            <StyledOption value="terra">Terra</StyledOption >
+            <StyledOption value="marte">Marte</StyledOption >
+            <StyledOption value="jupiter">Júpiter</StyledOption>
+            <StyledOption value="saturno">Saturno </StyledOption>
+            <StyledOption value="urano"> Urano </StyledOption>
+            <StyledOption value="netuno"> Netuno </StyledOption>
+            <StyledOption value="plutao"> Plutão</StyledOption>
+          </StyledSelect>
+          <StyledLabel htmlFor="dataValue">Escolha uma Data para a Viagem:</StyledLabel>
           <StyledTextField
             required
             name="dateValue"
             id="date"
             label="Data da viagem"
+            margin="normal"
             type="date"
             value={this.state.form.dateValue}
             onChange={this.handleInputChange}
@@ -81,41 +97,43 @@ class CreateTrip extends React.Component {
               shrink: true,
             }}
           />
-
+          <StyledLabel htmlFor="descriptionValue">Descreva detalhes da viagem:</StyledLabel>
           <StyledTextField
             required
             type="text"
             name="descriptionValue"
-            label="Descrição da viagem"
+            label="Descrição"
             rows="4"
             value={this.state.form.descriptionValue}
             onChange={this.handleInputChange}
             margin="normal"
             variant="outlined"
-            inputProps={{ pattern: "^[a-zA-Z \s]{30,}" }}
+            inputProps={{ pattern: "^[A-Za-zÀ-ú ']{30,}" }}
           />
-          <label htmlFor="durationDaysValue">Duração da Viagem</label>
-          <input
+          <StyledLabel htmlFor="durationDaysValue">Duração da Viagem</StyledLabel>
+          <InputDuration
             required
             name="durationInDaysValue"
-            label="Duração da viagem"
             value={this.state.form.durationInDaysValue}
             onChange={this.handleInputChange}
             min="50"
             type="number"
             pattern=""
           />
-          <button
+          <ButtonSend
             type="submit"
-          >Enviar</button>
+          >Criar</ButtonSend>
         </FormTripContainer>
+        <BtnGoBack onClick={this.props.goToListTrip}>Voltar a lista de viagens</BtnGoBack>
       </Container>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  createNewTrip: (newTrip) => dispatch(setNewTrip(newTrip))
+  createNewTrip: (newTrip) => dispatch(setNewTrip(newTrip)),
+  goToLogin: () => dispatch(push(routes.login)),
+  goToListTrip: () => dispatch(push(routes.trips)),
 })
 
 export default connect(null, mapDispatchToProps)(CreateTrip);
