@@ -49,35 +49,33 @@ export const TextItem = styled.p`
 `
 export const TextItemCandidate = styled.p`
  font-family: 'Ubuntu';
- font-size: 20px;
+ font-size: 16px;
  color: black;
+ padding: 5px;
 `
 export const Grid = styled.div`
   grid-column: 2;
   grid-row: 2;
-  border: 1px solid white;
-  align-self: center;
   display: grid;
-  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
 `
 export const ContainerCandidate = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-rows: repeat(5, 60px);
   border: 3px solid black;
-  height: 200px;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
   box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, .5);
   cursor: pointer;
 `
 export const BtnContainer = styled.div`
-  grid-row: 3;
-  grid-column: 1 / -1;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
-  margin-bottom: 30px;
 `
 export const BtnHome = styled.button`
   border: 2px solid white;
@@ -116,6 +114,12 @@ export const Span = styled.span`
  font-weight: bold;
  font-size: 25px;
 `
+export const SpanItem = styled.span`
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 2px;
+`
+
 export const Button = styled.button`
   width: 100px;
   height: 40px;
@@ -124,10 +128,13 @@ export const Button = styled.button`
   font-family: 'Ubuntu';
   color: white;
   background-color: #1F262A;
-`
-export const ItemCandidade = styled.p`
-  font-family: 'Ubuntu';
-  font-size: 20px;
+  cursor: pointer;
+  transition: ease-in-out all 0.2s;
+  
+  &:hover{
+    transform: scale(1.1);
+    border: 2px solid #257FA5;
+  }
 `
 export const ContainerButton = styled.div`
   grid-row: 3;

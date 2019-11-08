@@ -7,7 +7,7 @@ import {
   ContainerCandidate, Grid,
   BtnContainer, BtnHome, TitleDetailTrip,
   TextItemCandidate, DetailTripWrapper,
-   BtnListTrip, Span, Button, ItemCandidade, ContainerButton
+   BtnListTrip, Span, Button, ContainerButton, SpanItem
 } from './style'
 
 class TripDetailPage extends React.Component {
@@ -38,15 +38,11 @@ class TripDetailPage extends React.Component {
         </DetailTripWrapper>
         <Grid>
         {this.props.candidateTrip.map((candidate) => {
-            return <ContainerCandidate>
-              <ItemCandidade>Nome</ItemCandidade>
-              <TextItemCandidate>{candidate.name}</TextItemCandidate>
-              <ItemCandidade>Idade</ItemCandidade>
-              <TextItemCandidate>{candidate.age}</TextItemCandidate>
-              <ItemCandidade>País</ItemCandidade>
-              <TextItemCandidate>{candidate.country}</TextItemCandidate>
-              <ItemCandidade>Motivação</ItemCandidade>
-              <TextItemCandidate>{candidate.applicationText}</TextItemCandidate>
+            return <ContainerCandidate key={candidate.id}>
+              <TextItemCandidate><SpanItem>Nome: </SpanItem>{candidate.name}</TextItemCandidate>
+              <TextItemCandidate><SpanItem>Idade: </SpanItem>{candidate.age}</TextItemCandidate>
+              <TextItemCandidate><SpanItem>País:</SpanItem>{candidate.country}</TextItemCandidate>
+              <TextItemCandidate><SpanItem>Motivação:</SpanItem>{candidate.applicationText}</TextItemCandidate>
               <BtnContainer>
                 <Button
                 >APROVAR</Button>
@@ -67,7 +63,7 @@ class TripDetailPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tripSelected: state.trips.selectedTrip || [],
+    tripSelected: state.trips.selectedTrip,
     candidateTrip: state.trips.selectedTrip.candidates || []
   }
 }
