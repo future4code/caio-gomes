@@ -17,6 +17,7 @@ class ApplicationForm extends React.Component {
         aplication: "",
         profession: "",
         country: "",
+        tripId: ""
       },
     }
   }
@@ -27,7 +28,7 @@ class ApplicationForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.applyTrip(this.state.form, this.state.form.TripId)
+    this.props.applyTrip(this.state.form, this.state.form.tripId)
     window.alert("Sua requisição foi feita com sucesso, aguarde a nossa resposta")
     this.props.goToHome()
   }
@@ -38,6 +39,7 @@ class ApplicationForm extends React.Component {
   }
 
   render() {
+    console.log(this.state.form)
     return (
       <Wrapper>
         <StyledTitle>Inscreva-se em uma das nossas Trips</StyledTitle>
@@ -66,6 +68,18 @@ class ApplicationForm extends React.Component {
             type="number"
             inputProps={{min: "18"}}
           />
+          <StyledLabel htmlFor="tripId">Escolha uma Trip:</StyledLabel>
+          <StyledSelect
+            required
+            onChange={this.handleInputChange}
+            name="tripId">
+            <StyledOption value=""></StyledOption>
+            {this.props.listTrips.map((trips) => {
+              return <StyledOption
+                value={trips.id}
+                key={trips.name}>{trips.name} - Planeta: {trips.planet}</StyledOption>
+            })}
+          </StyledSelect>
           <TextField
             multiline
             variant="outlined"
@@ -102,18 +116,7 @@ class ApplicationForm extends React.Component {
               return <StyledOption key={i}>{country}</StyledOption>
             })}
           </StyledSelect>
-          <StyledLabel htmlFor="tripId">Escolha uma Trip:</StyledLabel>
-          <StyledSelect
-            required
-            onChange={this.handleInputChange}
-            name="tripId">
-            <StyledOption value=""></StyledOption>
-            {this.props.listTrips.map((trips) => {
-              return <StyledOption
-                value={trips.id}
-                key={trips.name}>{trips.name} - Planeta: {trips.planet}</StyledOption>
-            })}
-          </StyledSelect>
+          
           <ButtonSend type="submit">ENVIAR</ButtonSend>
         </FormContainer>
         <BtnHome onClick={this.props.goToHome}>HOME</BtnHome>

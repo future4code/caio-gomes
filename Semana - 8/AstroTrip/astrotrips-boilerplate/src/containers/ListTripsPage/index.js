@@ -26,6 +26,10 @@ class ListTripsPage extends React.Component {
     this.props.getAllTrips()
   }
 
+  goToTripDetail = () => {
+    this.props.goToTripDetail()
+  }
+  
   render() {
     return (
       <ListContainer>
@@ -34,9 +38,7 @@ class ListTripsPage extends React.Component {
           {this.props.listTrips.map((trips) => {
             return <TripsContainer key={trips.name} >
               <TripName
-                onClick={
-                  this.props.getListDetail(trips.id),
-                  this.props.goToTripDetail}
+                  onClick={ () => { this.props.getListDetail(trips.id); this.goToTripDetail()}}
               >{trips.name}
               </TripName>
             </TripsContainer>
