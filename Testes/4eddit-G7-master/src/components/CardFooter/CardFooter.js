@@ -13,10 +13,6 @@ export class CardFooter extends React.Component {
         };
     };
 
-    componentDidMount = () => {
-
-    }
-
     onClickThumbUp = (id) => {
         const directionVote = 1
         this.props.vote(directionVote, id)

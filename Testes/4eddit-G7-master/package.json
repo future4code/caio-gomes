@@ -23,6 +23,7 @@
     "typeface-ubuntu": "0.0.65"
   },
   "devDependencies": {
+    "enzyme-adapter-react-16": "^1.15.1",
     "typescript": "3.3.3"
   },
   "scripts": {
