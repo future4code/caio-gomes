@@ -20,6 +20,7 @@ class InputPlanner extends React.Component {
 		event.preventDefault();
 		const { text, day } = this.state;
 		this.props.newTask(text, day);
+		this.setState({text: '', day: ''})
 	}
 
 	render() {

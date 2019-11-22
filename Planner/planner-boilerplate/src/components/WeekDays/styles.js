@@ -2,15 +2,15 @@ import styled from 'styled-components';
 import 'typeface-roboto'
 
 export const ContainerPlannerDays = styled.div`
-    min-heigth: 100vh;
     display: flex;
     flex-wrap: wrap;
     font-family: 'Roboto';
+    justify-content: center;
 `
 export const WrapperDayWeek = styled.div`
-    height: 250px;
+    height: 400px;
     width: 300px;
-    margin: 10px;
+    margin: 20px;
     border: 5px solid #8806CE;
     display: flex;
     flex-direction: column;
@@ -19,14 +19,13 @@ export const WrapperDayWeek = styled.div`
 `
 export const DayName = styled.h1`
     color: white;
-    font-weigth: bold;
+    font-weight: bold;
     border-bottom: 3px solid white;
-    width: 100%;
-    font-size: 20px;
+    font-size: 1.5rem;
     text-align: center;
-    margin: 3px;
+    margin: 5px;
 `
 export const TaskName = styled.li`
     color: white;
-    margin: 3px;
+    margin: 5px;
 `

@@ -11,7 +11,7 @@ export const WrapperTask = styled.div`
     
 `
 export const StyledForm = styled.form`
-    width: 70%
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: space-between
@@ -45,11 +45,16 @@ export const StyledButton = styled.button`
     height: 40px;
     width: 150px;
     border: 1px solid white;
-    border: none;
     cursor: pointer;
     font-family: 'Roboto';
     font-weight: bold;
     font-size: 16px;
     color: white;
     background-color: #2F2F2F;
+    transition: all 0.3s;
+
+    &:hover{
+        background-color: #fff;
+        color: black;
+    }
 `

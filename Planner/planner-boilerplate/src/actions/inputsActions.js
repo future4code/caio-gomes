@@ -9,7 +9,6 @@ export const setInput = (data) => ({
 })
 
 export const setNewTask = (text, day) => async dispatch => {
-    console.log(text, day)
     const task = {text, day};
     const response = await Axios.post(baseURL, task);
 
