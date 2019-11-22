@@ -42,7 +42,7 @@ class InputPlanner extends React.Component {
 						onChange={this.handleInputChange}
 						value={this.state.day}
 					>
-						<option selected>Escolha um dia</option>
+						<option value=''>Escolha um dia</option>
 						<option value="Segunda">Segunda</option>
 						<option value="Terça">Terça</option>
 						<option value="Quarta">Quarta</option>
@@ -56,7 +56,6 @@ class InputPlanner extends React.Component {
 			</WrapperTask>
 		)
 	}
-
 }
 
 const mapDispatchToProps = dispatch => ({

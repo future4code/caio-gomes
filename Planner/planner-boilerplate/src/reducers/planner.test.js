@@ -9,7 +9,6 @@ describe('Task Reducer', () => {
       }
     };
     const newState = planner(undefined, testAction);
-    console.log(newState);
     expect(newState.allTasks).toBe('data');
   });
 });
