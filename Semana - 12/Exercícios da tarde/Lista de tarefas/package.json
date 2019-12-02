@@ -4,12 +4,15 @@
   "description": "Aplicação que adiciona tarefas em uma lista.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js tarefas.txt"
+    "start": "node index.js"
   },
   "keywords": [
     "lista",
     "tarefa"
   ],
   "author": "caiobrian",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
 }
