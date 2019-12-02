@@ -1,0 +1,14 @@
+{
+  "name": "operacoes-matematicas",
+  "version": "0.0.1",
+  "description": "Aplicação que realiza operações matemáticas dado dois números como parâmetro",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "caiobrian",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
