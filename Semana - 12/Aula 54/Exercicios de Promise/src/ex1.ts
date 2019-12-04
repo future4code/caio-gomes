@@ -8,14 +8,13 @@ readdir(directoryPath, function(err: Error, files: any) {
     console.log('Erro');
   } else {
     files.forEach(function(file: string) {
-      readFile(directoryPath + `/${file}`, (err: Error, data: Buffer)=>{
-        if(err){
-          console.log('ERRO AO ACESSAR TEXTOS')
+      readFile(directoryPath + `/${file}`, (err: Error, data: Buffer) => {
+        if (err) {
+          console.log('ERRO AO ACESSAR TEXTOS');
         } else {
-          console.log(data.toString())
+          console.log(data.toString());
         }
       });
     });
   }
 });
-
