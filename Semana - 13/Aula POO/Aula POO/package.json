@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bank": "tsc && node build/index.js --target es6"
+    "bank": "tsc && node build/bank.js --target es6"
   },
   "author": "",
   "license": "ISC",
