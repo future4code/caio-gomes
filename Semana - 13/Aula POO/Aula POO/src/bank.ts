@@ -9,10 +9,13 @@ export class Bank {
     this.age = age;
   }
 
-  public createAccount(name: string, cpf: string, age: number):void {};
-  public getAllAccounts(){};
-  public getAccountsByCpf(){};
-  public saveAccounts():void{};
-}
+  static createAccount(name: string, cpf: string, age: number): void {
+    if(age < 18) {
+      console.log('Não é permitido abertura de conta para menores de 18 anos!')
+    } else {
+      
+    }
 
-const newAccount: 
+  }
+  
+}
