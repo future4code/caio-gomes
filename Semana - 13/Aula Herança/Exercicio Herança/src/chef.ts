@@ -5,6 +5,7 @@ import { Employee } from './employee';
 const newMenu = availableDishes;
 
 class Chef extends Employee {
+  public sayJob(): void {}
   constructor(name: string, salary: number, numberOfInstances: number) {
     super(name, salary, numberOfInstances);
     this.name = 'Caio';
@@ -12,7 +13,7 @@ class Chef extends Employee {
     this.numberOfInstances = numberOfInstances;
   }
 
-  public sayJob() {
+  public static sayJob() {
     console.log('Meu cargo é de Chef');
   }
 
@@ -42,3 +43,5 @@ console.log(
     timeToCook: Number(process.argv[8])
   })
 );
+
+Chef.sayJob()

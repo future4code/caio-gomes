@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Employee {
-    constructor(name, salary) {
+    constructor(name, salary, numberOfInstances) {
         this.name = name;
         this.salary = salary;
+        this.numberOfInstances = numberOfInstances;
     }
 }
 exports.Employee = Employee;

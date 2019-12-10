@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("./index");
 const employee_1 = require("./employee");
 class Cashier extends employee_1.Employee {
-    constructor(name, salary) {
-        super(name, salary);
+    constructor(name, salary, numberOfInstances) {
+        super(name, salary, numberOfInstances);
         this.name = "";
         this.salary = 0;
     }
@@ -18,6 +18,6 @@ class Cashier extends employee_1.Employee {
     }
 }
 exports.Cashier = Cashier;
-const clientBill = new Cashier('Dave', 1500);
+const clientBill = new Cashier('Dave', 1500, 1);
 console.log("A conta é de:", clientBill.calculateBill(index_1.availableDishes));
 //# sourceMappingURL=cashier.js.map
