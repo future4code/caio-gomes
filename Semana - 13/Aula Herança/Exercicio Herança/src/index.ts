@@ -1,5 +1,5 @@
 import { brigadeiro, tortaDeLimão } from './dessert';
-import { lasanha, feijoada  } from './saltydish';
+import { lasanha, feijoada } from './saltydish';
 
 export const availableDishes: object[] = [
   brigadeiro,

@@ -5,10 +5,11 @@ import { Employee } from './employee';
 const newMenu = availableDishes;
 
 class Chef extends Employee {
-  constructor(name: string, salary: number) {
-    super(name, salary);
+  constructor(name: string, salary: number, numberOfInstances: number) {
+    super(name, salary, numberOfInstances);
     this.name = 'Caio';
     this.salary = 3000;
+    this.numberOfInstances = numberOfInstances;
   }
 
   public sayJob() {

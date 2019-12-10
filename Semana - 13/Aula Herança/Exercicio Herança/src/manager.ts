@@ -1,9 +1,9 @@
-import { Cashier } from "./cashier";
+import { Cashier } from './cashier';
 
-class Manager extends Cashier{
-  constructor(name: string, salary: number) {
-    super(name, salary);
-    this.name = "";
+class Manager extends Cashier {
+  constructor(name: string, salary: number, numberOfInstances: number) {
+    super(name, salary, numberOfInstances);
+    this.name = '';
     this.salary = 0;
   }
 

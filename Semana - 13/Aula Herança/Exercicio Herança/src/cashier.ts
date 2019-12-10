@@ -2,8 +2,8 @@ import { availableDishes } from './index';
 import { Employee } from './employee';
 
 export class Cashier extends Employee {
-  constructor(name: string, salary: number) {
-    super(name, salary);
+  constructor(name: string, salary: number, numberOfInstances: number) {
+    super(name, salary, numberOfInstances);
     this.name = "";
     this.salary = 0;
   }
@@ -19,5 +19,5 @@ export class Cashier extends Employee {
   }
 }
 
-const clientBill = new Cashier('Dave', 1500);
+const clientBill = new Cashier('Dave', 1500, 1);
 console.log("A conta é de:",clientBill.calculateBill(availableDishes));
