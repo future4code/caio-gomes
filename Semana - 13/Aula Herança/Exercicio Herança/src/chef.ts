@@ -37,7 +37,7 @@ console.log(
     name: process.argv[4],
     price: Number(process.argv[5]),
     cost: Number(process.argv[6]),
-    ingredients: ['leite', 'chocolate'],
+    ingredients: Array(process.argv[7]),
     timeToCook: Number(process.argv[8])
   })
 );
