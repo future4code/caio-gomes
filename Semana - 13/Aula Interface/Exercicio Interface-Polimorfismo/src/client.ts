@@ -8,6 +8,6 @@ export interface Client {
   consumedEnergy: number;
   // Refere-se à energia consumida pelo cliente no mês
 
-  calculateBill(kwh: number): number;
+  calculateBill(): number;
   // Retorna o valor da conta em reais
 }
