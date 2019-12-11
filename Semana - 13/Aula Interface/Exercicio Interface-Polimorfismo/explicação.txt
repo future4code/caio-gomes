@@ -1,0 +1,13 @@
+CLASSES: 
+  Industry
+  Place
+  Residence
+  Trade
+
+INTERFACE:
+  Client
+
+ESTRUTURA DOS ARQUIVOS:
+  - A classe Place é uma classe abstrata;
+  - As classes Trade, Industry, Residence e Trade são filhas da classe Place;
+  - A classe ResidentialClient é filha da classe Residence e implementa a interface Client;
