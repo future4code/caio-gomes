@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const residence_1 = require("./residence");
 class ResidentialClient extends residence_1.Residence {
+    constructor(name, cpf, cep) {
+        super(name, cpf, cep);
+    }
     calculateBill() {
         return this.consumedEnergy * 0.75;
     }
