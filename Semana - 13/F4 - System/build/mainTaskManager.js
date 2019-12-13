@@ -8,20 +8,36 @@ const student_1 = require("./student");
 const JSONFileManager_1 = require("./JSONFileManager");
 class MainTaskManager {
     constructor() {
-        this.webJSON = new JSONFileManager_1.JSONFileManager('class.json');
-        this.mobileJSON = new JSONFileManager_1.JSONFileManager('mobile.json');
+        this.webJSON = new JSONFileManager_1.JSONFileManager('webClass.json');
+        this.mobileJSON = new JSONFileManager_1.JSONFileManager('mobileClass.json');
     }
     executeWeb(newClass) {
         this.webJSON.saveToJSON(newClass);
+        this.pushTeacherWeb();
+        this.pushStudentWeb();
+    }
+    pushTeacherWeb() {
         const register = this.webJSON.getJSONContent();
         register.listTeachers.push(teacher1);
+        this.webJSON.saveToJSON(register);
+    }
+    pushStudentWeb() {
+        const register = this.webJSON.getJSONContent();
         register.listStudents.push(newStudentWeb);
         this.webJSON.saveToJSON(register);
     }
     executeMobile(newClass) {
         this.mobileJSON.saveToJSON(newClass);
+        this.pushTeacherMobile();
+        this.pushStudentMobile();
+    }
+    pushTeacherMobile() {
         const register = this.mobileJSON.getJSONContent();
         register.listTeachers.push(teacher2);
+        this.mobileJSON.saveToJSON(register);
+    }
+    pushStudentMobile() {
+        const register = this.mobileJSON.getJSONContent();
         register.listStudents.push(newStudentMobile);
         this.mobileJSON.saveToJSON(register);
     }

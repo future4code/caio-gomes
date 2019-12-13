@@ -6,21 +6,41 @@ import { Student } from './student';
 import { JSONFileManager } from './JSONFileManager';
 
 class MainTaskManager {
-  private webJSON = new JSONFileManager('class.json');
-  private mobileJSON = new JSONFileManager('mobile.json');
+  private webJSON = new JSONFileManager('webClass.json');
+  private mobileJSON = new JSONFileManager('mobileClass.json');
 
   executeWeb(newClass: object) {
     this.webJSON.saveToJSON(newClass);
+    this.pushTeacherWeb();
+    this.pushStudentWeb();
+  }
+
+  pushTeacherWeb() {
     const register = this.webJSON.getJSONContent();
     register.listTeachers.push(teacher1);
+    this.webJSON.saveToJSON(register);
+  }
+
+  pushStudentWeb() {
+    const register = this.webJSON.getJSONContent();
     register.listStudents.push(newStudentWeb);
     this.webJSON.saveToJSON(register);
   }
 
   executeMobile(newClass: object) {
     this.mobileJSON.saveToJSON(newClass);
+    this.pushTeacherMobile();
+    this.pushStudentMobile();
+  }
+
+  pushTeacherMobile() {
     const register = this.mobileJSON.getJSONContent();
     register.listTeachers.push(teacher2);
+    this.mobileJSON.saveToJSON(register);
+  }
+
+  pushStudentMobile() {
+    const register = this.mobileJSON.getJSONContent();
     register.listStudents.push(newStudentMobile);
     this.mobileJSON.saveToJSON(register);
   }
