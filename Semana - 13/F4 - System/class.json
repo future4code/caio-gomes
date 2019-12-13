@@ -1,0 +1,21 @@
+{
+  "patron": "Bruce",
+  "startDate": "06/01/2020",
+  "endDate": "06/07/2020",
+  "listStudents": [
+    {
+      "name": "Caio",
+      "email": "caio@gmail.com",
+      "birthday": "05/12/1992",
+      "mission": "Bruce"
+    }
+  ],
+  "listTeachers": [
+    {
+      "name": "Madruga, Seo",
+      "email": "madruguinha@gmail.com",
+      "birthday": "17/04/1945",
+      "specialty": "React"
+    }
+  ]
+}
