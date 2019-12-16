@@ -1,0 +1,21 @@
+{
+  "classNumber": 1,
+  "startDate": "06/01/2020",
+  "endDate": "06/07/2020",
+  "listStudents": [
+    {
+      "name": "Jack",
+      "email": "jackblack@gmail.com",
+      "birthday": "23/04/1965",
+      "mission": 1
+    }
+  ],
+  "listTeachers": [
+    {
+      "name": "Pai Mei",
+      "email": "fivepointpalm@gmail.com",
+      "birthday": "11/11/1850",
+      "specialty": "Redux"
+    }
+  ]
+}
