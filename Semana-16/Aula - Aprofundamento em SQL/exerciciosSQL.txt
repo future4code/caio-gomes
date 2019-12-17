@@ -93,4 +93,29 @@ ORDER BY total DESC
 LIMIT 3;
 
 
+/// EXERCÍCIO ESCRITA 
+
+OBS: Populei o banco com a lista de 1000 pessoas que o Soter mandou no Slack.
+
+USE caio;
+DESCRIBE correntistas;
+
+-- 1.
+ALTER TABLE correntistas
+ADD estado_civil VARCHAR(100) NOT NULL DEFAULT 'Solteiro(a)';
+
+-- 2.
+UPDATE correntistas
+SET estado_civil = 'Casado(a)'
+WHERE aniversario < '1989-12-17';
+
+-- 3.
+ALTER TABLE correntistas
+ADD numero_da_sorte INT NOT NULL DEFAULT 0;
+
+-- 4.
+UPDATE correntistas
+SET numero_da_sorte = FLOOR(RAND()* (1000-1+1)+1);
+
+
 
