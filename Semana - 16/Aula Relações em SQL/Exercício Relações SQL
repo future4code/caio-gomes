@@ -1,0 +1,90 @@
+
+/// Criação das tabelas
+USE caio;
+DESCRIBE autores;
+
+CREATE TABLE autores(
+	id INT PRIMARY KEY,
+	primeiro_nome VARCHAR(255) NOT NULL,
+	ultimo_nome VARCHAR(255) NOT NULL,
+	nacionalidade VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE livros(
+	id INT PRIMARY KEY,
+	titulo VARCHAR(255) NOT NULL,
+	autor_id INT,
+	FOREIGN KEY (autor_id) REFERENCES autores(id),
+	editora_id INT,
+	FOREIGN KEY (editora_id) REFERENCES editoras(id),
+	ano DATE NOT NULL
+);
+
+CREATE TABLE editoras(
+	id INT PRIMARY KEY,
+	nome VARCHAR(255) NOT NULL,
+	cidade VARCHAR(255) NOT NULL,
+	data_de_fundacao DATE NOT NULL
+);
+
+CREATE TABLE usuarios(
+	id INT PRIMARY KEY,
+	primeiro_nome VARCHAR(255) NOT NULL,
+	ultimo_nome VARCHAR(255) NOT NULL,
+	nacionalidade VARCHAR(255) NOT NULL,
+	data_nascimento DATE NOT NULL
+);
+
+CREATE TABLE usuarios_livros(
+	usuario_id INT,
+	livro_id INT,
+	FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+	FOREIGN KEY (livro_id) REFERENCES livros(id)
+);
+
+ALTER TABLE autores
+DROP COLUMN nacionalidade;
+
+
+/// Exercícios
+USE caio;
+
+-- 1.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome) Autor, titulo
+FROM autores a
+JOIN livros l
+ON a.id = l.autor_id
+WHERE primeiro_nome LIKE 'Jamie';
+
+-- 2.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome), titulo
+FROM autores a
+JOIN livros l
+ON a.id = l.autor_id
+WHERE primeiro_nome LIKE 'A%'
+ORDER BY primeiro_nome;
+
+-- 3.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome) 'Nome do Autor', 
+COUNT(*) 'Número de livros' 
+FROM autores a
+JOIN livros l
+ON a.id = l.autor_id
+GROUP BY primeiro_nome, ultimo_nome
+ORDER BY primeiro_nome;
+
+-- 4.
+
+
+-- 6.
+SELECT titulo AS 'Título do Livro', 
+nome AS 'Editora', 
+data_de_fundacao AS 'Fundação'
+FROM editoras e
+JOIN livros l 
+ON e.id = l.editora_id
+WHERE data_de_fundacao < '1990-01-01'
+ORDER BY Editora;
+
+
+
