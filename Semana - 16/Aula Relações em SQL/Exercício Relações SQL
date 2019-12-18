@@ -74,7 +74,21 @@ GROUP BY primeiro_nome, ultimo_nome
 ORDER BY primeiro_nome;
 
 -- 4.
+SELECT titulo 'Título do livro', COUNT(*) 'Aluguel'
+FROM livros l
+JOIN usuarios_livros ul
+ON l.id = ul.livro_id
+GROUP BY titulo
+ORDER BY Aluguel DESC
+LIMIT 1;
 
+-- 5.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome) 'Nome', COUNT(*) 'Livros Alugados'
+FROM usuarios u
+JOIN usuarios_livros ul 
+ON u.id = ul.livro_id 
+GROUP BY primeiro_nome, ultimo_nome
+ORDER BY primeiro_nome;
 
 -- 6.
 SELECT titulo AS 'Título do Livro', 
@@ -85,6 +99,18 @@ JOIN livros l
 ON e.id = l.editora_id
 WHERE data_de_fundacao < '1990-01-01'
 ORDER BY Editora;
+
+-- 7.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome) 'Nome',
+MIN(data_nascimento) 'Nascimento', titulo 'Livro'
+FROM usuarios u
+JOIN usuarios_livros ul 
+ON u.id = ul.livro_id
+JOIN livros l 
+ON u.id = l.id
+GROUP BY titulo, primeiro_nome, ultimo_nome, data_nascimento
+ORDER BY Nascimento
+LIMIT 1;
 
 
 
