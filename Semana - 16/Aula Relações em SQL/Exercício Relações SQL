@@ -112,5 +112,29 @@ GROUP BY titulo, primeiro_nome, ultimo_nome, data_nascimento
 ORDER BY Nascimento
 LIMIT 1;
 
+-- 8.
+SELECT nacionalidade,COUNT(*) 'Alugados'
+FROM usuarios u
+JOIN usuarios_livros ul 
+ON u.id = ul.livro_id
+JOIN livros l 
+ON u.id = l.id
+GROUP BY nacionalidade
+ORDER BY Alugados DESC
+LIMIT 1;
+
+-- 9.
+SELECT nome, COUNT(*) 'Alugados'
+FROM livros l 
+JOIN usuarios_livros ul 
+ON l.id = ul.usuario_id
+JOIN editoras e 
+ON l.editora_id = e.id
+JOIN usuarios u 
+ON u.id = l.id
+WHERE u.data_nascimento > '1999-12-18'
+GROUP BY nome
+ORDER BY Alugados DESC
+LIMIT 2;
 
 
