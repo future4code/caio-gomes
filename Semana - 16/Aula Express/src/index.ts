@@ -7,12 +7,14 @@ app.use(express.json()); // Linha mágica (middleware)
 
 const connection = knex({
   client: 'mysql',
+  acquireConnectionTimeout: 10000000,
   connection: {
     host: 'ec2-18-229-236-15.sa-east-1.compute.amazonaws.com',
     user: 'caio',
-    password: '6ac0e893475514c1449c7bf672657293',
-    database: 'caio'
-  }
+    password: process.env.SENHA_BANCO,
+    database: 'caio',
+    debug: true,
+  },
 });
 
 app.post('/createUser', (req: Request, res: Response) => {
@@ -27,15 +29,14 @@ app.post('/createUser', (req: Request, res: Response) => {
     });
 });
 
-app.get('/getAllBrazilianClients', async (req: Request, res: Response) => {
+app.get('/getAllBrazilianClients', (req: Request, res: Response) => {
   const query = connection.select('primeiro_nome')
                           .from('correntistas')
                           .where('pais', 'Brazil');
-  const result = await query;
-  res.send(result);
+    query.then((result)=>{
+    res.send(result);
+  })
 });
-
-
 
 
 // Trecho do código responsável por inicializar todas as APIs
