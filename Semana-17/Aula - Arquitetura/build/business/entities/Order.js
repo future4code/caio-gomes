@@ -1,31 +1,35 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Order {
-    constructor(photo, size, paper, borderType, borderSize, borderColor) {
-        this.photo = photo;
-        this.size = size;
-        this.paper = paper;
-        this.borderType = borderType;
-        this.borderSize = borderSize;
-        this.borderColor = borderColor;
-    }
-    getPhoto() {
-        return this.photo;
-    }
-    getSize() {
-        return this.size;
-    }
-    getPaper() {
-        return this.paper;
-    }
-    getBorderType() {
-        return this.borderType;
-    }
-    getBorderSize() {
-        return this.borderSize;
-    }
-    getBorderColor() {
-        return this.borderColor;
-    }
+import { Frame } from './Frame';
+import { Client } from './Client';
+import { Paper } from './Paper';
+
+export class Order {
+  id?: string;
+  private paper: Paper;
+  private frame: Frame;
+  private client?: Client;
+
+  constructor(paper: Paper, frame: Frame, client?: Client, id?: string) {
+    this.paper = paper;
+    this.frame = frame;
+    this.client = client;
+  }
+
+  public getId() {
+    return this.id;
+  }
+
+  public calculatePaperPrice() {
+    return this.paper.calculateTotalPaperPrice();
+  }
+
+  public calculateFramePrice() {
+    return this.frame.calculateTotalFramePrice();
+  }
+
+  public calculateTotalPrice() {
+    return (
+      this.paper.calculateTotalPaperPrice() +
+      this.frame.calculateTotalFramePrice()
+    );
+  }
 }
-exports.Order = Order;

@@ -1,35 +1,35 @@
+import { Frame } from './Frame';
+import { Client } from './Client';
+import { Paper } from './Paper';
+
 export class Order {
-  constructor(
-    private photo: string,
-    private size: string,
-    private paper: string,
-    private borderType: string,
-    private borderSize: string,
-    private borderColor: string
-  ) {}
+  id?: string;
+  private paper: Paper;
+  private frame: Frame;
+  private client?: Client;
 
-    public getPhoto() {
-      return this.photo
-    }
+  constructor(paper: Paper, frame: Frame, client?: Client, id?: string) {
+    this.paper = paper;
+    this.frame = frame;
+    this.client = client;
+  }
 
-    public getSize() {
-      return this.size
-    }
+  public getId() {
+    return this.id;
+  }
 
-    public getPaper() {
-      return this.paper
-    }
+  public calculatePaperPrice() {
+    return this.paper.calculateTotalPaperPrice();
+  }
 
-    public getBorderType() {
-      return this.borderType
-    }
+  public calculateFramePrice() {
+    return this.frame.calculateTotalFramePrice();
+  }
 
-    public getBorderSize() {
-      return this.borderSize
-    }
-
-    public getBorderColor() {
-      return this.borderColor
-    }
-
+  public calculateTotalPrice() {
+    return (
+      this.paper.calculateTotalPaperPrice() +
+      this.frame.calculateTotalFramePrice()
+    );
+  }
 }

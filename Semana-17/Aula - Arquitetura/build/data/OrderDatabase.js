@@ -52,14 +52,9 @@ class OrderDatabase {
         });
         this.orderEntityMapper = new OrderEntityMapper();
     }
-    teste() {
+    createOrder(order) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.connection
-                .select()
-                .from('paper_type')
-                .then(res => {
-                return (res);
-            });
+            yield this.connection('orders').insert(this.orderEntityMapper.entityToModel(order));
         });
     }
 }

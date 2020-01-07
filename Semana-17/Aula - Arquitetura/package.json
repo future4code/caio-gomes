@@ -4,8 +4,7 @@
   "description": "",
   "scripts": {
     "start:dev": "ts-node-dev ./src/index.ts",
-    "start": "tsc && node ./build/index.js",
-    "teste": "tsc && node ./build/OrderDatabase.js"
+    "start": "tsc && node ./build/index.js"
   },
   "dependencies": {
     "@types/express": "^4.17.2",
