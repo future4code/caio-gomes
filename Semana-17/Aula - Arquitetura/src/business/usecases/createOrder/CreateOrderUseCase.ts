@@ -19,7 +19,8 @@ export class CreateOrderUseCase {
   async execute(input: CreateOrderInput) {
     const paper = new Paper(input.paper.size, input.paper.type);
     const frame = new Frame(input.frame.size, input.frame.type);
-    const client = new Client(input.client.name, input.client.email);
+    const client = new Client(input.client.name, input.client.email, input.client.dateOrder, input.client.paymentMethod);
+    
 
     const order = new Order(paper, frame, client, generateId());
 
@@ -45,5 +46,7 @@ interface CreateOrderInput {
   client: {
     name: string;
     email: string;
+    dateOrder: Date;
+    paymentMethod: string
   };
 }

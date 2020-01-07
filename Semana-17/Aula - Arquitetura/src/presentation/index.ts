@@ -1,8 +1,5 @@
+import { SimulateOrderInput, SimulateOrderUseCase } from './../business/usecases/SimulateOrder/SimulateOrderUseCase';
 import express, { Request, Response } from 'express';
-import {
-  SimulateOrderInput,
-  SimulateOrderUseCase
-} from '../business/usecases/simulateOrder/SimulateOrderUseCase';
 
 const app = express();
 app.use(express.json()); // Linha mágica (middleware)

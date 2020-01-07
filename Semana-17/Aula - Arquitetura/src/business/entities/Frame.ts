@@ -4,11 +4,11 @@ export class Frame {
 
   constructor(size: string, type: string) {
     if (!(size in FrameSize)) {
-      throw new Error('Tamanho moldura invalido');
+      throw new Error('Tamanho da moldura inválido');
     }
 
     if (!(type in FrameType)) {
-      throw new Error('Tipo moldura invalido');
+      throw new Error('Tipo de moldura inválido');
     }
 
     this.size = size as FrameSize;
@@ -47,22 +47,21 @@ export class Frame {
 
   public calculateTotalFramePrice() {
     return (
-      this.calculateFrameSizePrice(this.size) *
-      this.calculateFrameTypePrice(this.type)
+      this.calculateFrameSizePrice(this.size) * this.calculateFrameTypePrice(this.type)
     );
   }
 }
 
 export enum FrameSize {
-  PEQUENA = 'PEQUENA',
-  MEDIA = 'MEDIA',
-  GRANDE = 'GRANDE'
+  'PEQUENA' = 'PEQUENA',
+  'MEDIA' = 'MEDIA',
+  'GRANDE' = 'GRANDE'
 }
 
 export enum FrameType {
-  CRUA = 'CRUA',
-  LISA = 'LISA',
-  CLASSICA = 'CLASSICA',
-  VINTAGE = 'VINTAGE',
-  MADEIRA = 'MADEIRA'
+  'CRUA' = 'CRUA',
+  'LISA' = 'LISA',
+  'CLASSICA' = 'CLASSICA',
+  'VINTAGE' = 'VINTAGE',
+  'MADEIRA' = 'MADEIRA'
 }

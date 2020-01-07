@@ -51,8 +51,7 @@ export class Paper {
 
   public calculateTotalPaperPrice() {
     return (
-      this.calculatePaperSizePrice(this.size) *
-      this.calculatePaperTypePrice(this.type)
+      this.calculatePaperSizePrice(this.size) * this.calculatePaperTypePrice(this.type)
     );
   }
 }
