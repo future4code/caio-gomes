@@ -1,8 +1,9 @@
-import { RegisterUserGateway } from "../business/gateways/RegisterGateway";
+import { User } from './../business/entities/User';
+import { UserGateway } from "../business/gateways/User/UserGateway";
 import knex from 'knex';
-import { User } from '../business/entities/User';
 
-export class RegisterUserDataBase implements RegisterUserGateway {
+
+export class UserDataBase implements UserGateway {
     private connection : knex
 
     constructor() {
@@ -17,7 +18,12 @@ export class RegisterUserDataBase implements RegisterUserGateway {
         });
 }
 	
-	public async createUser(user: User): Promise<void> {
+	async createUser(user: User): Promise<void> {
 	   await this.connection('user_4food').insert(user)
   }
+
+ async getUserByEmail(email: string): Promise<any> {
+  return await this.connection('user_4food').where('email', email)
+ }
+
 }

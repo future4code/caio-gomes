@@ -1,14 +1,19 @@
 export class User {
     constructor(
+        private id: number,
         private email: string,
-        private password_user: string
-    ){}
+        private password_user: string,
+        ){}
 
-    public registerNewUser(){
-        const newUser = {
-            email: this.email,
-            password: this.password_user
-        }
-        return newUser;
-    }
+   getPassword(){
+        return this.password_user
+   }
+
+   getEmail(){
+       return this.email
+   }
+
+    getId(){
+       return this.id
+   }
 }

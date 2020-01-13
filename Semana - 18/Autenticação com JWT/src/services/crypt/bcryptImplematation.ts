@@ -12,4 +12,8 @@ export class BcryptImplemantation implements CryptoGateway {
         )
         return encryptedWord;
     }
+
+    async compare(word: string, hash: string): Promise<boolean>{
+        return await bcrypt.compare(word, hash)
+    }
 }

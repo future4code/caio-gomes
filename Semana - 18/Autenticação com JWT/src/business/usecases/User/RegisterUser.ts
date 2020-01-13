@@ -1,11 +1,10 @@
+import { UserGateway } from './../../gateways/User/UserGateway';
 import { CryptoGateway } from '../../gateways/Crypto/CryptoGateway';
 import { User } from './../../entities/User';
-import { RegisterUserGateway } from "../../gateways/RegisterGateway";
-
 
 export class RegisterUserUC {
     constructor(
-        private registerUserGateway: RegisterUserGateway,
+        private registerUserGateway: UserGateway,
         private cryptoGateway: CryptoGateway
     ) {}
     
@@ -17,6 +16,7 @@ export class RegisterUserUC {
         const encryptedPassword = await this.cryptoGateway.encrypt(input.password_user)
         
         await this.registerUserGateway.createUser(new User(
+            0,
             input.email,
             encryptedPassword
         )); 
