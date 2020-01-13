@@ -1,4 +1,4 @@
-import { CryptoGateway } from './../../gateways/CryptoGateway';
+import { CryptoGateway } from '../../gateways/Crypto/CryptoGateway';
 import { User } from './../../entities/User';
 import { RegisterUserGateway } from "../../gateways/RegisterGateway";
 
@@ -10,11 +10,11 @@ export class RegisterUserUC {
     ) {}
     
     async execute(input: RegisterUserInput): Promise<RegisterUserOutput> {
-        if(input.password.length < 6){
+        if(input.password_user.length < 6){
             throw new Error('Password must be at least 6 characters long!')
         }
-
-        const encryptedPassword = await this.cryptoGateway.encrypt(input.password)
+ 
+        const encryptedPassword = await this.cryptoGateway.encrypt(input.password_user)
         
         await this.registerUserGateway.createUser(new User(
             input.email,
@@ -29,7 +29,7 @@ export class RegisterUserUC {
 
 export interface RegisterUserInput {
     email: string;
-    password: string;
+    password_user: string;
 }
 
 export interface RegisterUserOutput {
