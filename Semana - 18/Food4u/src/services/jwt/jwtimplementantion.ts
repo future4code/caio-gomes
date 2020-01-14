@@ -19,6 +19,7 @@ export class JwtImplementation implements AuthenticationGateway{
     }
 
     getUserIDfromToken(token: string): string {
+       
         const jwtData = jwt.verify(token, this.getJwtSecretKey()) as JwtData
         return jwtData.userID
     }

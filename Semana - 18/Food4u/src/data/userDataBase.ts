@@ -1,6 +1,6 @@
-import { User } from '../business/entities/User';
 import { UserGateway } from "../business/gateways/User/userGateway";
 import knex from 'knex';
+import { User } from "../business/entities/User";
 
 
 export class UserDataBase implements UserGateway {
@@ -26,7 +26,9 @@ export class UserDataBase implements UserGateway {
   return await this.connection('user_4food').where('email', email)
  }
 
- async profile(token: string): Promise<void> {
-   await this.connection.select('*').from('user_4food').where('password_user', token)
- }
+ async profile(token: string): Promise<any> {
+    console.log(token)
+   await this.connection.select('name', 'email', 'age').from('user_4food').where('password_user', token)
+      
+  }
 }
