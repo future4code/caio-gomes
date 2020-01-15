@@ -1,7 +1,8 @@
 import { User } from './../../entities/User';
 
 export interface UserGateway {
-    login(email: string ): Promise<any>;
+    login(email: string ): Promise<User>;
     signup(user: User ): Promise<void>;
-    profile(token: string): Promise<any>;
+    verifyUserExists(id: string): Promise<boolean>
+
 }
