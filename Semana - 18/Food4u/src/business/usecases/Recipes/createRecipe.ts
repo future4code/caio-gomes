@@ -10,7 +10,7 @@ export class CreateRecipeUC {
 
    async execute(input: CreateRecipeInput): Promise<CreateRecipeOutput> {
        this.validateInput(input)
-
+       
        await this.verifyUserExists(input.userId)
 
        const createdRecipe = await this.createRecipe(input)
@@ -24,6 +24,7 @@ export class CreateRecipeUC {
     }
 
     validateInput(input: CreateRecipeInput){
+        console.log(input)
         if(!(input.title && input.description && input.userId)) {
             throw new Error('Missing information!')
         }
@@ -39,12 +40,11 @@ export class CreateRecipeUC {
 
     createRecipe(input: CreateRecipeInput) {
         const newRecipe = new Recipe(input.title, input.description, input.userId)
-
         return this.recipeGateway.createRecipe(newRecipe)
     }
 }
 
-interface CreateRecipeInput  {
+export interface CreateRecipeInput  {
     title: string
     description: string
     userId: string

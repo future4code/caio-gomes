@@ -1,5 +1,4 @@
 import knex from 'knex';
-import { User } from "../business/entities/User";
 import { RecipeGateway } from "../business/gateways/Recipes/recipeGateway";
 import { Recipe } from '../business/entities/Recipe';
 
@@ -20,10 +19,11 @@ export class RecipeDataBase implements RecipeGateway {
   }
 
    async createRecipe(recipe: Recipe): Promise<Recipe> {
-    const result = await this.connection.raw(
+    await this.connection.raw(
         `INSERT INTO recipe (title, description, userId) 
         VALUES (
             "${recipe.getTitle()}","${recipe.getDescription()}","${recipe.getUserId()}")`)
-        return recipe;
+        
+            return recipe;
     }
 } 

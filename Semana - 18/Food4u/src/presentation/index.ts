@@ -1,5 +1,3 @@
-import { AuthenticationGateway } from './../business/gateways/Auth/authenticationGateway';
-
 import { CreateRecipeInput } from './../business/usecases/Recipes/createRecipe';
 import { RecipeDataBase } from './../data/recipeDatabase';
 import { JwtImplementation } from './../services/jwt/jwtimplementantion';
@@ -15,6 +13,7 @@ const app = express()
 app.use(express.json()) // Linha mágica (middleware)
 
 const getTokenFromHeaders = (headers: any): string => {
+    console.log(headers)
    return(headers['auth'] as string || '');
 }
 
@@ -41,8 +40,7 @@ app.post('/signup', async (req: Request, res: Response) => {
 
 app.post('/login', async (req: Request, res:Response) => {
     try{
-        console.log("REQ", req.body)
-        const loginUC = new LoginUC(
+       const loginUC = new LoginUC(
             new UserDataBase(),
             new BcryptImplemantation(),
             new JwtImplementation()
@@ -64,7 +62,7 @@ app.post('/recipes', async (req: Request, res: Response) => {
     try{
         const authService = new JwtImplementation()
         const userId = authService.getUserIDfromToken(getTokenFromHeaders(req.headers))
-        
+        console.log("USER ID", userId)
         const useCase = new CreateRecipeUC(
            new UserDataBase(),
            new RecipeDataBase()
@@ -73,7 +71,7 @@ app.post('/recipes', async (req: Request, res: Response) => {
         const input: CreateRecipeInput = {
             title: req.body.title,
             description: req.body.description,
-            userId
+            userId 
         }
         console.log(input)
        const result = await useCase.execute(input)

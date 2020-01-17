@@ -3,7 +3,7 @@ import { AuthenticationGateway } from '../../business/gateways/Auth/authenticati
 
 
 export class JwtImplementation implements AuthenticationGateway{ 
-    private static EXPIRES_IN = "1h"
+    private static EXPIRES_IN = "5h"
     private getJwtSecretKey(): string {
         if(!process.env.JWT_SECRET){
             throw new Error("Missing JWT secret key")
@@ -21,12 +21,15 @@ export class JwtImplementation implements AuthenticationGateway{
 
     getUserIDfromToken(token: string): string {
         const jwtData = jwt.verify(token, this.getJwtSecretKey()) as JwtData
-        return jwtData.userID
+        console.log("JWT: ",jwtData)
+        return jwtData.userId
     }
+
+
 }
 
 interface JwtData {
-    userID: string
+    userId: string
     iat: number
     exp: number
 }
