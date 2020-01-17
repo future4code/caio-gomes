@@ -24,8 +24,6 @@ export class JwtImplementation implements AuthenticationGateway{
         console.log("JWT: ",jwtData)
         return jwtData.userId
     }
-
-
 }
 
 interface JwtData {

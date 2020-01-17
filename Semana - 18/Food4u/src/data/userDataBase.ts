@@ -47,4 +47,13 @@ export class UserDataBase implements UserGateway {
       return Boolean(returnedUser);
   }
 
+  async getAllUsers(): Promise<User[]> {
+    const query = await this.connection.raw("SELECT * FROM user_4food;")
+    const users = await query;
+   
+    return users[0].map(
+      (user: any) => 
+        new User(user.id, user.name, user.email, user.age, user.password_user));   
+  }
+
 }

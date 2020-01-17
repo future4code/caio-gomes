@@ -1,3 +1,4 @@
+import { GetAllUsersUC } from './../business/usecases/User/getAllUsers';
 import { CreateRecipeInput } from './../business/usecases/Recipes/createRecipe';
 import { RecipeDataBase } from './../data/recipeDatabase';
 import { JwtImplementation } from './../services/jwt/jwtimplementantion';
@@ -81,6 +82,20 @@ app.post('/recipes', async (req: Request, res: Response) => {
             errorMessage: err.message
         })
     }
+
+    app.get("/allUsers", async (req: Request, res: Response) => {
+        try {
+            const getAllUsersUC = new GetAllUsersUC(new UserDataBase());
+            const result = await getAllUsersUC.execute();
+            console.log(result)
+            res.status(200).send(result)
+        }catch(err){
+            res.status(400).send({
+                errorMessage: err.message
+            })
+        }
+    })
+
 });
 
 
