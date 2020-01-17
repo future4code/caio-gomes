@@ -9,21 +9,21 @@ export class LoginUC {
         private authGateway: AuthenticationGateway
     ){}
         
-    async execute(email: string, password: string): Promise<LoginUCOutput> {
+    async execute(email: string, password_user: string): Promise<LoginUCOutput> {
         const user = await this.userGateway.login(email);
-        console.log('user', user[0].password_user)
+        console.log("USER ", user)
         const isPassowrdRight = await this.cryptoGateway.compare(
-            password,
-            user[0].password_user
+            password_user,
+            user.getPassword()
+            
             )
             
             if(!isPassowrdRight){
                 throw new Error("Email or Password are invalid");
             }
 
-            const token = this.authGateway.generateToken(user);
-            console.log('token', token)
-
+            const token = this.authGateway.generateToken(user.getId().toString());
+           
         return {
             token
         }

@@ -1,21 +1,24 @@
+import { AuthenticationGateway } from './../business/gateways/Auth/authenticationGateway';
+
+import { CreateRecipeInput } from './../business/usecases/Recipes/createRecipe';
+import { RecipeDataBase } from './../data/recipeDatabase';
 import { JwtImplementation } from './../services/jwt/jwtimplementantion';
 import { LoginUC } from './../business/usecases/Auth/login';
 import { RegisterUserUC } from '../business/usecases/User/registerUser';
 import { UserDataBase } from '../data/userDataBase';
 import express, {Request, Response} from 'express'
 import { BcryptImplemantation } from '../services/crypt/bcryptImplematation';
-import { GetProfileUC } from '../business/usecases/User/getProfile';
+import { CreateRecipeUC } from '../business/usecases/Recipes/createRecipe';
 
 
 const app = express()
 app.use(express.json()) // Linha mágica (middleware)
 
 const getTokenFromHeaders = (headers: any): string => {
-    return(headers['auth'] as string || '');
+   return(headers['auth'] as string || '');
 }
 
 app.post('/signup', async (req: Request, res: Response) => {
-    console.log()
     try{
         const registerUser = new RegisterUserUC(
             new UserDataBase(),
@@ -38,6 +41,7 @@ app.post('/signup', async (req: Request, res: Response) => {
 
 app.post('/login', async (req: Request, res:Response) => {
     try{
+        console.log("REQ", req.body)
         const loginUC = new LoginUC(
             new UserDataBase(),
             new BcryptImplemantation(),
@@ -47,6 +51,7 @@ app.post('/login', async (req: Request, res:Response) => {
             req.body.email,
             req.body.password
         )
+        console.log(result)
         res.status(200).send(result)
     }catch(err){
         res.status(400).send({
@@ -55,22 +60,30 @@ app.post('/login', async (req: Request, res:Response) => {
     }
 })
 
-app.get('/getProfile', async (req: Request, res:Response) => {
+app.post('/recipes', async (req: Request, res: Response) => {
     try{
-       const getProfile = new GetProfileUC(
-          new UserDataBase(),
-          new JwtImplementation() 
+        const authService = new JwtImplementation()
+        const userId = authService.getUserIDfromToken(getTokenFromHeaders(req.headers))
+        
+        const useCase = new CreateRecipeUC(
+           new UserDataBase(),
+           new RecipeDataBase()
        )
 
-       const result = await getProfile.execute(
-           getTokenFromHeaders(req.headers)
-       )
-       res.status(200).send(result)
+        const input: CreateRecipeInput = {
+            title: req.body.title,
+            description: req.body.description,
+            userId
+        }
+        console.log(input)
+       const result = await useCase.execute(input)
+        res.status(200).send(result)
     }catch(err){
         res.status(400).send({
             errorMessage: err.message
         })
     }
-})
+});
+
 
 export default app
