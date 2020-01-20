@@ -1,5 +1,5 @@
-import { CryptographyGateway } from "../../business/gateways/cryptography/cryptographyGateway";
 import * as bcrypt from "bcrypt";
+import { CryptographyGateway } from "../../business/gateways/cryptography/cryptoGateway";
 
 export class BcryptService implements CryptographyGateway {
   private static BCRYPT_SALTS_ROUND = 10;
