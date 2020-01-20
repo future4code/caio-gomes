@@ -5,5 +5,5 @@ export interface SignupGateway {
 }
 
 export interface LoginGateway {
-    login(email: string, password: string): Promise<User>;
+    login(email: string): Promise<User>;
 }
