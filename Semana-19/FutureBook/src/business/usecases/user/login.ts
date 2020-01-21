@@ -9,7 +9,7 @@ export class LoginUC {
         private cryptoGateway: CryptographyGateway,
     ){}
     async execute(email: string, password: string): Promise<loginOutput> {
-        const user = await this.loginGateway.login(email);
+        const user = await this.loginGateway.getUserByEmail(email);
         const comparedPassword = await this.cryptoGateway.compare(
             password,
             user.getPassword()

@@ -13,11 +13,11 @@ export class UserDataBase {
   });
 
 
-  public async signup(user: User): Promise<string> {
+  public async createUser(user: User): Promise<string> {
     return await this.connection('users').insert(user)
   }
 
-  public async login(email: string): Promise<User> {
+  public async getUserByEmail(email: string): Promise<User> {
     const query = await this.connection('users').select('*').where('email', email);
     console.log(query)
     const returnedUser = query[0];

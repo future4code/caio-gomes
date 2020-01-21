@@ -1,9 +1,13 @@
 import { User } from "../entities/User";
 
 export interface SignupGateway {
-   signup(user: User): Promise<string>;
+   createUser(user: User): Promise<string>;
 }
 
 export interface LoginGateway {
-    login(email: string): Promise<User>;
+    getUserByEmail(email: string): Promise<User>;
+}
+
+export interface FollowUserGateway {
+    createFollow(followerId: string, followedId: string): Promise<void>
 }

@@ -24,7 +24,7 @@ export class SignupUC {
         if (!comparedPassword) {
             throw new Error("Invalid password");
           }
-        await this.signupGateway.signup(user);
+        await this.signupGateway.createUser(user);
 
         return {
             token: this.userTokenGateway.generateToken(user.getId())
