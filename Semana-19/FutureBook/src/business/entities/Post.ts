@@ -23,7 +23,7 @@ export class Post {
 		return this.type;
 	}
 
-	public getUSerId() {
+	public getUserId() {
 		return this.userId
 	}
 

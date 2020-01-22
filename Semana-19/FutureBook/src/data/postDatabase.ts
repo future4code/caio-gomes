@@ -17,7 +17,15 @@ export class PostDataBase {
 
     async createPost(post: Post): Promise<void> {
         console.log(post)
-        await this.connection('post').insert(post)
+        await this.connection.raw(`
+        INSERT INTO posts (photo, description, date, type, user_id)
+        VALUES ("${post.getPhoto()}",
+        "${post.getDescription()}",
+        "${this.getSQLDateFromTSDate(post.getDate())}",
+        "${post.getType()}",
+        "${post.getUserId()}"
+        )
+        `)
     }
 
 }
