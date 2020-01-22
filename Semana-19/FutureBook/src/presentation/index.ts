@@ -7,6 +7,8 @@ import { JwtAuthService } from '../services/auth/jwtAuthentication'
 import { LoginUC } from '../business/usecases/user/login'
 import { FollowUserUC, FollowUserInput } from '../business/usecases/user/follow'
 import { UnfollowUserUC } from '../business/usecases/user/unfollow'
+import { CreatePostUC, CreatePostInput } from '../business/usecases/post/post'
+import { PostDataBase } from '../data/postDatabase'
 
 
 const app = express()
@@ -65,6 +67,7 @@ app.post("/users/follow", async (req: Request, res: Response) => {
         const userId = authService.getUserIdFromToken(getTokenFromHeaders(req.headers))
 
         const follow = new FollowUserUC(
+            new UserDataBase(),
             new UserDataBase()
         )
 
@@ -82,7 +85,7 @@ app.post("/users/follow", async (req: Request, res: Response) => {
     }
 });
 
-app.post("users/unfollow", async(req: Request, res: Response)=> {
+app.post("/users/unfollow", async(req: Request, res: Response)=> {
     console.log(req)
     try{
         const authService = new JwtAuthService()
@@ -100,6 +103,32 @@ app.post("users/unfollow", async(req: Request, res: Response)=> {
         console.log(input)
         res.status(200).send()
     }catch (err) {
+        res.status(404).send({
+            ...err,
+            errorMessage: err.message
+        })
+    }
+});
+
+app.post("/createPost", async (req: Request, res: Response) => {
+    try{
+        const authService = new JwtAuthService()
+        const userId = authService.getUserIdFromToken(getTokenFromHeaders(req.headers));
+
+        const createPost = new CreatePostUC(
+            new PostDataBase(),
+        )
+
+        const input: CreatePostInput = {
+            photo: req.body.photo,
+            description: req.body.description,
+            date: new Date,
+            type: req.body.type,
+            userId
+        }
+        await createPost.execute(input)
+
+    }catch(err) {
         res.status(404).send({
             ...err,
             errorMessage: err.message

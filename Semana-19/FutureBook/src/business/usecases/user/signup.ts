@@ -27,7 +27,8 @@ export class SignupUC {
         await this.signupGateway.createUser(user);
 
         return {
-            token: this.userTokenGateway.generateToken(user.getId())
+            token: this.userTokenGateway.generateToken(user.getId()),
+            message: "User created successfully!"
         }
     }
 }
@@ -40,4 +41,5 @@ export interface SignupInput {
 
 export interface SignupOutput{
    token: string;
+   message: string
 }

@@ -3,7 +3,7 @@ import * as jwt from "jsonwebtoken";
 
 export class JwtAuthService implements UserTokenGateway {
   static SECRET_KEY: string = "JWT_SECRET";
-  static EXPIRES_IN_TIME: string = "10h";
+  static EXPIRES_IN_TIME: string = "24h";
   private getJwtSecretKey(): string {
     if (!process.env[JwtAuthService.SECRET_KEY]) {
       throw new Error(

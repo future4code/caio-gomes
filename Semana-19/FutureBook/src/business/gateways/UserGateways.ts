@@ -15,3 +15,7 @@ export interface FollowUserGateway {
 export interface UnfollowUserGateway {
     createUnfollow(followerId: string, followedId: string): Promise<void>
 }
+
+export interface VerifyUserExists {
+    verifyUserExists(id: string): Promise<boolean>
+}
