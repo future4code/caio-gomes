@@ -12,7 +12,7 @@ export class FollowUserUC {
     }
 }
 
-interface FollowUserInput {
+export interface FollowUserInput {
     followerId: string
     followedId: string
 }

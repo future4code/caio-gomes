@@ -9,8 +9,7 @@ export class UserDataBase {
       user: "caio",
       password: process.env.DB_TOKEN,
       database: "caio",
-      debug: true
-    }
+      }
   });
 
 
@@ -31,5 +30,14 @@ export class UserDataBase {
       returnedUser.email,
       returnedUser.password
     );
+  }
+
+  public async createFollow(followerId: string, followedId: string): Promise<void> {
+    await this.connection('followers').insert({ 'follower_id': followerId, 'followed_id': followedId })
+  };
+
+  public async createUnfollow(followerId: string, followedId: string): Promise<void>{
+    console.log(followerId, followedId)
+    await this.connection('followers')
   }
 }

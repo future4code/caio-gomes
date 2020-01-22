@@ -11,3 +11,7 @@ export interface LoginGateway {
 export interface FollowUserGateway {
     createFollow(followerId: string, followedId: string): Promise<void>
 }
+
+export interface UnfollowUserGateway {
+    createUnfollow(followerId: string, followedId: string): Promise<void>
+}

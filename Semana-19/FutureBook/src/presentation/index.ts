@@ -5,10 +5,17 @@ import { BcryptService } from '../services/cryptography/bcrypt'
 import { V4IdGenerator } from '../services/auth/v4IdGenerator'
 import { JwtAuthService } from '../services/auth/jwtAuthentication'
 import { LoginUC } from '../business/usecases/user/login'
+import { FollowUserUC, FollowUserInput } from '../business/usecases/user/follow'
+import { UnfollowUserUC } from '../business/usecases/user/unfollow'
 
 
 const app = express()
 app.use(express.json()) // Linha mágica (middleware)
+
+
+const getTokenFromHeaders = (headers: any): string => {
+    return (headers["auth"] as string) || "";
+  };
 
 app.post("/signup", async (req: Request, res: Response) => {
     try {
@@ -45,6 +52,54 @@ app.post("/login", async (req: Request, res: Response) => {
         res.status(200).send(result);
 
     } catch (err) {
+        res.status(404).send({
+            ...err,
+            errorMessage: err.message
+        })
+    }
+});
+
+app.post("/users/follow", async (req: Request, res: Response) => {
+    try{
+        const authService = new JwtAuthService()
+        const userId = authService.getUserIdFromToken(getTokenFromHeaders(req.headers))
+
+        const follow = new FollowUserUC(
+            new UserDataBase()
+        )
+
+        const input: FollowUserInput = {
+            followedId: userId,
+            followerId: req.body.userToFollow
+        };
+        await follow.execute(input)
+        res.status(200).send()
+    }catch (err) {
+        res.status(404).send({
+            ...err,
+            errorMessage: err.message
+        })
+    }
+});
+
+app.post("users/unfollow", async(req: Request, res: Response)=> {
+    console.log(req)
+    try{
+        const authService = new JwtAuthService()
+        const userId = authService.getUserIdFromToken(getTokenFromHeaders(req.headers))
+
+        const unfollow = new UnfollowUserUC(
+            new UserDataBase()
+        )
+
+        const input: FollowUserInput = {
+            followedId: userId,
+            followerId: req.body.userToUnfollow
+        };
+        await unfollow.execute(input)
+        console.log(input)
+        res.status(200).send()
+    }catch (err) {
         res.status(404).send({
             ...err,
             errorMessage: err.message
