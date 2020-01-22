@@ -43,7 +43,7 @@ export class UserDataBase {
 
   public async verifyUserExists(id: string): Promise<boolean> {
     const query = await this.connection.raw(
-      `SELECT * FROM Users WHERE id='${id}';`
+      `SELECT * FROM users WHERE id='${id}';`
     );
     const returnedUser = query[0][0];
     return Boolean(returnedUser);

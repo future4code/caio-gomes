@@ -127,7 +127,7 @@ app.post("/createPost", async (req: Request, res: Response) => {
             userId
         }
         await createPost.execute(input)
-
+        res.status(200).send()
     }catch(err) {
         res.status(404).send({
             ...err,
