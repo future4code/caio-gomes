@@ -16,8 +16,8 @@ export class FollowUserUC {
 
     async verifyUserExists(input: FollowUserInput) {
         await Promise.all([
-            this.verifyUserGateway.verifyUserExists(input.followedId),
-            this.verifyUserGateway.verifyUserExists(input.followerId)
+            this.verifyUserGateway.verifyUserExists(input.followerId),
+            this.verifyUserGateway.verifyUserExists(input.followedId)
         ])
     };
 }

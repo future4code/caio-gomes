@@ -19,3 +19,7 @@ export interface UnfollowUserGateway {
 export interface VerifyUserExists {
     verifyUserExists(id: string): Promise<boolean>
 }
+
+export interface GetAllUsers {
+    getAllUsers(): Promise<User[]>;
+}

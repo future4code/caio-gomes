@@ -48,4 +48,13 @@ export class UserDataBase {
     const returnedUser = query[0][0];
     return Boolean(returnedUser);
   }
+
+  public async getAllUsers(): Promise<User[]> {
+    const query = this.connection.raw("SELECT * FROM Users;");
+    const usersFromDb = await query;
+    return usersFromDb[0].map(
+      (user: any) =>
+        new User(user.id, user.name, user.email, user.password)
+    );
+  }
 }
