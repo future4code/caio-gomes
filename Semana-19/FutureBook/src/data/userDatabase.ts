@@ -33,12 +33,11 @@ export class UserDataBase {
   }
 
   public async createFollow(followerId: string, followedId: string): Promise<void> {
-    console.log('Seguidor',followerId, 'Seguido',followedId)
-    await this.connection('followers').insert({ 'follower_id': followerId, 'followed_id': followedId })
+   await this.connection('followers').insert({ 'follower_id': followerId, 'followed_id': followedId })
   };
 
   public async createUnfollow(followerId: string, followedId: string): Promise<void>{
-    await this.connection.raw(
+   await this.connection.raw(
       `DELETE FROM followers 
       WHERE follower_id = "${followerId}" AND followed_id = "${followedId}" ;`
     )

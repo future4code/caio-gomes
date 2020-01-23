@@ -65,20 +65,22 @@ app.post("/login", async (req: Request, res: Response) => {
 });
 
 app.post("/users/follow", async (req: Request, res: Response) => {
+  console.log(req.headers)
   try {
     const authService = new JwtAuthService();
     const userId = authService.getUserIdFromToken(
       getTokenFromHeaders(req.headers)
     );
+    console.log(userId)
 
     const follow = new FollowUserUC(new UserDataBase(), new UserDataBase());
 
     const input: FollowUserInput = {
-      followedId: userId,
-      followerId: req.body.userToFollow
+      followedId: req.body.userToFollow,
+      followerId: userId
     };
-    await follow.execute(input);
-    res.status(200).send();
+    const result = await follow.execute(input);
+    res.status(200).send(result);
   } catch (err) {
     res.status(404).send({
       ...err,
@@ -98,12 +100,12 @@ app.post("/users/unfollow", async (req: Request, res: Response) => {
     const unfollow = new UnfollowUserUC(new UserDataBase());
 
     const input: FollowUserInput = {
-      followedId: userId,
-      followerId: req.body.userToUnfollow
+      followedId: req.body.userToUnfollow,
+      followerId: userId
     };
-    await unfollow.execute(input);
+    const result = await unfollow.execute(input);
     console.log(input);
-    res.status(200).send();
+    res.status(200).send(result);
   } catch (err) {
     res.status(404).send({
       ...err,
@@ -128,8 +130,8 @@ app.post("/createPost", async (req: Request, res: Response) => {
       type: req.body.type,
       userId
     };
-    await createPost.execute(input);
-    res.status(200).send();
+    const result = await createPost.execute(input);
+    res.status(200).send(result);
   } catch (err) {
     res.status(404).send({
       ...err,
