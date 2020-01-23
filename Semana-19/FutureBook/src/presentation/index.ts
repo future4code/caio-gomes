@@ -166,23 +166,25 @@ app.get("/feed", async (req: Request, res: Response) => {
     res.status(200).send(result);
   } catch (err) {
     res.status(404).send({
+      ...err,
       errorMessage: err.message
     });
   }
 });
 
-app.post("/feed/type", async (req: Request, res: Response) => {
+app.get("/feed/type", async (req: Request, res: Response) => {
   try{
     const getFeedByTypeUC = new GetFeedByTypeUC(
       new FeedDataBase()
     );
       const input = {
-        type: req.body.type
+        type: req.query.type
       }
       const result = await getFeedByTypeUC.execute(input);
       res.status(200).send(result);
   }catch (err) {
     res.status(404).send({
+      ...err,
       errorMessage: err.message
     });
   }
