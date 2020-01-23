@@ -65,14 +65,12 @@ app.post("/login", async (req: Request, res: Response) => {
 });
 
 app.post("/users/follow", async (req: Request, res: Response) => {
-  console.log(req.headers)
   try {
     const authService = new JwtAuthService();
     const userId = authService.getUserIdFromToken(
       getTokenFromHeaders(req.headers)
     );
-    console.log(userId)
-
+    
     const follow = new FollowUserUC(new UserDataBase(), new UserDataBase());
 
     const input: FollowUserInput = {
@@ -90,7 +88,6 @@ app.post("/users/follow", async (req: Request, res: Response) => {
 });
 
 app.post("/users/unfollow", async (req: Request, res: Response) => {
-  console.log(req);
   try {
     const authService = new JwtAuthService();
     const userId = authService.getUserIdFromToken(
@@ -104,7 +101,6 @@ app.post("/users/unfollow", async (req: Request, res: Response) => {
       followerId: userId
     };
     const result = await unfollow.execute(input);
-    console.log(input);
     res.status(200).send(result);
   } catch (err) {
     res.status(404).send({

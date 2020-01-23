@@ -1,5 +1,3 @@
-import { User } from "./User";
-
 export class Post {
   constructor(
     private id: number,

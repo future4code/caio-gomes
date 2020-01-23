@@ -19,7 +19,7 @@ export class UserDataBase {
 
   public async getUserByEmail(email: string): Promise<User> {
     const query = await this.connection('users').select('*').where('email', email);
-    console.log(query)
+    
     const returnedUser = query[0];
     if (!returnedUser) {
       throw new Error("User not found!");
