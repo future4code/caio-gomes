@@ -1,18 +1,16 @@
 import knex = require("knex");
-import { FeedGateway } from "../business/gateways/FeedGateway";
-import { Post } from "../business/entities/Post";
+import { Post, PostType } from "../business/entities/Post";
 
 interface PostFeedModel {
-    postId: number
+    id: number
     photo: string
     description: string
     date: string
-    type: string
+    type: PostType
     userId: string
-    userName: string
 }
 
-export class FeedDataBase implements FeedGateway {
+export class FeedDataBase {
     protected connection = knex({
       client: "mysql",
       connection: {
@@ -23,14 +21,13 @@ export class FeedDataBase implements FeedGateway {
         }
     });
 
-    async getPostsForUser(userId: string) {
-        const result = await this.connection.raw(`SELECT * FROM feed WHERE userId="${userId}"`)
-        const postsDB: PostFeedModel[] = result[0]
+    async getPostsForUser(userId: string): Promise<Post[]> {
+       const result = await this.connection.raw(`SELECT p.id, p.photo, p.description, p.type FROM followers f
+        JOIN posts p ON f.followed_id=p.user_id 
+        WHERE follower_id="${userId}";`)
 
-        return postsDB.map(post => ({
-            post: new Post(post.photo, post.description, new Date(post.date), post.type,)
-        }))
+        const postsFromDB: PostFeedModel[] = result[0]
 
+        return postsFromDB.map(post => new Post(post.id ,post.photo, post.description, new Date(post.date), post.type, post.userId))
     }
-
 }

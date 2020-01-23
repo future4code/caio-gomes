@@ -13,6 +13,8 @@ import { UnfollowUserUC } from "../business/usecases/user/unfollow";
 import { CreatePostUC, CreatePostInput } from "../business/usecases/post/post";
 import { PostDataBase } from "../data/postDatabase";
 import { GetAllUsersUC } from "../business/usecases/user/getAllUsers";
+import { GetFeedUC, GetFeedInput } from "../business/usecases/feed/getFeed";
+import { FeedDataBase } from "../data/feedDatabase";
 
 const app = express();
 app.use(express.json()); // Linha mágica (middleware)
@@ -147,5 +149,27 @@ app.get("/getAllUsers", async (req: Request, res: Response) => {
     });
   }
 });
+
+app.get("/feed", async (req: Request, res: Response) => {
+  try{
+    const authService = new JwtAuthService();
+    const userId = authService.getUserIdFromToken(getTokenFromHeaders(req.headers));
+    
+    const getFeedUC = new GetFeedUC(
+      new FeedDataBase()
+    )
+
+    const input: GetFeedInput = {
+      userId
+    }
+
+    const result = await getFeedUC.execute(input)
+    res.status(200).send(result)
+  }catch (err) {
+    res.status(400).send({
+      errorMessage: err.message
+    });
+  }
+})
 
 export default app;

@@ -4,16 +4,13 @@ export class GetFeedUC {
   constructor(private feedGateway: FeedGateway) {}
 
   async execute(input: GetFeedInput): Promise<GetFeedOutput> {
-    const responses = await this.feedGateway.getPostsForUser(input.userId);
+    const posts = await this.feedGateway.getPostsForUser(input.userId)
     return {
-      posts: responses.map((response) => ({
-        photo: response.post.getPhoto(),
-        description: response.post.getDescription(),
-        date: response.post.getDate(),
-        type: response.post.getType(),
-        user: response.user
+      posts: posts.map((post) => ({
+        photo: post.getPhoto(),
+        description: post.getDescription()
       }))
-    };
+    }
   }
 }
 
@@ -23,10 +20,7 @@ export interface GetFeedInput {
 
 export interface GetFeedOutput {
   posts: Array<{
-    photo: string;
-    description: string;
-    date: Date;
-    type: string;
-    user: string
-  }>;
+    photo: string
+    description: string
+  }>
 }

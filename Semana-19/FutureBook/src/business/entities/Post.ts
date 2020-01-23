@@ -1,5 +1,6 @@
 export class Post {
   constructor(
+    private id: number,
     private photo: string,
     private description: string,
     private date: Date,
@@ -7,6 +8,10 @@ export class Post {
 		private userId: string
   ) {}
 
+  public getId(): number {
+    return this.id
+  }
+  
   public getPhoto(): string {
     return this.photo;
   }

@@ -33,6 +33,7 @@ export class UserDataBase {
   }
 
   public async createFollow(followerId: string, followedId: string): Promise<void> {
+    console.log('Seguidor',followerId, 'Seguido',followedId)
     await this.connection('followers').insert({ 'follower_id': followerId, 'followed_id': followedId })
   };
 
