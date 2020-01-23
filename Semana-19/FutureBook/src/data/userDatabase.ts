@@ -51,7 +51,7 @@ export class UserDataBase {
   }
 
   public async getAllUsers(): Promise<User[]> {
-    const query = this.connection.raw("SELECT * FROM Users;");
+    const query = this.connection.raw("SELECT * FROM users;");
     const usersFromDb = await query;
     return usersFromDb[0].map(
       (user: any) =>

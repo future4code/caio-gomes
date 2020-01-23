@@ -8,6 +8,7 @@ interface PostFeedModel {
     date: string
     type: PostType
     userId: string
+    userName: string
 }
 
 export class FeedDataBase {
@@ -21,13 +22,16 @@ export class FeedDataBase {
         }
     });
 
-    async getPostsForUser(userId: string): Promise<Post[]> {
-       const result = await this.connection.raw(`SELECT p.id, p.photo, p.description, p.type FROM followers f
-        JOIN posts p ON f.followed_id=p.user_id 
+    async getPostsForUser(userId: string){
+       const result = await this.connection.raw(`SELECT p.id, p.photo, p.description, p.type, u.name as userName FROM followers f
+        JOIN posts p ON f.followed_id=p.user_id
+        JOIN users u ON f.followed_id=u.id 
         WHERE follower_id="${userId}";`)
 
         const postsFromDB: PostFeedModel[] = result[0]
-
-        return postsFromDB.map(post => new Post(post.id ,post.photo, post.description, new Date(post.date), post.type, post.userId))
+        return postsFromDB.map(post => ({
+            post: new Post(post.id, post.photo, post.description, new Date(post.date), post.type, post.userId),
+            userName: post.userName
+        }))
     }
 }

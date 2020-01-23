@@ -166,7 +166,7 @@ app.get("/feed", async (req: Request, res: Response) => {
     const result = await getFeedUC.execute(input)
     res.status(200).send(result)
   }catch (err) {
-    res.status(400).send({
+    res.status(404).send({
       errorMessage: err.message
     });
   }

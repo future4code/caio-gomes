@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export class Post {
   constructor(
     private id: number,
@@ -5,7 +7,7 @@ export class Post {
     private description: string,
     private date: Date,
 		private type: PostType,
-		private userId: string
+    private userId: string,
   ) {}
 
   public getId(): number {
