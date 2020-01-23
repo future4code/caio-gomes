@@ -38,8 +38,10 @@ export class UserDataBase {
   };
 
   public async createUnfollow(followerId: string, followedId: string): Promise<void>{
-    console.log(followerId, followedId)
-    await this.connection('followers')
+    await this.connection.raw(
+      `DELETE FROM followers 
+      WHERE follower_id = "${followerId}" AND followed_id = "${followedId}" ;`
+    )
   }
 
   public async verifyUserExists(id: string): Promise<boolean> {
