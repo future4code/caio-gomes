@@ -33,5 +33,16 @@ export class FeedDataBase {
             post: new Post(post.id, post.photo, post.description, new Date(post.date), post.type, post.userId),
             userName: post.userName
         }))
+    };
+
+    async getFeedByType(type: string){
+        const result = await this.connection.raw(
+            `SELECT * FROM posts WHERE type="${type}"`
+        );
+        const postsFromDB: PostFeedModel[] = result[0]
+        return postsFromDB.map(post => ({
+            post: new Post(post.id, post.photo, post.description, new Date(post.date), post.type, post.userId),
+            userName: post.userName
+        }))
     }
 }

@@ -15,6 +15,7 @@ import { PostDataBase } from "../data/postDatabase";
 import { GetAllUsersUC } from "../business/usecases/user/getAllUsers";
 import { GetFeedUC, GetFeedInput } from "../business/usecases/feed/getFeed";
 import { FeedDataBase } from "../data/feedDatabase";
+import { GetFeedByTypeUC } from "../business/usecases/feed/getFeedByType";
 
 const app = express();
 app.use(express.json()); // Linha mágica (middleware)
@@ -70,7 +71,7 @@ app.post("/users/follow", async (req: Request, res: Response) => {
     const userId = authService.getUserIdFromToken(
       getTokenFromHeaders(req.headers)
     );
-    
+
     const follow = new FollowUserUC(new UserDataBase(), new UserDataBase());
 
     const input: FollowUserInput = {
@@ -149,20 +150,37 @@ app.get("/getAllUsers", async (req: Request, res: Response) => {
 });
 
 app.get("/feed", async (req: Request, res: Response) => {
-  try{
+  try {
     const authService = new JwtAuthService();
-    const userId = authService.getUserIdFromToken(getTokenFromHeaders(req.headers));
-    
-    const getFeedUC = new GetFeedUC(
-      new FeedDataBase()
-    )
+    const userId = authService.getUserIdFromToken(
+      getTokenFromHeaders(req.headers)
+    );
+
+    const getFeedUC = new GetFeedUC(new FeedDataBase());
 
     const input: GetFeedInput = {
       userId
-    }
+    };
 
-    const result = await getFeedUC.execute(input)
-    res.status(200).send(result)
+    const result = await getFeedUC.execute(input);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(404).send({
+      errorMessage: err.message
+    });
+  }
+});
+
+app.post("/feed/type", async (req: Request, res: Response) => {
+  try{
+    const getFeedByTypeUC = new GetFeedByTypeUC(
+      new FeedDataBase()
+    );
+      const input = {
+        type: req.body.type
+      }
+      const result = await getFeedByTypeUC.execute(input);
+      res.status(200).send(result);
   }catch (err) {
     res.status(404).send({
       errorMessage: err.message

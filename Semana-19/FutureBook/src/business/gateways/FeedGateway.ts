@@ -5,6 +5,10 @@ export interface FeedResponse {
     userName: string
 }
 
-export interface FeedGateway {
+export interface GetFeedGateway {
     getPostsForUser(userId: string): Promise<FeedResponse[]>
+}
+
+export interface GetFeedByType {
+    getFeedByType(type: string): Promise<FeedResponse[]>
 }

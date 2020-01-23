@@ -5,8 +5,9 @@ export class UnfollowUserUC {
         private unfollowUserGateway: UnfollowUserGateway
     ) { }
     async execute(input: UnfollowUserInput): Promise<UnfollowUserOutput> {
-        await this.unfollowUserGateway.createUnfollow(input.followerId, input.followedId);
-        return {
+       await this.unfollowUserGateway.createUnfollow(input.followerId, input.followedId);
+       
+       return {
             message: "User Unfollowed Successfully!"
         }
     }

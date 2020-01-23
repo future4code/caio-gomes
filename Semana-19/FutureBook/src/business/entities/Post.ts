@@ -39,7 +39,7 @@ export class Post {
       case "EVENTO":
         return PostType.EVENTO;
       default:
-        throw new Error("Tipo do post é inválido");
+        throw new Error("Post type invalid!");
     }
   }
 }
