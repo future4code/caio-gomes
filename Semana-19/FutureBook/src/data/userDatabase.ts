@@ -51,6 +51,14 @@ export class UserDataBase {
     return Boolean(returnedUser);
   }
 
+  public async verifyRelationExists(followerId: string, followedId: string): Promise<boolean> {
+    const query = await this.connection.raw(
+      `SELECT * FROM followers WHERE follower_id = '${followerId}' AND followed_id = '${followedId}' `
+    );
+    const returnedUser = query[0][0];
+    return Boolean(returnedUser);
+  };
+
   public async getAllUsers(): Promise<User[]> {
     const query = this.connection.raw("SELECT * FROM users;");
     const usersFromDb = await query;

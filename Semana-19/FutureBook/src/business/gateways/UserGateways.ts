@@ -23,3 +23,7 @@ export interface VerifyUserExists {
 export interface GetAllUsers {
     getAllUsers(): Promise<User[]>;
 }
+
+export interface VerifyRelationExists {
+    verifyRelationExists(followerId: string, followedId: string): Promise<boolean>
+}
