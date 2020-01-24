@@ -72,8 +72,12 @@ app.post("/users/follow", async (req: Request, res: Response) => {
       getTokenFromHeaders(req.headers)
     );
 
-    const follow = new FollowUserUC(new UserDataBase(), new UserDataBase(), new UserDataBase());
-    
+    const follow = new FollowUserUC(
+      new UserDataBase(),
+      new UserDataBase(),
+      new UserDataBase()
+    );
+
     const input: FollowUserInput = {
       followedId: req.body.userToFollow,
       followerId: userId
@@ -95,10 +99,7 @@ app.post("/users/unfollow", async (req: Request, res: Response) => {
       getTokenFromHeaders(req.headers)
     );
 
-    const unfollow = new UnfollowUserUC(
-      new UserDataBase(),
-      new UserDataBase()
-      );
+    const unfollow = new UnfollowUserUC(new UserDataBase(), new UserDataBase());
 
     const input: FollowUserInput = {
       followedId: req.body.userToUnfollow,
@@ -177,22 +178,20 @@ app.get("/feed", async (req: Request, res: Response) => {
 });
 
 app.get("/feed/type", async (req: Request, res: Response) => {
-  try{
-    const getFeedByTypeUC = new GetFeedByTypeUC(
-      new FeedDataBase()
-    );
-      const input = {
-        type: req.query.type,
-        page: req.body.page
-      }
-      const result = await getFeedByTypeUC.execute(input);
-      res.status(200).send(result);
-  }catch (err) {
+  try {
+    const getFeedByTypeUC = new GetFeedByTypeUC(new FeedDataBase());
+    const input = {
+      type: req.query.type,
+      page: req.body.page
+    };
+    const result = await getFeedByTypeUC.execute(input);
+    res.status(200).send(result);
+  } catch (err) {
     res.status(404).send({
       ...err,
       errorMessage: err.message
     });
   }
-})
+});
 
 export default app;

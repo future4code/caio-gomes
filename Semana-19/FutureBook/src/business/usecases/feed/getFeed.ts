@@ -17,7 +17,7 @@ export class GetFeedUC {
       GetFeedUC.POSTS_BY_PAGE,
       offset
       )
-    console.log(responses)
+    
     return {
       posts: responses.map((response) => ({
         photo: response.post.getPhoto(),
