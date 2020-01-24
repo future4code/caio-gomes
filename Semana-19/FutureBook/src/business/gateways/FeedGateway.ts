@@ -6,7 +6,7 @@ export interface FeedResponse {
 }
 
 export interface GetFeedGateway {
-    getFeedForUser(userId: string): Promise<FeedResponse[]>
+    getFeedForUser(userId: string, limit: number, offset: number): Promise<FeedResponse[]>
 }
 
 export interface GetPaginatedFeedByTypeGateway {

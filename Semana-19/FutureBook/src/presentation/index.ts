@@ -162,7 +162,8 @@ app.get("/feed", async (req: Request, res: Response) => {
     const getFeedUC = new GetFeedUC(new FeedDataBase());
 
     const input: GetFeedInput = {
-      userId
+      userId,
+      page: req.body.page
     };
 
     const result = await getFeedUC.execute(input);

@@ -25,13 +25,15 @@ export class FeedDataBase implements GetFeedGateway, GetPaginatedFeedByTypeGatew
 
     getSQLDateFromTSDate = (date: Date): any => date.toISOString().split('T')[0]
 
-    async getFeedForUser(userId: string) {
+    async getFeedForUser(userId: string, limit: number, offset: number) {
         const result = await this.connection.raw(`SELECT p.id, p.photo, p.description, p.type, p.date, u.name as userName FROM followers f
         JOIN posts p ON f.followed_id=p.user_id
         JOIN users u ON f.followed_id=u.id 
         WHERE follower_id="${userId}"
-        ORDER BY date DESC;`)
-        
+        ORDER BY date DESC
+        LIMIT ${limit}
+        OFFSET ${offset}`
+        );
         
         const postsFromDB: PostFeedModel[] = result[0]
         console.log(postsFromDB)
