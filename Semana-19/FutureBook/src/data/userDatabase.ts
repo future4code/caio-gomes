@@ -1,7 +1,15 @@
 import knex from 'knex';
 import { User } from '../business/entities/User';
+import { SignupGateway, LoginGateway, FollowUserGateway, UnfollowUserGateway, VerifyUserExists, VerifyRelationExists, GetAllUsers } from '../business/gateways/UserGateways';
 
-export class UserDataBase {
+export class UserDataBase implements 
+  SignupGateway, 
+  LoginGateway, 
+  FollowUserGateway, 
+  UnfollowUserGateway,
+  VerifyUserExists,
+  VerifyRelationExists,
+  GetAllUsers {
   protected connection = knex({
     client: "mysql",
     connection: {
@@ -9,7 +17,7 @@ export class UserDataBase {
       user: "caio",
       password: process.env.DB_TOKEN,
       database: "caio",
-      }
+    }
   });
 
 
@@ -19,7 +27,7 @@ export class UserDataBase {
 
   public async getUserByEmail(email: string): Promise<User> {
     const query = await this.connection('users').select('*').where('email', email);
-    
+
     const returnedUser = query[0];
     if (!returnedUser) {
       throw new Error("User not found!");
@@ -36,7 +44,7 @@ export class UserDataBase {
     await this.connection('followers').insert({ 'follower_id': followerId, 'followed_id': followedId })
   };
 
-  public async createUnfollow(followerId: string, followedId: string): Promise<void>{
+  public async createUnfollow(followerId: string, followedId: string): Promise<void> {
     await this.connection.raw(
       `DELETE FROM followers 
       WHERE follower_id = "${followerId}" AND followed_id = "${followedId}" ;`

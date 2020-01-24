@@ -1,5 +1,6 @@
 import knex = require("knex");
 import { Post, PostType } from "../business/entities/Post";
+import { GetFeedGateway, GetPaginatedFeedByTypeGateway, FeedResponse } from "../business/gateways/FeedGateway";
 
 interface PostFeedModel {
     id: number
@@ -11,7 +12,7 @@ interface PostFeedModel {
     userName: string
 }
 
-export class FeedDataBase {
+export class FeedDataBase implements GetFeedGateway, GetPaginatedFeedByTypeGateway{
     protected connection = knex({
         client: "mysql",
         connection: {
@@ -24,7 +25,7 @@ export class FeedDataBase {
 
     getSQLDateFromTSDate = (date: Date): any => date.toISOString().split('T')[0]
 
-    async getPostsForUser(userId: string) {
+    async getFeedForUser(userId: string) {
         const result = await this.connection.raw(`SELECT p.id, p.photo, p.description, p.type, p.date, u.name as userName FROM followers f
         JOIN posts p ON f.followed_id=p.user_id
         JOIN users u ON f.followed_id=u.id 
@@ -40,13 +41,14 @@ export class FeedDataBase {
         }))
     };
 
-    async getFeedByType(type: string) {
+    async getPaginatedFeedByType(type: string, limit: number, offset: number) {
         const result = await this.connection.raw(
             `SELECT * FROM posts p 
             JOIN users u ON p.user_id = u.id 
             WHERE type="${type}" 
-            ORDER BY date 
-            DESC LIMIT 5`
+            ORDER BY date
+            LIMIT ${limit}
+            OFFSET ${offset}`
         );
         const postsFromDB: PostFeedModel[] = result[0]
         return postsFromDB.map(post => ({

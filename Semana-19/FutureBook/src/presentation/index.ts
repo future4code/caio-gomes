@@ -181,7 +181,8 @@ app.get("/feed/type", async (req: Request, res: Response) => {
       new FeedDataBase()
     );
       const input = {
-        type: req.query.type
+        type: req.query.type,
+        page: req.body.page
       }
       const result = await getFeedByTypeUC.execute(input);
       res.status(200).send(result);

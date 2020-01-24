@@ -6,9 +6,9 @@ export interface FeedResponse {
 }
 
 export interface GetFeedGateway {
-    getPostsForUser(userId: string): Promise<FeedResponse[]>
+    getFeedForUser(userId: string): Promise<FeedResponse[]>
 }
 
-export interface GetFeedByType {
-    getFeedByType(type: string): Promise<FeedResponse[]>
+export interface GetPaginatedFeedByTypeGateway {
+    getPaginatedFeedByType(type: string, limit: number, offset: number): Promise<FeedResponse[]>
 }
