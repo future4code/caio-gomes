@@ -72,8 +72,8 @@ app.post("/users/follow", async (req: Request, res: Response) => {
       getTokenFromHeaders(req.headers)
     );
 
-    const follow = new FollowUserUC(new UserDataBase(), new UserDataBase());
-
+    const follow = new FollowUserUC(new UserDataBase(), new UserDataBase(), new UserDataBase());
+    
     const input: FollowUserInput = {
       followedId: req.body.userToFollow,
       followerId: userId
@@ -95,7 +95,10 @@ app.post("/users/unfollow", async (req: Request, res: Response) => {
       getTokenFromHeaders(req.headers)
     );
 
-    const unfollow = new UnfollowUserUC(new UserDataBase());
+    const unfollow = new UnfollowUserUC(
+      new UserDataBase(),
+      new UserDataBase()
+      );
 
     const input: FollowUserInput = {
       followedId: req.body.userToUnfollow,
