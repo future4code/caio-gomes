@@ -1,0 +1,104 @@
+///EXERCÍCIO 1
+USE exercicios;
+DESCRIBE funcionarios;
+
+A) SELECT nome, salario 
+FROM funcionarios
+WHERE genero="F" AND salario > 2000;
+
+B) SELECT nome, data_contratacao
+FROM funcionarios
+WHERE local_de_trabalho = 'salao' AND data_contratacao > '2004-01-01';
+
+C) SELECT nome, data_nascimento
+FROM funcionarios
+WHERE nome LIKE "%ei%";
+
+D) SELECT nome, salario, data_nascimento
+FROM funcionarios
+WHERE data_nascimento > '1998-12-16' AND salario > 1300;
+
+///CRIANDO TABELA EXERCÍCIO 1
+
+USE caio;
+DESCRIBE funcionarios;
+
+CREATE TABLE funcionarios(
+	id int(11) PRIMARY KEY,
+	nome varchar(100) NOT NULL,
+	salario double NOT NULL,
+	local_de_trabalho varchar(100) NOT NULL,
+	data_contratacao date NOT NULL DEFAULT '2019-01-01',
+	genero varchar(1) NOT NULL,
+	data_nascimento date NOT NULL DEFAULT '2019-01-01'
+);
+
+INSERT INTO funcionarios (id, nome, salario, local_de_trabalho, data_contratacao, genero, data_nascimento)
+VALUES (1, "Caio Gomes", 2300, 'salao', '2019-10-15', 'M', '1992-05-12');
+
+
+
+
+///EXERCÍCIO 2
+
+USE exercicios;
+DESCRIBE correntistas;
+
+A) SELECT primeiro_nome, ultimo_nome, email
+FROM correntistas
+WHERE conta_corrente < 0;
+
+B) SELECT primeiro_nome, ultimo_nome, genero
+FROM correntistas
+WHERE pais LIKE 'Peru' OR aniversario < '1990-01-01';
+
+C) SELECT ultimo_nome 
+FROM correntistas
+WHERE primeiro_nome LIKE 'A%';
+
+D) SELECT primeiro_nome, ultimo_nome, aniversario
+FROM correntistas
+WHERE aniversario >= '2000-01-01' AND conta_corrente > 1000
+
+///CRIANDO TABELA EXERCÍCIO 2
+
+USE caio;
+DESCRIBE correntistas;
+
+CREATE TABLE correntistas(
+	id int(11) PRIMARY KEY,
+	primeiro_nome varchar(50),
+	ultimo_nome varchar(50),
+	email varchar(50),
+	genero varchar(50),
+	conta_corrente double NOT NULL,
+	pais varchar(50),
+	aniversario date
+);
+
+INSERT INTO correntistas(
+	id, primeiro_nome, ultimo_nome,
+	email, genero, conta_corrente,
+	pais, aniversario
+)
+VALUES (
+	1, 'Caio', 'Gomes', 'caio@gmail.com',
+	'M', -4560, 'Brasil', '1992-12-05'
+), (
+	2, 'Chuck', 'Norris', 'norris@gmail.com',
+	'M', 35000, 'EUA', '1940-03-10'
+), (
+	3,'Janis', 'Joplin', 'janes@gmail.com',
+	'F', 4800, 'EUA', '1943-01-19'
+),(
+	4,'Freddie', 'Mercury', 'freddie@gmail.com',
+	'M', 485000, 'Tanzania', '1946-09-05'
+),(
+	5, 'Albert', 'Einstein', 'einstein@gmail.com',
+	'M', 99000, 'Alemanha', '1879-03-14'
+);
+
+
+
+
+
