@@ -1,0 +1,121 @@
+/// EXERCÍCIO 1
+
+USE exercicios;
+DESCRIBE funcionarios;
+
+-- 5 funcionários com maior salário: 
+
+SELECT nome, salario
+FROM funcionarios
+ORDER BY salario DESC
+LIMIT 5;
+
+-- Média salarial para cada local de trabalho:
+
+SELECT local_de_trabalho, AVG(salario) "Média Salarial"
+FROM funcionarios
+GROUP BY local_de_trabalho;
+
+-- Quantidade de funcionários de cada gênero por local de trabalho:
+
+SELECT genero, COUNT(*) 'Quantidade por gênero', local_de_trabalho
+FROM funcionarios
+GROUP BY genero, local_de_trabalho;
+
+-- Funcionários mais antigos:
+
+SELECT nome, data_contratacao
+FROM funcionarios
+WHERE DATEDIFF(CURDATE(), data_contratacao)
+ORDER BY data_contratacao ASC
+LIMIT 10;
+
+
+
+
+/// EXERCÍCIO 2 
+
+USE exercicios;
+DESCRIBE correntistas;
+
+-- 1.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome), conta_corrente
+FROM correntistas
+WHERE conta_corrente > 3000
+ORDER BY conta_corrente ASC
+LIMIT 100;
+
+-- 2. 
+SELECT COUNT(*) 'Total de mulheres'
+FROM correntistas
+WHERE genero LIKE 'F' AND aniversario < '1987-12-17';
+
+-- 3.
+SELECT SUM(conta_corrente) 'Total', pais
+FROM correntistas
+WHERE pais LIKE 'Peru' AND aniversario > '1994-12-17'
+GROUP BY pais;
+
+-- 4.
+SELECT genero, pais, COUNT(*)
+FROM correntistas
+GROUP BY genero, pais
+ORDER BY pais ASC;
+
+-- 5.
+SELECT COUNT(*) 'Total', aniversario
+FROM correntistas
+GROUP BY aniversario
+ORDER BY Total DESC
+LIMIT 1;
+
+-- 6.
+SELECT pais, AVG(aniversario) 'Idade'
+FROM correntistas
+WHERE DATEDIFF(CURRENT_DATE, aniversario)
+GROUP BY pais;
+
+-- 7.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome), aniversario
+FROM correntistas
+WHERE MONTH(CURDATE()) = MONTH(aniversario);
+
+-- 8.
+SELECT LOWER(pais), AVG(conta_corrente)
+FROM correntistas
+GROUP BY pais;
+
+-- 9.
+SELECT COUNT(*) "Total", primeiro_nome
+FROM correntistas
+GROUP BY primeiro_nome
+ORDER BY total DESC
+LIMIT 3;
+
+
+/// EXERCÍCIO ESCRITA 
+
+OBS: Populei o banco com a lista de 1000 pessoas que o Soter mandou no Slack.
+
+USE caio;
+DESCRIBE correntistas;
+
+-- 1.
+ALTER TABLE correntistas
+ADD estado_civil VARCHAR(100) NOT NULL DEFAULT 'Solteiro(a)';
+
+-- 2.
+UPDATE correntistas
+SET estado_civil = 'Casado(a)'
+WHERE aniversario < '1989-12-17';
+
+-- 3.
+ALTER TABLE correntistas
+ADD numero_da_sorte INT NOT NULL DEFAULT 0;
+
+-- 4.
+UPDATE correntistas
+SET numero_da_sorte = FLOOR(RAND()* (1000-1+1)+1);
+
+
+
