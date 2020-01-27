@@ -1,0 +1,140 @@
+
+/// Criação das tabelas
+USE caio;
+DESCRIBE autores;
+
+CREATE TABLE autores(
+	id INT PRIMARY KEY,
+	primeiro_nome VARCHAR(255) NOT NULL,
+	ultimo_nome VARCHAR(255) NOT NULL,
+	nacionalidade VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE livros(
+	id INT PRIMARY KEY,
+	titulo VARCHAR(255) NOT NULL,
+	autor_id INT,
+	FOREIGN KEY (autor_id) REFERENCES autores(id),
+	editora_id INT,
+	FOREIGN KEY (editora_id) REFERENCES editoras(id),
+	ano DATE NOT NULL
+);
+
+CREATE TABLE editoras(
+	id INT PRIMARY KEY,
+	nome VARCHAR(255) NOT NULL,
+	cidade VARCHAR(255) NOT NULL,
+	data_de_fundacao DATE NOT NULL
+);
+
+CREATE TABLE usuarios(
+	id INT PRIMARY KEY,
+	primeiro_nome VARCHAR(255) NOT NULL,
+	ultimo_nome VARCHAR(255) NOT NULL,
+	nacionalidade VARCHAR(255) NOT NULL,
+	data_nascimento DATE NOT NULL
+);
+
+CREATE TABLE usuarios_livros(
+	usuario_id INT,
+	livro_id INT,
+	FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+	FOREIGN KEY (livro_id) REFERENCES livros(id)
+);
+
+ALTER TABLE autores
+DROP COLUMN nacionalidade;
+
+
+/// Exercícios
+USE caio;
+
+-- 1.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome) Autor, titulo
+FROM autores a
+JOIN livros l
+ON a.id = l.autor_id
+WHERE primeiro_nome LIKE 'Jamie';
+
+-- 2.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome), titulo
+FROM autores a
+JOIN livros l
+ON a.id = l.autor_id
+WHERE primeiro_nome LIKE 'A%'
+ORDER BY primeiro_nome;
+
+-- 3.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome) 'Nome do Autor', 
+COUNT(*) 'Número de livros' 
+FROM autores a
+JOIN livros l
+ON a.id = l.autor_id
+GROUP BY primeiro_nome, ultimo_nome
+ORDER BY primeiro_nome;
+
+-- 4.
+SELECT titulo 'Título do livro', COUNT(*) 'Aluguel'
+FROM livros l
+JOIN usuarios_livros ul
+ON l.id = ul.livro_id
+GROUP BY titulo
+ORDER BY Aluguel DESC
+LIMIT 1;
+
+-- 5.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome) 'Nome', COUNT(*) 'Livros Alugados'
+FROM usuarios u
+JOIN usuarios_livros ul 
+ON u.id = ul.livro_id 
+GROUP BY primeiro_nome, ultimo_nome
+ORDER BY primeiro_nome;
+
+-- 6.
+SELECT titulo AS 'Título do Livro', 
+nome AS 'Editora', 
+data_de_fundacao AS 'Fundação'
+FROM editoras e
+JOIN livros l 
+ON e.id = l.editora_id
+WHERE data_de_fundacao < '1990-01-01'
+ORDER BY Editora;
+
+-- 7.
+SELECT CONCAT(primeiro_nome, ' ', ultimo_nome) 'Nome',
+MIN(data_nascimento) 'Nascimento', titulo 'Livro'
+FROM usuarios u
+JOIN usuarios_livros ul 
+ON u.id = ul.livro_id
+JOIN livros l 
+ON u.id = l.id
+GROUP BY titulo, primeiro_nome, ultimo_nome, data_nascimento
+ORDER BY Nascimento
+LIMIT 1;
+
+-- 8.
+SELECT nacionalidade,COUNT(*) 'Alugados'
+FROM usuarios u
+JOIN usuarios_livros ul 
+ON u.id = ul.livro_id
+JOIN livros l 
+ON u.id = l.id
+GROUP BY nacionalidade
+ORDER BY Alugados DESC
+LIMIT 1;
+
+-- 9.
+SELECT nome, COUNT(*) 'Alugados'
+FROM livros l 
+JOIN usuarios_livros ul 
+ON l.id = ul.usuario_id
+JOIN editoras e 
+ON l.editora_id = e.id
+JOIN usuarios u 
+ON u.id = l.id
+WHERE u.data_nascimento > '1999-12-18'
+GROUP BY nome
+ORDER BY Alugados DESC
+LIMIT 2;
+
+
