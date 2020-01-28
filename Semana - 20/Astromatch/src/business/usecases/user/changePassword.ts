@@ -1,13 +1,12 @@
-import { GetUserById } from '../../gateways/UserGateway';
+import { UpdatePasswordGateway, GetUserByIdGateway } from '../../gateways/UserGateway';
 import { UserTokenGateway } from "../../gateways/auth/userTokenGateway";
-import { UpdatePassword } from "../../gateways/UserGateway";
 import { CryptographyGateway } from "../../gateways/cryptography/cryptoGateway";
 
 export class ChangeUserPasswordUC {
   constructor(
     private userTokenGateway: UserTokenGateway,
-    private updatePassword: UpdatePassword,
-    private getUserById: GetUserById,
+    private updatePassword: UpdatePasswordGateway,
+    private getUserById: GetUserByIdGateway,
     private cryptographyGateway: CryptographyGateway
   ) {}
 

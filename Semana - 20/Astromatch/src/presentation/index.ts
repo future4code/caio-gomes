@@ -7,6 +7,8 @@ import { JwtAuthService } from "../services/auth/jwtAuthentication";
 import { LoginUC } from "../business/usecases/user/login";
 import { ChangeUserPasswordUC } from "../business/usecases/user/changePassword";
 import { GetAllUsersUC } from '../business/usecases/user/getAllUsers';
+import { MatchesUC, MatchUserInput } from "../business/usecases/user/matches";
+import { UnmatchUserUC, UnmatchUserInput } from "../business/usecases/user/unmatch";
 
 const app = express();
 app.use(express.json()); // Linha mágica (middleware)
@@ -77,6 +79,56 @@ app.post("/changePassword", async (req: Request, res: Response) => {
     res.status(200).send(result);
   } catch (err) {
     res.status(400).send({
+      errorMessage: err.message
+    });
+  }
+});
+
+app.post("/users/match", async (req: Request, res: Response) => {
+  try {
+    const authService = new JwtAuthService();
+    const userId = authService.getUserIdFromToken(
+      getTokenFromHeaders(req.headers)
+    );
+
+    const follow = new MatchesUC(
+      new UserDataBase(),
+      new UserDataBase(),
+      new UserDataBase()
+    );
+
+    const input: MatchUserInput = {
+      userToMatch: req.body.userToMatchId,
+      userId: userId
+    };
+    const result = await follow.execute(input);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(404).send({
+      ...err,
+      errorMessage: err.message
+    });
+  }
+});
+
+app.post("/users/unmatch", async (req: Request, res: Response) => {
+  try {
+    const authService = new JwtAuthService();
+    const userId = authService.getUserIdFromToken(
+      getTokenFromHeaders(req.headers)
+    );
+
+    const unfollow = new UnmatchUserUC(new UserDataBase(), new UserDataBase());
+
+    const input: UnmatchUserInput = {
+      userId: userId,
+      userToUnmatch: req.body.userToUnmatch
+    };
+    const result = await unfollow.execute(input);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(404).send({
+      ...err,
       errorMessage: err.message
     });
   }

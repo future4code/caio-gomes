@@ -17,6 +17,9 @@ const userDatabase_1 = require("../data/userDatabase");
 const v4IdGenerator_1 = require("../services/auth/v4IdGenerator");
 const bcrypt_1 = require("../services/cryptography/bcrypt");
 const jwtAuthentication_1 = require("../services/auth/jwtAuthentication");
+const login_1 = require("../business/usecases/user/login");
+const changePassword_1 = require("../business/usecases/user/changePassword");
+const getAllUsers_1 = require("../business/usecases/user/getAllUsers");
 const app = express_1.default();
 app.use(express_1.default.json()); // Linha mágica (middleware)
 exports.default = app;
@@ -37,5 +40,43 @@ app.post("/signup", (req, res) => __awaiter(this, void 0, void 0, function* () {
     }
     catch (err) {
         res.status(404).send(Object.assign({}, err, { errorMessage: err.message }));
+    }
+}));
+app.post("/login", (req, res) => __awaiter(this, void 0, void 0, function* () {
+    try {
+        const login = new login_1.LoginUC(new userDatabase_1.UserDataBase(), new jwtAuthentication_1.JwtAuthService(), new bcrypt_1.BcryptService());
+        const result = yield login.execute(req.body.email, req.body.password);
+        res.status(200).send(result);
+    }
+    catch (err) {
+        res.status(404).send(Object.assign({}, err, { errorMessage: err.message }));
+    }
+}));
+app.post("/changePassword", (req, res) => __awaiter(this, void 0, void 0, function* () {
+    try {
+        const changePasswordUC = new changePassword_1.ChangeUserPasswordUC(new userDatabase_1.UserDataBase(), new v4IdGenerator_1.V4IdGenerator(), new jwtAuthentication_1.JwtAuthService(), new bcrypt_1.BcryptService());
+        const result = yield changePasswordUC.execute({
+            token: getTokenFromHeaders(req.headers),
+            oldPassword: req.body.oldPassword,
+            newPassword: req.body.newPassword
+        });
+        res.status(200).send(result);
+    }
+    catch (err) {
+        res.status(400).send({
+            errorMessage: err.message
+        });
+    }
+}));
+app.get("/getAllUsers", (req, res) => __awaiter(this, void 0, void 0, function* () {
+    try {
+        const getAllUsersUC = new getAllUsers_1.GetAllUsersUC(new userDatabase_1.UserDataBase());
+        const result = yield getAllUsersUC.execute();
+        res.status(200).send(result);
+    }
+    catch (err) {
+        res.status(400).send({
+            errorMessage: err.message
+        });
     }
 }));

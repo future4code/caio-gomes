@@ -8,14 +8,30 @@ export interface LoginGateway {
   getUserByEmail(email: string): Promise<User>;
 }
 
-export interface UpdatePassword {
+export interface UpdatePasswordGateway {
   updatePassword(id: string, newPassword: string): Promise<void>;
 }
 
-export interface GetUserById {
+export interface GetUserByIdGateway {
   getUserById(id: string): Promise<User>;
 }
 
-export interface GetAllUsers {
+export interface GetAllUsersGateway {
   getAllUsers(): Promise<User[]>;
+}
+
+export interface MatchUserGateway {
+  createMatch(userId: string, userToMatchId: string): Promise<void>
+}
+
+export interface UnmatchUserGateway {
+  createUnmatch(userId: string, userToMatchId: string): Promise<void>
+}
+
+export interface VerifyUserExistsGateway {
+  verifyUserExists(id: string): Promise<boolean>
+}
+
+export interface VerifyMatchExists {
+  verifyMatchExists(userId: string, userMatchedId: string): Promise <boolean>
 }

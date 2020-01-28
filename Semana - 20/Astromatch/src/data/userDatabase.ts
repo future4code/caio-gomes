@@ -48,6 +48,45 @@ export class UserDataBase {
       (user: any) =>
         new User(user.id, user.name, user.email, user.birthday, user.photo, user.password)
     );
+  };
+
+  public async verifyUserExists(id: string): Promise<boolean> {
+    const query = await this.connection.raw(
+      `SELECT * FROM users WHERE id='${id}';`
+    );
+    const returnedUser = query[0][0];
+    return Boolean(returnedUser);
+  }
+
+  public async verifyMatchExists(
+    userId: string,
+    userToMatchId: string
+  ): Promise<boolean> {
+    const query = await this.connection.raw(
+      `SELECT * FROM matches WHERE user_id = '${userId}' AND user_to_match_id = '${userToMatchId}' `
+    );
+    const returnedUser = query[0][0];
+    return Boolean(returnedUser);
+  }
+
+  public async createMatch(
+    userId: string,
+    userToMatchId: string
+  ): Promise<void> {
+    await this.connection("matches").insert({
+      user_id: userId,
+      user_to_match_id: userToMatchId
+    });
+  }
+
+  public async createUnmatch(
+    userId: string,
+    userToMatchId: string
+  ): Promise<void> {
+    await this.connection.raw(
+      `DELETE FROM followers 
+      WHERE follower_id = "${userId}" AND followed_id = "${userToMatchId}" ;`
+    );
   }
 
 }

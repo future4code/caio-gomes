@@ -1,7 +1,7 @@
-import { GetAllUsers } from "../../gateways/UserGateway";
+import { GetAllUsersGateway } from "../../gateways/UserGateway";
 
 export class GetAllUsersUC {
-  constructor(private getAllUsersGateway: GetAllUsers) {}
+  constructor(private getAllUsersGateway: GetAllUsersGateway) {}
 
   async execute(): Promise<GetAllUsersUCOutput> {
     const users = await this.getAllUsersGateway.getAllUsers();
