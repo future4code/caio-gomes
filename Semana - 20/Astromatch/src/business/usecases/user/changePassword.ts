@@ -6,8 +6,8 @@ export class ChangeUserPasswordUC {
   constructor(
     private userTokenGateway: UserTokenGateway,
     private updatePassword: UpdatePasswordGateway,
+    private cryptographyGateway: CryptographyGateway,
     private getUserById: GetUserByIdGateway,
-    private cryptographyGateway: CryptographyGateway
   ) {}
 
   async execute(input: ChangeUserPasswordUCInput): Promise<ChangeUserPasswordUCOutput> {

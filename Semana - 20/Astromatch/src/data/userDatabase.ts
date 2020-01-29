@@ -38,7 +38,7 @@ export class UserDataBase {
 
   public async updatePassword(id: string, newPassword: string): Promise<void> {
     await this.connection.raw(
-      `UPDATE Users SET password='${newPassword}' WHERE id=${id};`
+      `UPDATE users SET password='${newPassword}' WHERE id="${id}";`
     );
   }
 
@@ -56,6 +56,25 @@ export class UserDataBase {
           user.photo,
           user.password
         )
+    );
+  };
+
+  public async getUserById(id: string): Promise<User> {
+    const query = await this.connection.raw(
+      `SELECT * FROM users WHERE id='${id}';`
+    );
+    const returnedUser = query[0][0];
+    if (!returnedUser) {
+      throw new Error("User not found");
+    }
+    return new User(
+      returnedUser.id,
+      returnedUser.name,
+      returnedUser.email,
+      returnedUser.photo,
+      returnedUser.birthday,
+      returnedUser.age,
+      returnedUser.password
     );
   }
 

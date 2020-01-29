@@ -70,27 +70,27 @@ app.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-// app.post("/changePassword", async (req: Request, res: Response) => {
-//   try {
-//     const changePasswordUC = new ChangeUserPasswordUC(
-//       new UserDataBase(),
-//       new BcryptService(),
-//       new JwtAuthService(),
-//       new UserDataBase()
-//     );
+app.post("/changePassword", async (req: Request, res: Response) => {
+  try {
+    const changePasswordUC = new ChangeUserPasswordUC(
+      new JwtAuthService(),
+      new UserDataBase(),
+      new BcryptService(),
+      new UserDataBase(),
+    );
 
-//     const result = await changePasswordUC.execute({
-//       token: getTokenFromHeaders(req.headers),
-//       oldPassword: req.body.oldPassword,
-//       newPassword: req.body.newPassword
-//     });
-//     res.status(200).send(result);
-//   } catch (err) {
-//     res.status(400).send({
-//       errorMessage: err.message
-//     });
-//   }
-// });
+    const result = await changePasswordUC.execute({
+      token: getTokenFromHeaders(req.headers),
+      oldPassword: req.body.oldPassword,
+      newPassword: req.body.newPassword
+    });
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(400).send({
+      errorMessage: err.message
+    });
+  }
+});
 
 app.post("/users/match", async (req: Request, res: Response) => {
   try {
