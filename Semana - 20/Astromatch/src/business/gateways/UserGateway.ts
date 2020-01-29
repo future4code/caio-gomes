@@ -16,6 +16,10 @@ export interface GetUserByIdGateway {
   getUserById(id: string): Promise<User>;
 }
 
+export interface GetAllMatchesGateway {
+  getAllMatches(userId: string): Promise<User[]>
+}
+
 export interface GetAllUsersGateway {
   getAllUsers(): Promise<User[]>;
 }

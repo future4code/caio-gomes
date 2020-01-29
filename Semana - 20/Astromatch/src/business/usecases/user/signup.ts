@@ -19,6 +19,7 @@ export class SignupUC {
         input.name,
         input.email,
         input.birthday,
+        input.age,
         input.photo,
         encryptedPassword
       );
@@ -42,6 +43,7 @@ export class SignupUC {
     name: string;
     email: string;
     birthday: Date;
+    age: number;
     photo: string;
     password: string;
   }

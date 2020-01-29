@@ -30,25 +30,34 @@ export class UserDataBase {
       returnedUser.name,
       returnedUser.email,
       returnedUser.birthday,
+      returnedUser.age,
       returnedUser.photo,
       returnedUser.password
     );
-  };
+  }
 
   public async updatePassword(id: string, newPassword: string): Promise<void> {
     await this.connection.raw(
       `UPDATE Users SET password='${newPassword}' WHERE id=${id};`
     );
-  };
+  }
 
   public async getAllUsers(): Promise<User[]> {
     const query = this.connection.raw("SELECT * FROM users;");
     const usersFromDb = await query;
     return usersFromDb[0].map(
       (user: any) =>
-        new User(user.id, user.name, user.email, user.birthday, user.photo, user.password)
+        new User(
+          user.id,
+          user.name,
+          user.email,
+          this.getSQLDateFromTSDate(user.birthday),
+          user.age,
+          user.photo,
+          user.password
+        )
     );
-  };
+  }
 
   public async verifyUserExists(id: string): Promise<boolean> {
     const query = await this.connection.raw(
@@ -63,7 +72,7 @@ export class UserDataBase {
     userToMatchId: string
   ): Promise<boolean> {
     const query = await this.connection.raw(
-      `SELECT * FROM matches WHERE user_id = '${userId}' AND user_to_match_id = '${userToMatchId}' `
+      `SELECT * FROM matches WHERE user_id = '${userId}' AND user_match_id = '${userToMatchId}' `
     );
     const returnedUser = query[0][0];
     return Boolean(returnedUser);
@@ -75,7 +84,8 @@ export class UserDataBase {
   ): Promise<void> {
     await this.connection("matches").insert({
       user_id: userId,
-      user_to_match_id: userToMatchId
+      user_match_id: userToMatchId,
+      match_relation: true
     });
   }
 
@@ -83,11 +93,36 @@ export class UserDataBase {
     userId: string,
     userToMatchId: string
   ): Promise<void> {
-    await this.connection.raw(
-      `DELETE FROM followers 
-      WHERE follower_id = "${userId}" AND followed_id = "${userToMatchId}" ;`
-    );
+    await this.connection("matches").insert({
+      user_id: userId,
+      user_match_id: userToMatchId,
+      match_relation: false
+    });
   }
 
-}
+  getSQLDateFromTSDate = (date: Date): any => date.toISOString().split("T")[0];
 
+  public async getAllMatches(userId: string): Promise<User[]> {
+    const query = this.connection.raw(
+      `SELECT * FROM matches m
+      JOIN users ON user_match_id=users.id 
+      WHERE user_id = "${userId}"
+      AND match_relation = 1;`
+    );
+
+    const usersFromDb = await query;
+    console.log(usersFromDb)
+    return usersFromDb[0].map(
+      (user: any) =>
+        new User(
+          user.id,
+          user.name,
+          user.email,
+          this.getSQLDateFromTSDate(user.birthday),
+          user.age,
+          user.photo,
+          user.password
+        )
+    );
+  }
+}
