@@ -57,7 +57,7 @@ export class UserDataBase {
           user.password
         )
     );
-  };
+  }
 
   public async getUserById(id: string): Promise<User> {
     const query = await this.connection.raw(
@@ -130,7 +130,7 @@ export class UserDataBase {
     );
 
     const usersFromDb = await query;
-    console.log(usersFromDb)
+
     return usersFromDb[0].map(
       (user: any) =>
         new User(
