@@ -1,11 +1,7 @@
-import {
-  UnmatchUserGateway
-} from "../../gateways/UserGateway";
+import { UnmatchUserGateway } from "../../gateways/UserGateway";
 
 export class UnmatchUserUC {
-  constructor(
-    private unmatchUserGateway: UnmatchUserGateway,
-  ) {}
+  constructor(private unmatchUserGateway: UnmatchUserGateway) {}
   async execute(input: UnmatchUserInput): Promise<UnmatchUserOutput> {
     await this.unmatchUserGateway.createUnmatch(
       input.userId,

@@ -17,7 +17,7 @@ export interface GetUserByIdGateway {
 }
 
 export interface GetAllMatchesGateway {
-  getAllMatches(userId: string): Promise<User[]>
+  getAllMatches(userId: string): Promise<User[]>;
 }
 
 export interface GetAllUsersGateway {
@@ -25,17 +25,17 @@ export interface GetAllUsersGateway {
 }
 
 export interface MatchUserGateway {
-  createMatch(userId: string, userToMatchId: string): Promise<void>
+  createMatch(userId: string, userToMatchId: string): Promise<void>;
 }
 
 export interface UnmatchUserGateway {
-  createUnmatch(userId: string, userToMatchId: string): Promise<void>
+  createUnmatch(userId: string, userToMatchId: string): Promise<void>;
 }
 
 export interface VerifyUserExistsGateway {
-  verifyUserExists(id: string): Promise<boolean>
+  verifyUserExists(id: string): Promise<boolean>;
 }
 
 export interface VerifyMatchExists {
-  verifyMatchExists(userId: string, userMatchedId: string): Promise <boolean>
+  verifyMatchExists(userId: string, userMatchedId: string): Promise<boolean>;
 }

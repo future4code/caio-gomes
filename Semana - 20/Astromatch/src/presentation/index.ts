@@ -76,7 +76,7 @@ app.post("/changePassword", async (req: Request, res: Response) => {
       new JwtAuthService(),
       new UserDataBase(),
       new BcryptService(),
-      new UserDataBase(),
+      new UserDataBase()
     );
 
     const result = await changePasswordUC.execute({

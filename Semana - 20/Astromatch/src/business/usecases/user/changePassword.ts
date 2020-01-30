@@ -1,4 +1,7 @@
-import { UpdatePasswordGateway, GetUserByIdGateway } from '../../gateways/UserGateway';
+import {
+  UpdatePasswordGateway,
+  GetUserByIdGateway
+} from "../../gateways/UserGateway";
 import { UserTokenGateway } from "../../gateways/auth/userTokenGateway";
 import { CryptographyGateway } from "../../gateways/cryptography/cryptoGateway";
 
@@ -7,10 +10,12 @@ export class ChangeUserPasswordUC {
     private userTokenGateway: UserTokenGateway,
     private updatePassword: UpdatePasswordGateway,
     private cryptographyGateway: CryptographyGateway,
-    private getUserById: GetUserByIdGateway,
+    private getUserById: GetUserByIdGateway
   ) {}
 
-  async execute(input: ChangeUserPasswordUCInput): Promise<ChangeUserPasswordUCOutput> {
+  async execute(
+    input: ChangeUserPasswordUCInput
+  ): Promise<ChangeUserPasswordUCOutput> {
     const userId = this.userTokenGateway.getUserIdFromToken(input.token);
     const user = await this.getUserById.getUserById(userId);
     const comparedPassword = await this.cryptographyGateway.compare(
@@ -24,7 +29,10 @@ export class ChangeUserPasswordUC {
     const encryptedNewPassword = await this.cryptographyGateway.encrypt(
       input.newPassword
     );
-    await this.updatePassword.updatePassword(user.getId(), encryptedNewPassword);
+    await this.updatePassword.updatePassword(
+      user.getId(),
+      encryptedNewPassword
+    );
     return {
       token: this.userTokenGateway.generateToken(user.getId())
     };

@@ -12,7 +12,7 @@ export class GetAllUsersUC {
         email: user.getEmail(),
         birthday: user.getBirthday(),
         age: user.getAge(),
-        photo: user.getPhoto(),
+        photo: user.getPhoto()
       }))
     };
   }
@@ -27,6 +27,6 @@ export interface UsersOfGetAllUsersUCOutput {
   name: string;
   email: string;
   birthday: Date;
-  age: number,
+  age: number;
   photo: string;
 }

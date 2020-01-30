@@ -1,13 +1,8 @@
-import {
-  GetAllMatchesGateway
-} from "../../gateways/UserGateway";
+import { GetAllMatchesGateway } from "../../gateways/UserGateway";
 
 export class GetAllMatches {
-  constructor(
-    private getAllMatchesGateway: GetAllMatchesGateway
-  ) {}
+  constructor(private getAllMatchesGateway: GetAllMatchesGateway) {}
 
-  
   async execute(input: GetAllMatchesInput): Promise<GetAllMatchesUCOutput> {
     const users = await this.getAllMatchesGateway.getAllMatches(input.userId);
     return {
@@ -17,14 +12,14 @@ export class GetAllMatches {
         email: user.getEmail(),
         birthday: user.getBirthday(),
         age: user.getAge(),
-        photo: user.getPhoto(),
+        photo: user.getPhoto()
       }))
     };
   }
 }
 
 export interface GetAllMatchesInput {
-    userId: string
+  userId: string;
 }
 
 export interface GetAllMatchesUCOutput {

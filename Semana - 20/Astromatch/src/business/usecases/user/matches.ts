@@ -12,21 +12,18 @@ export class MatchesUC {
   ) {}
 
   async execute(input: MatchUserInput): Promise<MatchUserOutput> {
-    await this.verifyUserExistsGateway.verifyUserExists(input.userId)
+    await this.verifyUserExistsGateway.verifyUserExists(input.userId);
     const relationsExists = await this.verifyRelationGateway.verifyMatchExists(
       input.userId,
       input.userToMatch
     );
-    if(!relationsExists) {
-        await this.matchUserGateway.createMatch(
-            input.userId,
-            input.userToMatch
-        );
-        return {
-            message: "User matched Successfuly"
-        };
+    if (!relationsExists) {
+      await this.matchUserGateway.createMatch(input.userId, input.userToMatch);
+      return {
+        message: "User matched Successfuly"
+      };
     }
-    throw new Error("User is already a match!")
+    throw new Error("User is already a match!");
   }
 }
 
