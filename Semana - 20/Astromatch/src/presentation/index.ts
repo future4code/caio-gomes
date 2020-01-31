@@ -16,6 +16,7 @@ import {
   GetAllMatches,
   GetAllMatchesInput
 } from "../business/usecases/user/getAllMatches";
+import {ApiRouter} from "./router";
 
 const app = express();
 app.use(express.json()); // Linha mágica (middleware)
@@ -26,8 +27,12 @@ const getTokenFromHeaders = (headers: any): string => {
   return (headers["auth"] as string) || "";
 };
 
-app.post("/signup", async (req: Request, res: Response) => {
+app.post("/:route", async (req: Request, res: Response) => {
   try {
+    const handleRouteApi = await ApiRouter.handleRoute(req.params.route, req);
+    const response = {
+      handleRouteApi
+    }
     const signup = new SignupUC(
       new UserDataBase(),
       new JwtAuthService(),
@@ -53,7 +58,7 @@ app.post("/signup", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/login", async (req: Request, res: Response) => {
+app.post("/:route", async (req: Request, res: Response) => {
   try {
     const login = new LoginUC(
       new UserDataBase(),
@@ -70,7 +75,7 @@ app.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/changePassword", async (req: Request, res: Response) => {
+app.post("/:route", async (req: Request, res: Response) => {
   try {
     const changePasswordUC = new ChangeUserPasswordUC(
       new JwtAuthService(),
@@ -92,7 +97,7 @@ app.post("/changePassword", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/users/match", async (req: Request, res: Response) => {
+app.post("/:route", async (req: Request, res: Response) => {
   try {
     const authService = new JwtAuthService();
     const userId = authService.getUserIdFromToken(
@@ -119,7 +124,7 @@ app.post("/users/match", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/users/unmatch", async (req: Request, res: Response) => {
+app.post("/:route", async (req: Request, res: Response) => {
   try {
     const authService = new JwtAuthService();
     const userId = authService.getUserIdFromToken(
@@ -142,7 +147,7 @@ app.post("/users/unmatch", async (req: Request, res: Response) => {
   }
 });
 
-app.get("/getAllUsers", async (req: Request, res: Response) => {
+app.get("/:route", async (req: Request, res: Response) => {
   try {
     const getAllUsersUC = new GetAllUsersUC(new UserDataBase());
     const result = await getAllUsersUC.execute();
@@ -154,7 +159,7 @@ app.get("/getAllUsers", async (req: Request, res: Response) => {
   }
 });
 
-app.get("/getAllMatchs", async (req: Request, res: Response) => {
+app.get("/:route", async (req: Request, res: Response) => {
   try {
     const authService = new JwtAuthService();
     const userId = authService.getUserIdFromToken(

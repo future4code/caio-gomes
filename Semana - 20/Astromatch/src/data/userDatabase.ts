@@ -112,11 +112,9 @@ export class UserDataBase {
     userId: string,
     userToMatchId: string
   ): Promise<void> {
-    await this.connection("matches").insert({
-      user_id: userId,
-      user_match_id: userToMatchId,
-      match_relation: false
-    });
+    await this.connection("matches")
+      .where({ user_id: userId, user_match_id: userToMatchId })
+      .update({ match_relation: 0 });
   }
 
   getSQLDateFromTSDate = (date: Date): any => date.toISOString().split("T")[0];
