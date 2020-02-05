@@ -1,0 +1,63 @@
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.socialBtn {
+  display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.165em;
+  width: 40%;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  color: #757c81;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  letter-spacing: 0;
+  background: #fff;
+  padding: 0.75em 1em;
+  transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+
+.socialBtn:hover {
+  box-shadow: 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.btnSocialStyled {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.svgLogo {
+  width: 30px;
+  float: left;
+}
+
+.sendBtn {
+  padding: 1.2em 4em;
+  margin: 10px;
+  background-color: #02b3e4;
+  width: 75%;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 12px 15px 20px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.165em;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.sendBtn:hover {
+  background-color: #027be4;
+}
