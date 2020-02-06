@@ -1,8 +1,13 @@
 import React from "react";
-import UserAccount from "../../containers/Account";
 import * as firebase from 'firebase'
+import { Link } from "react-router-dom";
 
-class Login extends React.Component {
+
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -13,13 +18,18 @@ class Login extends React.Component {
     })
   }
 
+  onClickLogout = () => {
+      firebase.auth().signOut()
+  }
+
   render() {
     return (
       <div>
-        <UserAccount />
+          <button onClick={this.onClickLogout}>Logout</button>
+         <Link to={'/'}>Logout</Link>
       </div>
     );
   }
 }
 
-export default Login;
+export default Home;

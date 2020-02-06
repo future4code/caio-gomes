@@ -3,7 +3,7 @@ import google from "../../assets/google.svg";
 import facebook from "../../assets/facebook.svg";
 import style from "./style.module.css";
 
-const Buttons = () => {
+const ButtonSignup = () => {
   return (
     <div>
       <form className={style.btnWrapper}>
@@ -24,4 +24,4 @@ const Buttons = () => {
   );
 };
 
-export default Buttons;
+export default ButtonSignup;

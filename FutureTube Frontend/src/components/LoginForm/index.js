@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./style.module.css";
-import Buttons from "../Buttons/buttons";
+import Buttons from "../Buttons/buttonSignup";
+import * as firebase from "firebase";
+import { push } from "connected-react-router";
+import { connect } from "react-redux";
+import { routes } from "../../containers/Router";
 
-const FormLogin = () => {
-  return (
-    <div className={style.formContainer}>
-      <form className={style.formBox} action="signup">
+class FormLogin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
+
+  onSubmitLogin = async e => {
+    e.preventDefault();
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(res => {
+        console.log("Sucesso: ", res);
+      })
+      .catch(e => console.log("erro: ", e));
+  };
+
+  handleInput = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  onClicksend = () => {
+    this.props.goToHome()
+  }
+
+  render() {
+    console.log(this.state);
+    return (
+      <div className={style.formContainer}>
         <h1 className={style.title}>Acesse sua conta</h1>
         <div className={style.formText}>
           <span className={style.subTitle}>
@@ -20,32 +52,52 @@ const FormLogin = () => {
           <p className={style.separatorOr}>ou</p>
           <hr className={style.separatorLine} />
         </div>
-        <div className={style.formGroup}>
-          <div className={style.inputGroup}>
-            <input
-              className={`${style.textInput} ${style.emailInput}`}
-              type="text"
-              name="email"
-              id="email"
-              placeholder="Email"
-              required
-            />
+        <form className={style.formBox} onSubmit={this.onSubmitLogin}>
+          <div className={style.formGroup}>
+            <div className={style.inputGroup}>
+              <input
+                className={`${style.textInput} ${style.emailInput}`}
+                type="email"
+                name="email"
+                id="email"
+                value={this.state.email}
+                onChange={this.handleInput}
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div className={style.inputGroup}>
+              <input
+                className={`${style.textInput} ${style.emailInput}`}
+                type="password"
+                name="password"
+                id="password"
+                value={this.state.password}
+                onChange={this.handleInput}
+                placeholder="Senha"
+                required
+              />
+            </div>
           </div>
-          <div className={style.inputGroup}>
-            <input
-              className={`${style.textInput} ${style.emailInput}`}
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Senha"
-              required
-            />
-          </div>
-        </div>
-        <button className={style.sendBtn}>Criar Conta</button>
-      </form>
-    </div>
-  );
+          <button
+            onClick={this.onClicksend}
+            type="submit"
+            className={style.sendBtn}
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
+    );
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  console.log('oi')
+  return {
+    goToHome: () => dispatch(push(routes.home))
+  }
 };
 
-export default FormLogin;
+console.log(mapDispatchToProps);
+export default connect(null, mapDispatchToProps)(FormLogin);
