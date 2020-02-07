@@ -31,8 +31,8 @@ class FormLogin extends React.Component {
   };
 
   onClicksend = () => {
-    this.props.goToHome()
-  }
+    this.props.goToHome();
+  };
 
   render() {
     console.log(this.state);
@@ -93,11 +93,9 @@ class FormLogin extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  console.log('oi')
   return {
     goToHome: () => dispatch(push(routes.home))
-  }
+  };
 };
 
-console.log(mapDispatchToProps);
 export default connect(null, mapDispatchToProps)(FormLogin);

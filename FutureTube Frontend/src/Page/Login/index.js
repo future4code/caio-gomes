@@ -4,7 +4,7 @@ import * as firebase from 'firebase'
 
 class Login extends React.Component {
   componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log('USUARIO', user)
       } else {

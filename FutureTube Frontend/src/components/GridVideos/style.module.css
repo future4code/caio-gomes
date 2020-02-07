@@ -1,0 +1,5 @@
+.videoWrapper {
+  align-self: flex-start;
+  display: flex;
+  border: 3px solid green;
+}
