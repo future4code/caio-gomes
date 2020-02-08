@@ -5,7 +5,7 @@ export interface UploaderVideoGateway {
 }
 
 export interface GetAllVideosGateway {
-  getAllvideos(): Promise<Video[]>;
+  getAllVideos(): Promise<Video[]>;
 }
 
 export interface GetUserVideosGateway {
@@ -22,4 +22,8 @@ export interface EditVideoInformationGateway {
     newTitle: string,
     newDescription: string
   ): Promise<void>;
+}
+
+export interface GetVideoByIdGateway {
+  getVideoById(videoId: string): Promise<Video>
 }

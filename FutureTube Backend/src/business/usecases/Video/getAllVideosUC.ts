@@ -3,7 +3,7 @@ export class GetAllVideosUC {
   constructor(private getAllVideosGateway: GetAllVideosGateway) {}
 
   async execute(): Promise<GetAllVideosOutput> {
-    const videos = await this.getAllVideosGateway.getAllvideos();
+    const videos = await this.getAllVideosGateway.getAllVideos();
     return {
       videos: videos.map(video => ({
         title: video.getTitle(),
