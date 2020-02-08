@@ -4,8 +4,8 @@ export class User {
     private firstName: string,
     private lastName: string,
     private email: string,
-    private photo: string,
     private birthday: Date,
+    private photo: string,
     private password: string,
   ) {}
 

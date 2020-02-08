@@ -14,12 +14,12 @@ export class LoginUC {
       password,
       user.getPassword()
     );
-    
+
     if (!comparedPassword) {
-      throw new Error("Invalid Password!");
+      throw new Error("Invalid Password!!!");
     }
     return {
-      token: this.userTokenGateway.generateToken(user.getId())
+      token: this.userTokenGateway.generateToken(user.getId().toString())
     };
   }
 }

@@ -1,7 +1,7 @@
 import knex = require("knex");
 import { Video } from "./../../business/entities/Video";
 
-export class PostDataBase {
+export class VideoDataBase {
   protected connection = knex({
     client: "mysql",
     connection: {
@@ -15,8 +15,10 @@ export class PostDataBase {
   getSQLDateFromTSDate = (date: Date): string =>
     date.toISOString().split("T")[0];
 
-  public async uploadVideo(video: Video): Promise<string> {
-    return await this.connection("videos").insert(video);
+  public async uploadVideo(video: Video): Promise<void> {
+    const response = await this.connection.raw(`
+      INSERT INTO videos (title,, description, user_id, url)
+    `)
   }
 
   public async getAllVideos(): Promise<Video[]> {

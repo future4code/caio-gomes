@@ -1,3 +1,5 @@
+import { VideoDataBase } from "./../data/Videos/videoDatabase";
+import { UploadVideoUC, UploadVideoInput } from "./../business/usecases/Video/uploadVideoUC";
 import express, { Request, Response } from "express";
 import { SignupUC } from "../business/usecases/User/signup";
 import { UserDataBase } from "../data/User/userDatabase";
@@ -50,10 +52,11 @@ app.post("/login", async (req: Request, res: Response) => {
       new JwtAuthService(),
       new BcryptService()
     );
+   
     const result = await login.execute(req.body.email, req.body.password);
     res.status(200).send(result);
   } catch (err) {
-    res.status(404).send({
+    res.status(400).send({
       ...err,
       errorMessage: err.message
     });
@@ -76,6 +79,33 @@ app.post("/changePassword", async (req: Request, res: Response) => {
     });
 
     res.status(200).send(result);
+  } catch (err) {
+    res.status(400).send({
+      errorMessage: err.message
+    });
+  }
+});
+
+app.post("/uploadVideo", async (req: Request, res: Response) => {
+  try {
+    const authService = new JwtAuthService();
+    const userId = authService.getUserIdFromToken(
+      getTokenFromHeaders(req.headers)
+    );
+
+    const uploadVideo = new UploadVideoUC(
+      new VideoDataBase(),
+      new V4IdGenerator()
+    );
+
+    const input: UploadVideoInput = {
+      title: req.body.title,
+      description: req.body.description,
+      url: req.body.url,
+      userId
+    }
+    const result = await uploadVideo.execute(input)
+    res.status(200).send(result)
   } catch (err) {
     res.status(400).send({
       errorMessage: err.message

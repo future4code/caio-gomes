@@ -19,17 +19,11 @@ export class SignupUC {
      input.firstName,
      input.lastName,
      input.email,
-     input.photo,
      input.birthday,
+     input.photo,
      encryptedPassword,
     );
-    const comparedPassword = await this.cryptoGateway.compare(
-      input.password,
-      user.getPassword()
-    );
-    if (!comparedPassword) {
-      throw new Error("Invalid password");
-    }
+    
     await this.signupGateway.createUser(user);
 
     return {
