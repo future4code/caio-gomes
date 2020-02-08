@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FeedContent from "../../containers/FeedContent/home";
+import firebase from '../../firebase'
 
-class Home extends React.Component {
- render() {
-    return (
-      <div>
-        <FeedContent />
-      </div>
-    );
-  }
+const Home = ({
+	history
+}) => {
+	useEffect(() => {
+		firebase.auth().onAuthStateChanged(user => {
+			if (!user) { 
+				return history.push('/')
+			}
+		}
+	)
+	}, [])
+
+	return (
+		<FeedContent />
+	)
 }
 
-export default Home;
+
+export default Home

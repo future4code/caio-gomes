@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import mock from "../../assets/seu-madruga.jpeg";
 import style from "./style.module.css";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
-const Header = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const Header = ({
+  onLogout,
+}) => {
+  const [menu, setMenu] = useState(null);
 
   const handleClick = event => {
-    setAnchorEl(event.currentTarget);
+    setMenu(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setMenu(null);
   };
 
   return (
@@ -21,14 +23,14 @@ const Header = () => {
         <img src={mock} className={style.avatar} onClick={handleClick} />
         <Menu
           id="simple-menu"
-          anchorEl={anchorEl}
+          anchorEl={menu}
           keepMounted
-          open={Boolean(anchorEl)}
+          open={Boolean(menu)}
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>Perfil</MenuItem>
           <MenuItem onClick={handleClose}>Meus vídeos</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          <MenuItem onClick={onLogout}>Logout</MenuItem>
         </Menu>
       </header>
     </div>

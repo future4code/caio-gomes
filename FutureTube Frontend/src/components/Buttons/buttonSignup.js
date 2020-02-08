@@ -22,18 +22,6 @@ const ButtonSignup = () => {
       });
   };
 
-  const logoutApplication = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(result => {
-        console.log(result);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  };
-
   return (
     <div>
       <form className={style.btnWrapper}>
@@ -43,7 +31,7 @@ const ButtonSignup = () => {
             <span>Criar sua conta com Google</span>
           </div>
         </button>
-        <button onClick={logoutApplication}>LOGOUT</button>
+
         <button className={style.socialBtn}>
           <div className={style.btnSocialStyled}>
             <img src={facebook} className={style.svgLogo} />
