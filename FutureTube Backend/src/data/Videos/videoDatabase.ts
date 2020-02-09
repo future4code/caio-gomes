@@ -1,6 +1,14 @@
 import knex = require("knex");
 import { Video } from "./../../business/entities/Video";
 
+interface VideoInformationModel {
+  title: string;
+  description: string;
+  url: string;
+  userName: string;
+  photo: string;
+}
+
 export class VideoDataBase {
   protected connection = knex({
     client: "mysql",
@@ -16,9 +24,15 @@ export class VideoDataBase {
     date.toISOString().split("T")[0];
 
   public async uploadVideo(video: Video): Promise<void> {
-    const response = await this.connection.raw(`
-      INSERT INTO videos (title,, description, user_id, url)
-    `)
+    await this.connection.raw(`
+      INSERT INTO videos (id, title, description, user_id, url)
+      VALUES ("${video.getVideoId()}",
+      "${video.getTitle()}",
+      "${video.getDescription()}",
+      "${video.getUserId()}",
+      "${video.getUrl()}"
+      )
+    `);
   }
 
   public async getAllVideos(): Promise<Video[]> {
@@ -36,10 +50,37 @@ export class VideoDataBase {
     );
   }
 
-  public async deleteVideo(userId: string, videoId: string): Promise<void> {
-    await this.connection.raw(
-      `DELETE FROM user_videos
-      WHERE user_id = "${userId}" AND followed_id = "${videoId}" ;`
-    );
+  public async deleteVideo(videoId: string): Promise<void> {
+    await this.connection.raw(`DELETE FROM videos WHERE id = "${videoId}"`);
+  }
+
+  public async editVideoInformation(
+    videoId: string,
+    newTitle: string,
+    newDescription: string
+  ): Promise<void> {
+    await this.connection.raw(`
+    UPDATE videos
+    SET title = "${newTitle}", description = "${newDescription}"
+    WHERE id = "${videoId}";
+    `);
+  }
+
+  public async getVideoById(videoId: string) {
+    const result = await this.connection.raw(`
+    SELECT * FROM videos
+    JOIN users ON user_id = users.id 
+    WHERE videos.id = "${videoId}";
+    `);
+
+    const videoFromDb = result[0];
+    console.log("AAAAAAA", videoFromDb);
+
+    return videoFromDb.map( (video: any) => ({
+      video: new Video(videoId, video.title, video.description, video.url, video.userId),
+      firstName: video.firstName,
+      lastName: video.lastName,
+      photo: video.photo
+    }))
   }
 }

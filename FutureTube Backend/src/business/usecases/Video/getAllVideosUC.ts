@@ -6,6 +6,7 @@ export class GetAllVideosUC {
     const videos = await this.getAllVideosGateway.getAllVideos();
     return {
       videos: videos.map(video => ({
+        videoId: video.getVideoId(),
         title: video.getTitle(),
         description: video.getDescription(),
         url: video.getUrl(),
@@ -20,6 +21,7 @@ export interface GetAllVideosOutput {
 }
 
 interface VideoOfGetAllVideosOutput {
+  videoId: string;
   title: string;
   description: string;
   url: string;

@@ -7,6 +7,7 @@ export class GetUserVideosUC {
     const videos = await this.getUserVideosGateway.getUserVideos(input.userId);
     return {
       videos: videos.map(video => ({
+        videoId: video.getVideoId(),
         title: video.getTitle(),
         description: video.getDescription(),
         url: video.getUrl(),

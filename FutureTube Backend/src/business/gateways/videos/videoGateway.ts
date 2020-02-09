@@ -25,5 +25,12 @@ export interface EditVideoInformationGateway {
 }
 
 export interface GetVideoByIdGateway {
-  getVideoById(videoId: string): Promise<Video>
+  getVideoById(videoId: string): Promise<VideoResponse[]>
+}
+
+export interface VideoResponse {
+  video: Video
+  firstName: string
+  lastName: string
+  photo: string
 }
