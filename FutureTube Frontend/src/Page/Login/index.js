@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import UserAccount from "../../containers/Account";
-import { login } from "../../actions/auth";
+import { login, signUp } from "../../actions/auth";
 
 const Login = props => {
   const [loginError, setLoginError] = useState("");
@@ -10,12 +10,31 @@ const Login = props => {
     props.makeLogin(email, password);
   };
 
-  return <UserAccount loginError={loginError} onSubmitLogin={onSubmitLogin} />;
+  const onSignup = ({
+    firstName,
+    lastName,
+    email,
+    password,
+    birthday,
+    photo
+  }) => {
+    props.makeSignup(firstName, lastName, email, password, birthday, photo);
+  };
+
+  return (
+    <UserAccount
+      loginError={loginError}
+      onSubmitLogin={onSubmitLogin}
+      onSignup={onSignup}
+    />
+  );
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    makeLogin: (email, password) => dispatch(login(email, password))
+    makeLogin: (email, password) => dispatch(login(email, password)),
+    makeSignup: (firstName, lastName, email, password, birthday, photo) =>
+      dispatch(signUp(firstName, lastName, email, password, birthday, photo))
   };
 };
 

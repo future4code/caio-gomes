@@ -4,9 +4,7 @@ import style from "./style.module.css";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
-const Header = ({
-  onLogout,
-}) => {
+const Header = () => {
   const [menu, setMenu] = useState(null);
 
   const handleClick = event => {
@@ -30,7 +28,7 @@ const Header = ({
         >
           <MenuItem onClick={handleClose}>Perfil</MenuItem>
           <MenuItem onClick={handleClose}>Meus vídeos</MenuItem>
-          <MenuItem onClick={onLogout}>Logout</MenuItem>
+          <MenuItem>Logout</MenuItem>
         </Menu>
       </header>
     </div>

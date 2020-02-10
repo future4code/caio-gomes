@@ -39,7 +39,7 @@ export const signUp = (
     birthday,
     photo
   };
-  const response = await axios.post(`${urlBase}/signup`, newUser);
+  const response = await axios.post(`${urlBase}/createUser`, newUser);
 
   window.localStorage.setItem("token", response.data.token);
 

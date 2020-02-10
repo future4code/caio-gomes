@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 import style from "./style.module.css";
 import FormLogin from "../../components/LoginForm";
 
-const UserAccount = ({ loginError, onSubmitLogin }) => {
+const UserAccount = ({ loginError, onSubmitLogin, onSignup }) => {
   const [account, setAccount] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ const UserAccount = ({ loginError, onSubmitLogin }) => {
         {account ? (
           <FormLogin onSubmitLogin={onSubmitLogin} loginError={loginError} />
         ) : (
-          <FormSignup />
+          <FormSignup  onSignup={onSignup}/>
         )}
       </div>
     </div>
