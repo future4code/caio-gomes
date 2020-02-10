@@ -14,6 +14,7 @@ export class LoginUC {
       password,
       user.getPassword()
     );
+    console.log(comparedPassword )
 
     if (!comparedPassword) {
       throw new Error("Invalid Password!!!");

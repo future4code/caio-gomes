@@ -1,5 +1,5 @@
 import { GetVideoByIdGateway } from "../../gateways/videos/videoGateway";
-import { response } from "express";
+
 
 export class GetVideoInformationUC {
   constructor(private getVideoByIdGateway: GetVideoByIdGateway) {}
@@ -12,7 +12,7 @@ export class GetVideoInformationUC {
         title: response.video.getTitle(),
         description: response.video.getDescription(),
         url: response.video.getUrl(),
-        fisrtName: response.firstName,
+        firstName: response.firstName,
         lastName: response.lastName,
         photo: response.photo
       }))
