@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./style.module.css";
-import ButtonsSignup from "../Buttons/buttonSignup";
-import * as firebase from 'firebase'
+import { uploadFile } from '../../services/upload.js'
 
 class FormSignup extends React.Component {
   constructor(props) {
@@ -11,55 +10,71 @@ class FormSignup extends React.Component {
       lastName: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      photo: "",
+      birthday: "",
+      error: { msg: "", status: false }
     };
   }
 
   handleInput = event => {
-    this.setState({ [event.target.name]: event.target.value })
-}
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-  // checkPasswordEquality = () => {
-  //   if(this.state.confirmPassword !== this.state.password) {
-  //     console.log('senhas não coincidem')
-  //   } else {
-  //     this.onSubmitSignup()
-  //   }
-  // }
+  validatePassword = event => {
+    event.preventDefault();
+    const { password, confirmPassword } = this.state;
 
-  onSubmitSignup = async (e) => {
-    e.preventDefault()
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(res => {
-      console.log('sucesso', res)
-    }).catch(e => console.log('erro', e))
+    if (password === confirmPassword) {
+      this.onSubmitSignup();
+    } else {
+      this.setState({
+        error: { msg: "Deve ser a mesma que a anterior", status: true }
+      });
+    }
+  };
+
+  seila = () => {
+   const a = uploadFile(this.state.photo)
+   console.log(a)
   }
 
+  onSubmitSignup = async e => {};
+
   render() {
-    const {firstName, lastName, email, password, confirmPassword} = this.state
-    console.log(this.state)
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      birthday,
+      photo
+    } = this.state;
+    console.log(this.state);
     return (
       <div className={style.formContainer}>
-          <h1 className={style.title}>Crie sua conta</h1>
-          <div className={style.formText}>
-            <span className={style.subTitle}>
-              Assista aos melhores clipes e videos, siga criadores originais de
-              conteúdo <br />
-              Crie, compartilhe sua visão do mundo e seja um Futurer.
-            </span>
-          </div>
-          <ButtonsSignup />
-          <div className={style.separatorWrapper}>
-            <hr className={style.separatorLine} />
-            <p className={style.separatorOr}>ou</p>
-            <hr className={style.separatorLine} />
-          </div>
+        <h1 className={style.title}>Crie sua conta</h1>
+        <div className={style.formText}>
+          <span className={style.subTitle}>
+            Assista aos melhores clipes e videos, siga criadores originais de
+            conteúdo <br />
+            Crie, compartilhe sua visão do mundo e seja um Futurer.
+          </span>
+        </div>
+
+        <div className={style.separatorWrapper}>
+          <hr className={style.separatorLine} />
+          <p className={style.separatorOr}>ou</p>
+          <hr className={style.separatorLine} />
+        </div>
         <form className={style.formBox} onSubmit={this.onSubmitSignup}>
           <div className={style.formGroup}>
             <div className={style.inputGroup}>
               <input
                 className={style.textInput}
                 type="text"
-                name={'firstName'}
+                name={"firstName"}
                 id="name"
                 value={firstName}
                 onChange={this.handleInput}
@@ -111,8 +126,29 @@ class FormSignup extends React.Component {
                 required
               />
             </div>
+            <input
+              type="date"
+              name={"birthday"}
+              value={birthday}
+              onChange={this.handleInput}
+              required
+            />
+
+            <input
+              className={style.textInput}
+              type="file"
+              accept="file_extension|audio/*|video/*|image/*|media_type"
+              name={"photo"}
+              value={photo}
+              onChange={this.handleInput}
+              required
+              placeholder="Confirmar Senha"
+            />
           </div>
-          <button type="submit" className={style.sendBtn}>Criar Conta</button>
+          <button onClick={this.seila}>oi</button>
+          <button type="submit" className={style.sendBtn}>
+            Criar Conta
+          </button>
         </form>
       </div>
     );

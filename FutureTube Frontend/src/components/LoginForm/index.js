@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
-import Buttons from "../Buttons/buttonSignup";
+
 
 const FormLogin = ({ loginError, onSubmitLogin }) => {
   const [email, setEmail] = useState("");
@@ -21,7 +21,6 @@ const FormLogin = ({ loginError, onSubmitLogin }) => {
           Crie, compartilhe sua visão do mundo e seja um Futurer.
         </span>
       </div>
-      <Buttons />
       <div className={style.separatorWrapper}>
         <hr className={style.separatorLine} />
         <p className={style.separatorOr}>ou</p>
