@@ -12,8 +12,9 @@ import { create } from "jss";
 import theme from "../../style/theme";
 import Router from "../Router";
 import { createBrowserHistory } from "history";
-import { createStore} from "redux";
 import { generateReducers } from "../../reducers";
+import { createStore, compose, applyMiddleware } from "redux";
+import { routerMiddleware } from "connected-react-router";
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -24,7 +25,17 @@ const jss = create({
 
 export const history = createBrowserHistory();
 
-const store = createStore(generateReducers(history));
+
+const middlewares = [
+  applyMiddleware(routerMiddleware(history), thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__
+    ? window.__REDUX_DEVTOOLS_EXTENSION__()
+    : f => f
+];
+
+
+
+const store = createStore(generateReducers(history), compose(...middlewares));
 
 export const App = () => (
   <Provider store={store}>
