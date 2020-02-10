@@ -36,8 +36,8 @@ export class UserDataBase {
       returnedUser.lastName,
       returnedUser.email,
       returnedUser.birthday,
-      returnedUser.password,
-      returnedUser.photo
+      returnedUser.photo,
+      returnedUser.password
     );
   }
 
