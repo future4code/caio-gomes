@@ -8,9 +8,7 @@ const FeedContent = () => {
  
   return (
     <div className={style.container}>
-      <Header 
-        
-      />
+      <Header />
       <GridVideos />
     </div>
   )

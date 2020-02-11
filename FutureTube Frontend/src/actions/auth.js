@@ -5,21 +5,15 @@ import { push } from "connected-react-router";
 const urlBase =
   "https://lwicg7zvyc.execute-api.us-east-1.amazonaws.com/FutureTube";
 
-export const login = (email, password) => async (dispatch) => {
-  console.log(email, password)
-  try {
-    const body = { email, password };
-    const response = await axios.post(`${urlBase}/login`, body);
+export const login = (email, password) => async dispatch => {
+  console.log(email, password);
+  const body = { email, password };
+  const response = await axios.post(`${urlBase}/login`, body);
 
-    window.localStorage.setItem("token", response.data.token);
-    if (response.status === 200) {
-      dispatch(push(routes.home));
-    }
-  } catch (e) {
-    let error = e.message;
-    if (error) {
-      error = "Email ou senha inválidos";
-    }
+  console.log("RESPONSE ", response.data.result.token )
+  window.localStorage.setItem("token", response.data.result.token);
+  if (response.status === 200) {
+    dispatch(push(routes.home));
   }
 };
 
@@ -41,7 +35,7 @@ export const signUp = (
   };
   const response = await axios.post(`${urlBase}/createUser`, newUser);
 
-  window.localStorage.setItem("token", response.data.token);
+  window.localStorage.setItem("token", response.data.result.token);
 
   if (response.status === 200) {
     dispatch(push(routes.home));

@@ -2,14 +2,17 @@ import React from "react";
 import style from "./style.module.css";
 import gaming from "../../assets/gaming.svg";
 
-const VideoCard = () => {
+const VideoCard = ({
+  onClickVideo,
+  title,
+  description,
+  url
+}) => {
   return (
-    <div>
-      <div className={style.container}>
-        <img src={gaming} alt="Gaming" className={style.mediaSize} />
-        <p className={style.titleVideo}>Titulo do video</p>
-        <span className={style.autorName}>Por: Caio Gomes</span>
-      </div>
+    <div onClick={onClickVideo} className={style.container}>
+      <img src={gaming} alt="Gaming" className={style.mediaSize} />
+      <p className={style.titleVideo}>{title}</p>
+      <p className={style.titleVideo}>{description}</p>
     </div>
   );
 };

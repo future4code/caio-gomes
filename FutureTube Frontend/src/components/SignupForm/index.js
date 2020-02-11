@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
 
-
-const FormSignup = ({onSignup}) => {
+const FormSignup = ({ onSignup }) => {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -25,7 +24,7 @@ const FormSignup = ({onSignup}) => {
     });
   };
 
-  console.log(onSignup)
+  console.log(onSignup);
   const validatePassword = event => {
     event.preventDefault();
     const { password, confirmPassword } = user;
@@ -46,12 +45,6 @@ const FormSignup = ({onSignup}) => {
           conteúdo <br />
           Crie, compartilhe sua visão do mundo e seja um Futurer.
         </span>
-      </div>
-
-      <div className={style.separatorWrapper}>
-        <hr className={style.separatorLine} />
-        <p className={style.separatorOr}>ou</p>
-        <hr className={style.separatorLine} />
       </div>
       <form
         className={style.formBox}

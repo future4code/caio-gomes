@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
 
-
 const FormLogin = ({ loginError, onSubmitLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,11 +20,7 @@ const FormLogin = ({ loginError, onSubmitLogin }) => {
           Crie, compartilhe sua visão do mundo e seja um Futurer.
         </span>
       </div>
-      <div className={style.separatorWrapper}>
-        <hr className={style.separatorLine} />
-        <p className={style.separatorOr}>ou</p>
-        <hr className={style.separatorLine} />
-      </div>
+
       <form className={style.formBox} onSubmit={e => onSubmit(e)}>
         <div className={style.formGroup}>
           <div className={style.inputGroup}>

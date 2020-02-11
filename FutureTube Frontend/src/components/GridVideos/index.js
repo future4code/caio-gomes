@@ -1,19 +1,45 @@
 import React from "react";
 import style from "./style.module.css";
 import VideoCard from "../VideoCard";
+import { connect } from "react-redux";
+import { getVideoDetail } from "../../actions/videos";
 
-const GridVideos = () => {
+const GridVideos = props => {
+  
+  const clickOnVideo = (videoId) => {
+    props.getVideoId(videoId)
+  };
+
   return (
     <div>
       <div className={style.videoWrapper}>
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        
+        {props.listOfAllVideos &&
+          props.listOfAllVideos.map(video => {
+            return (
+              <VideoCard
+                key={video.videoId}
+                onClickVideo={() => clickOnVideo(video.videoId)}
+                url={video.url}
+                title={video.title}
+                description={video.description}
+              />
+            );
+          })}
       </div>
     </div>
   );
 };
 
-export default GridVideos;
+const mapStateToProps = state => {
+  return {
+    listOfAllVideos: state.videos.allVideos
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getVideoId: videoId => dispatch(getVideoDetail(videoId))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GridVideos);
