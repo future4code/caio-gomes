@@ -1,0 +1,12 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.videoWrapper {
+  width: 90%;
+  height: 90%;
+  align-self: center;
+  display: flex;
+}

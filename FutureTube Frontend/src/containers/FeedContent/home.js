@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-
-import Header from "../../components/Header";
-import GridVideos from "../../components/GridVideos";
+import GridVideos from "../GridVideos";
 import style from './style.module.css'
+import SideMenu from "../SideMenu";
 
 const FeedContent = () => {
  
   return (
     <div className={style.container}>
-      <Header />
+      <SideMenu />
       <GridVideos />
     </div>
   )

@@ -1,17 +1,16 @@
 import React from "react";
 import style from "./style.module.css";
-import VideoCard from "../VideoCard";
+import VideoCard from "../../components/VideoCard";
 import { connect } from "react-redux";
 import { getVideoDetail } from "../../actions/videos";
 
 const GridVideos = props => {
-  
-  const clickOnVideo = (videoId) => {
-    props.getVideoId(videoId)
+  const clickOnVideo = videoId => {
+    props.getVideoId(videoId);
   };
 
   return (
-    <div>
+    <div className={style.container}>
       <div className={style.videoWrapper}>
         {props.listOfAllVideos &&
           props.listOfAllVideos.map(video => {
