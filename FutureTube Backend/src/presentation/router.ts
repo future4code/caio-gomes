@@ -140,7 +140,7 @@ export class ApiRouter {
         const useCase = new GetVideoInformationUC(new VideoDataBase());
 
         const inputVideoInformation: VideoInformationInput = {
-          videoId: event.body.videoId
+          videoId: event.query.videoId
         };
 
         const resultVideoInformation = await useCase.execute(

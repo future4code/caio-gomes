@@ -177,11 +177,10 @@ app.put("/edit/video", async (req: Request, res: Response) => {
 
 app.get("/video/information", async (req: Request, res: Response) => {
   try {
-    
     const useCase = new GetVideoInformationUC(new VideoDataBase());
 
     const input: VideoInformationInput = {
-      videoId: req.body.videoId
+      videoId: req.query.videoId
     };
 
     const result = await useCase.execute(input);
