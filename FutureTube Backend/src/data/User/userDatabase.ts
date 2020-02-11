@@ -24,7 +24,6 @@ export class UserDataBase {
       .where("email", email);
 
     const returnedUser = query[0];
-    console.log(returnedUser)
 
     if (!returnedUser) {
       throw new Error("User not found!");

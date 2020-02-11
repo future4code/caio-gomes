@@ -70,7 +70,7 @@ export class ApiRouter {
           event.body.email,
           event.body.password
         );
-        console.log(resultLogin);
+
         return resultLogin;
 
       case "changePassword":

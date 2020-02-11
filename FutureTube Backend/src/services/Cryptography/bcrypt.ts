@@ -13,8 +13,6 @@ export class BcryptService implements CryptographyGateway {
   }
 
   async compare(word: string, hash: string): Promise<boolean> {
-    console.log(word)
-    console.log(hash)
     return bcrypt.compare(word, hash);
   }
 }

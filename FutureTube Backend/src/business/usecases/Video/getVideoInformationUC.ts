@@ -1,14 +1,15 @@
 import { GetVideoByIdGateway } from "../../gateways/videos/videoGateway";
 
-
 export class GetVideoInformationUC {
   constructor(private getVideoByIdGateway: GetVideoByIdGateway) {}
 
   async execute(input: VideoInformationInput): Promise<VideoInformationOutput> {
-    const responses = await this.getVideoByIdGateway.getVideoById(input.videoId);
-    console.log(responses)
+    const responses = await this.getVideoByIdGateway.getVideoById(
+      input.videoId
+    );
+
     return {
-      videos: responses.map((response) => ({
+      videos: responses.map(response => ({
         title: response.video.getTitle(),
         description: response.video.getDescription(),
         url: response.video.getUrl(),

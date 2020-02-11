@@ -74,13 +74,18 @@ export class VideoDataBase {
     `);
 
     const videoFromDb = result[0];
-    console.log("AAAAAAA", videoFromDb);
 
-    return videoFromDb.map( (video: any) => ({
-      video: new Video(videoId, video.title, video.description, video.url, video.userId),
+    return videoFromDb.map((video: any) => ({
+      video: new Video(
+        videoId,
+        video.title,
+        video.description,
+        video.url,
+        video.userId
+      ),
       firstName: video.firstName,
       lastName: video.lastName,
       photo: video.photo
-    }))
+    }));
   }
 }
