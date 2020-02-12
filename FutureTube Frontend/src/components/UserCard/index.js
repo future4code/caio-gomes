@@ -1,17 +1,24 @@
 import React from "react";
 import madruga from "../../assets/seu-madruga.jpeg";
 import style from "./style.module.css";
+import { connect } from "react-redux";
 
-const UserCard = () => {
+const UserCard = ({ user }) => {
   return (
     <div className={style.container}>
       <img src={madruga} className={style.userPhoto} />
       <div className={style.nameWrapper}>
-        <p className={style.userName}>Caio</p>
-        <p className={style.userName}>Gomes</p>
+        <p className={style.userName}>{user.firstName}</p>
+        <p className={style.userName}>{user.lastName}</p>
       </div>
-		</div>
+    </div>
   );
 };
 
-export default UserCard;
+const mapStateToProps = state => {
+  return {
+    user: state.auth.selectedUser
+  };
+};
+
+export default connect(mapStateToProps, null)(UserCard);

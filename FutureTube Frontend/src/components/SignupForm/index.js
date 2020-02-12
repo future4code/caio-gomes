@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
+import Dropzone from "../Dropzone";
+import DropzonePhoto from "../Dropzone";
 
 const FormSignup = ({ onSignup }) => {
   const [user, setUser] = useState({
@@ -105,14 +107,15 @@ const FormSignup = ({ onSignup }) => {
           </div>
           <input type="date" name={"birthday"} required />
 
-          <input
+          {/* <input
             className={style.textInput}
             type="file"
             accept="file_extension|image/*|media_type"
             name={"photo"}
             required
             placeholder="Confirmar Senha"
-          />
+          /> */}
+          <DropzonePhoto/>
         </div>
         <span>{error}</span>
         <button type="submit" onKeyPress={keyPressed} className={style.sendBtn}>

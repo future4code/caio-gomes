@@ -15,7 +15,6 @@ const AccountOptions = ({ goToLogin, goToHome }) => {
   };
 
   const getAllVideos = () => {
-    console.log('fuii')
     goToHome()
   }
 

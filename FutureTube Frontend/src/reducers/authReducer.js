@@ -1,6 +1,7 @@
 const initialState = {
   loginError: "",
-  successMessage: ""
+  successMessage: "",
+  selectedUser: ""
 };
 
 const auth = (state = initialState, action) => {
@@ -11,7 +12,9 @@ const auth = (state = initialState, action) => {
       return { ...state, loginError: undefined };
     case "SET_SUCCESS_MESSAGE":
       return { ...state, successMessage: action.payload.message };
-    default:
+    case "SET_CURRENT_USER":
+      return {...state, selectedUser: action.payload.user};
+      default:
       return state;
   }
 };

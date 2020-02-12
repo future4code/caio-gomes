@@ -29,6 +29,29 @@ const setSuccessMessage = message => {
   }
 }
 
+const setCurrentUser = user => {
+  return {
+    type: "SET_CURRENT_USER",
+    payload: {
+      user
+    }
+  }
+}
+
+export const getUser = () => async dispatch => {
+  try {
+    const token = window.localStorage.getItem('token')
+    const response = await axios.get(`${urlBase}/user`, {
+      headers: {
+        auth: token
+      }
+    })
+    dispatch(setCurrentUser(response.data.result))
+  }catch(e){
+    console.log(e)
+  }
+}
+
 export const login = (email, password) => async dispatch => {
   try {
     dispatch(clearErrorMessageAction());

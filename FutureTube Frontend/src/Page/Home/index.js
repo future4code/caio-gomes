@@ -6,6 +6,7 @@ import { routes } from "../../containers/Router";
 import { getAllVideos } from "../../actions/videos";
 import Header from "../../components/Header";
 import style from "./style.module.css";
+import { getUser } from "../../actions/auth";
 
 const Home = props => {
   useEffect(() => {
@@ -14,6 +15,7 @@ const Home = props => {
       props.goToLogin();
     }
     props.getAllVideos();
+    props.getUser(token)
   }, []);
 
   return (
@@ -26,6 +28,7 @@ const Home = props => {
 
 const mapDispatchToprops = dispatch => ({
   getAllVideos: () => dispatch(getAllVideos()),
+  getUser: (token) => dispatch(getUser(token)),
   goToLogin: () => dispatch(push(routes.login))
 });
 export default connect(null, mapDispatchToprops)(Home);
