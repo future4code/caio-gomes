@@ -5,7 +5,7 @@ import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
 import { getAllVideos } from "../../actions/videos";
 import Header from "../../components/Header";
-import style from "./style.module.css"
+import style from "./style.module.css";
 
 const Home = props => {
   useEffect(() => {

@@ -17,14 +17,19 @@ const FormSignup = ({ onSignup }) => {
     const {
       target: { value, name }
     } = event;
-    console.log(name, value);
+    
     setUser({
       ...user,
       [name]: value
     });
   };
 
-  console.log(onSignup);
+  const keyPressed = e => {
+    if (e.key === "Enter") {
+      validatePassword()
+    }
+  }
+  
   const validatePassword = event => {
     event.preventDefault();
     const { password, confirmPassword } = user;
@@ -103,14 +108,14 @@ const FormSignup = ({ onSignup }) => {
           <input
             className={style.textInput}
             type="file"
-            accept="file_extension|audio/*|video/*|image/*|media_type"
+            accept="file_extension|image/*|media_type"
             name={"photo"}
             required
             placeholder="Confirmar Senha"
           />
         </div>
         <span>{error}</span>
-        <button type="submit" className={style.sendBtn}>
+        <button type="submit" onKeyPress={keyPressed} className={style.sendBtn}>
           Criar Conta
         </button>
       </form>

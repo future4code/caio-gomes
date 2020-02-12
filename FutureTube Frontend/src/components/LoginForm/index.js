@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
+import { connect } from "react-redux";
 
-const FormLogin = ({ loginError, onSubmitLogin }) => {
+const FormLogin = ({ currentError, onSubmitLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -9,6 +10,12 @@ const FormLogin = ({ loginError, onSubmitLogin }) => {
     e.preventDefault();
     onSubmitLogin({ email, password });
   };
+
+ const keyPressed = e => {
+    if (e.key === "Enter") {
+      onSubmit()
+    }
+  }
 
   return (
     <div className={style.formContainer}>
@@ -21,7 +28,7 @@ const FormLogin = ({ loginError, onSubmitLogin }) => {
         </span>
       </div>
 
-      <form className={style.formBox} onSubmit={e => onSubmit(e)}>
+      <form className={style.formBox} onSubmit={e => onSubmit(e) }>
         <div className={style.formGroup}>
           <div className={style.inputGroup}>
             <input
@@ -47,9 +54,10 @@ const FormLogin = ({ loginError, onSubmitLogin }) => {
               required
             />
           </div>
-          <span>{loginError}</span>
+          <span>{currentError}</span>
         </div>
-        <button type="submit" className={style.sendBtn}>
+
+        <button onKeyPress={keyPressed} type="submit" className={style.sendBtn}>
           Entrar
         </button>
       </form>
@@ -57,4 +65,10 @@ const FormLogin = ({ loginError, onSubmitLogin }) => {
   );
 };
 
-export default FormLogin;
+const mapStateToProps = state => {
+  return {
+    currentError: state.auth.loginError
+  };
+};
+
+export default connect(mapStateToProps, null)(FormLogin);

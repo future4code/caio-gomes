@@ -17,17 +17,36 @@ const getDetailVideo = videos => ({
   payload: {
     videos
   }
-})
+});
 
 export const getAllVideos = () => async dispatch => {
-	const response = await axios.get(`${urlBase}/allVideos`);
-  dispatch(getVideos(response.data.result.videos))
-  console.log(response)
+  const response = await axios.get(`${urlBase}/allVideos`);
+  dispatch(getVideos(response.data.result.videos));
 };
 
-export const getVideoDetail = (videoId) => async dispatch => {
-  console.log("VIDEO ID ", videoId)
+export const getVideoDetail = videoId => async dispatch => {
   const response = await axios.get(`${urlBase}/video/information/${videoId}`);
-  console.log("RESPONSE ", response)
-  dispatch(getDetailVideo(response.data.result.videos))
-}
+
+  dispatch(getDetailVideo(response.data.result.videos));
+};
+
+export const getUserVideos = userId => async dispatch => {
+  const response = await axios.get(`${urlBase}/get`);
+};
+
+export const uploadVideo = (title, description, url) => async dispatch => {
+  const token = window.localStorage.getItem("token");
+  const newVideo = {
+    title,
+    description,
+    url
+  };
+  const response = await axios.post(`${urlBase}/uploadVideo`, newVideo, {
+    headers: {
+      auth: token
+    }
+  });
+  if (response.status === 200) {
+    console.log(response.statusText);
+  }
+};
