@@ -51,17 +51,17 @@ export class UserDataBase {
       `SELECT * FROM users WHERE id='${id}';`
     );
     const returnedUser = query[0][0];
-
     if (!returnedUser) {
       throw new Error("User not found!!!");
     }
+
     return new User(
       returnedUser.id,
       returnedUser.firstName,
       returnedUser.lastName,
       returnedUser.email,
-      returnedUser.photo,
       returnedUser.birthday,
+      returnedUser.photo,
       returnedUser.password
     );
   }

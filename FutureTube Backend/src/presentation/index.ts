@@ -22,6 +22,7 @@ import { V4IdGenerator } from "../services/Auth/v4IdGenerator";
 import { LoginUC } from "../business/usecases/User/login";
 import { ChangeUserPasswordUC } from "../business/usecases/User/changePassword";
 import { EditVideoInformationUC } from "../business/usecases/Video/editVideoInformation";
+import { GetUserUC, GetUserInput } from "../business/usecases/User/getUser";
 
 const app = express();
 app.use(express.json()); // Linha mágica (middleware)
@@ -187,6 +188,28 @@ app.get("/video/information", async (req: Request, res: Response) => {
     res.status(200).send(result);
   } catch (err) {
     res.status(400).send({
+      errorMessage: err.message
+    });
+  }
+});
+
+app.get("/user", async (req: Request, res: Response) => {
+  try {
+    const authService = new JwtAuthService();
+    const token = authService.getUserIdFromToken(
+      getTokenFromHeaders(req.headers)
+    );
+     
+    const useCase = new GetUserUC(new UserDataBase());
+    const input: GetUserInput = {
+      token
+    };
+
+    const result = await useCase.execute(input);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(400).send({
+      ...err,
       errorMessage: err.message
     });
   }

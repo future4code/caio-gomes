@@ -23,6 +23,7 @@ import {
   GetVideoInformationUC,
   VideoInformationInput
 } from "../business/usecases/Video/getVideoInformationUC";
+import { GetUserUC, GetUserInput } from "../business/usecases/User/getUser";
 
 export class ApiRouter {
   public static getTokenFromHeaders = (headers: any): string => {
@@ -147,6 +148,19 @@ export class ApiRouter {
           inputVideoInformation
         );
         return resultVideoInformation;
+      case "user":
+        const authServiceUser = new JwtAuthService();
+        const token = authServiceUser.getUserIdFromToken(
+          this.getTokenFromHeaders(event.headers)
+        );
+
+        const useCaseUser = new GetUserUC(new UserDataBase());
+        const inputUser: GetUserInput = {
+          token
+        };
+        const result = await useCaseUser.execute(inputUser);
+        return result;
+
       default:
         throw new Error("Rota não existe");
     }

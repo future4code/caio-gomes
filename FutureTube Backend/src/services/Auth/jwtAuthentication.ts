@@ -22,9 +22,11 @@ export class JwtAuthService implements UserTokenGateway {
   }
 
   getUserIdFromToken(token: string): string {
+   
     const jwtVerifiedResult = jwt.verify(token, this.getJwtSecretKey()) as {
       userId: string;
     };
+    
 
     return jwtVerifiedResult["userId"];
   }
