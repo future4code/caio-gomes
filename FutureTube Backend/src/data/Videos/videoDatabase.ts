@@ -35,20 +35,48 @@ export class VideoDataBase {
     `);
   }
 
-  public async getAllVideos(): Promise<Video[]> {
-    const query = this.connection.raw("SELECT * FROM videos;");
-    const videosFromDb = await query;
-    return videosFromDb[0].map(
-      (video: any) =>
-        new Video(
-          video.id,
-          video.title,
-          video.description,
-          video.url,
-          video.userId
-        )
-    );
+  public async getAllVideos() {
+    const result = await this.connection.raw(`
+    SELECT * FROM videos
+    JOIN users ON user_id = users.id 
+    `)
+    const videosFromDb = result[0];
+    return videosFromDb.map((video: any) =>({
+      video: new Video(
+        video.id,
+        video.title,
+        video.description,
+        video.url,
+        video.userId
+      ),
+      firstName: video.firstName,
+      lastName: video.lastName,
+      photo: video.photo
+      }))
   }
+
+  // public async getVideoById(videoId: string) {
+  //   const result = await this.connection.raw(`
+  //   SELECT * FROM videos
+  //   JOIN users ON user_id = users.id 
+  //   WHERE videos.id = "${videoId}";
+  //   `);
+
+  //   const videoFromDb = result[0];
+
+  //   return videoFromDb.map((video: any) => ({
+  //     video: new Video(
+  //       videoId,
+  //       video.title,
+  //       video.description,
+  //       video.url,
+  //       video.userId
+  //     ),
+  //     firstName: video.firstName,
+  //     lastName: video.lastName,
+  //     photo: video.photo
+  //   }));
+  // }
 
   public async deleteVideo(videoId: string): Promise<void> {
     await this.connection.raw(`DELETE FROM videos WHERE id = "${videoId}"`);
@@ -66,26 +94,4 @@ export class VideoDataBase {
     `);
   }
 
-  public async getVideoById(videoId: string) {
-    const result = await this.connection.raw(`
-    SELECT * FROM videos
-    JOIN users ON user_id = users.id 
-    WHERE videos.id = "${videoId}";
-    `);
-
-    const videoFromDb = result[0];
-
-    return videoFromDb.map((video: any) => ({
-      video: new Video(
-        videoId,
-        video.title,
-        video.description,
-        video.url,
-        video.userId
-      ),
-      firstName: video.firstName,
-      lastName: video.lastName,
-      photo: video.photo
-    }));
-  }
 }

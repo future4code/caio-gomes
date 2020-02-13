@@ -1,6 +1,6 @@
 import {
   GetVideoInformationUC,
-  VideoInformationInput
+ 
 } from "./../business/usecases/Video/getVideoInformationUC";
 import { EditVideoInformationInput } from "./../business/usecases/Video/editVideoInformation";
 import {
@@ -176,22 +176,22 @@ app.put("/edit/video", async (req: Request, res: Response) => {
   }
 });
 
-app.get("/video/information", async (req: Request, res: Response) => {
-  try {
-    const useCase = new GetVideoInformationUC(new VideoDataBase());
+// app.get("/video/information", async (req: Request, res: Response) => {
+//   try {
+//     const useCase = new GetVideoInformationUC(new VideoDataBase());
 
-    const input: VideoInformationInput = {
-      videoId: req.query.videoId
-    };
+//     const input: VideoInformationInput = {
+//       videoId: req.query.videoId
+//     };
 
-    const result = await useCase.execute(input);
-    res.status(200).send(result);
-  } catch (err) {
-    res.status(400).send({
-      errorMessage: err.message
-    });
-  }
-});
+//     const result = await useCase.execute(input);
+//     res.status(200).send(result);
+//   } catch (err) {
+//     res.status(400).send({
+//       errorMessage: err.message
+//     });
+//   }
+// });
 
 app.get("/user", async (req: Request, res: Response) => {
   try {

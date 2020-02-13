@@ -21,7 +21,7 @@ import {
 } from "../business/usecases/Video/editVideoInformation";
 import {
   GetVideoInformationUC,
-  VideoInformationInput
+  // VideoInformationInput
 } from "../business/usecases/Video/getVideoInformationUC";
 import { GetUserUC, GetUserInput } from "../business/usecases/User/getUser";
 
@@ -137,17 +137,17 @@ export class ApiRouter {
         const resultEditVideo = await editVideo.execute(inputEditVideo);
         return resultEditVideo;
 
-      case "video/information":
-        const useCase = new GetVideoInformationUC(new VideoDataBase());
+      // case "video/information":
+      //   const useCase = new GetVideoInformationUC(new VideoDataBase());
 
-        const inputVideoInformation: VideoInformationInput = {
-          videoId: event.query.videoId
-        };
+      //   const inputVideoInformation: VideoInformationInput = {
+      //     videoId: event.headers.videoId
+      //   };
 
-        const resultVideoInformation = await useCase.execute(
-          inputVideoInformation
-        );
-        return resultVideoInformation;
+      //   const resultVideoInformation = await useCase.execute(
+      //     inputVideoInformation
+      //   );
+      //   return resultVideoInformation;
       case "user":
         const authServiceUser = new JwtAuthService();
         const token = authServiceUser.getUserIdFromToken(
