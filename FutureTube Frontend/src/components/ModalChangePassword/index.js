@@ -3,8 +3,10 @@ import Popup from "reactjs-popup";
 import style from "./style.module.css";
 import { changePassword } from "../../actions/auth";
 import { connect } from "react-redux";
+import closeIcon from "../../assets/fechar.svg";
+import verifyPassword from "../../assets/password.svg";
 
-const ModalPopup = (props) => {
+const ModalPopup = props => {
   const [password, setPassword] = useState({
     oldPassword: "",
     newPassword: ""
@@ -38,9 +40,15 @@ const ModalPopup = (props) => {
       trigger={<button className={style.button}> Mudar Senha </button>}
       modal
     >
-      <div className={style.modal}>
-        <div className={style.header}> Troque sua senha </div>
-        <div className="content">
+      {close => (
+        <div className={style.modal}>
+          <div>
+            <img src={closeIcon} className={style.close} onClick={close} />
+          </div>
+          <div className={style.header}> Troque sua senha </div>
+          <div className={style.svgWrapper}>
+            <img className={style.imageSvg} src={verifyPassword} />
+          </div>
           <form
             className={style.passwordForm}
             onSubmit={validatePassword}
@@ -62,13 +70,14 @@ const ModalPopup = (props) => {
               placeholder="Nova Senha"
               required
             />
+            <p className={style.success}>{props.successMessage}</p>
+            <p className={style.errorMessage}>{error}</p>
             <button type="submit" className={style.btnConfirm}>
               Confirmar
             </button>
           </form>
-          <p>{error}</p>
         </div>
-      </div>
+      )}
     </Popup>
   );
 };
@@ -76,8 +85,8 @@ const ModalPopup = (props) => {
 const mapStateToProps = state => {
   return {
     successMessage: state.auth.successMessage
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {

@@ -41,6 +41,14 @@
   object-fit: cover;
 }
 
+.close {
+  position: absolute;
+  right: 0;
+  width: 20px;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
 .descriptionUpload {
   margin: 0;
   color: #96a0aa;

@@ -22,7 +22,6 @@ const getDetailVideo = videos => ({
 export const getAllVideos = () => async dispatch => {
   const response = await axios.get(`${urlBase}/allVideos`);
   dispatch(getVideos(response.data.result.videos));
-  console.log(response.data.result)
 };
 
 export const getVideoDetail = videoId => async dispatch => {
@@ -31,8 +30,14 @@ export const getVideoDetail = videoId => async dispatch => {
   dispatch(getDetailVideo(response.data.result.videos));
 };
 
-export const getUserVideos = userId => async dispatch => {
-  const response = await axios.get(`${urlBase}/get`);
+export const getUserVideos = () => async dispatch => {
+  const token = window.localStorage.getItem('token')
+  const response = await axios.get(`${urlBase}/user/videos`, {
+    headers: {
+      auth: token
+    }
+  });
+  dispatch(getVideos(response.data.result.videos))
 };
 
 export const uploadVideo = (title, description, url) => async dispatch => {

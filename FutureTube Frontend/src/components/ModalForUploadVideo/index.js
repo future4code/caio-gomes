@@ -3,9 +3,10 @@ import Popup from "reactjs-popup";
 import style from "./style.module.css";
 import { connect } from "react-redux";
 import { uploadVideo } from "../../actions/videos";
-import gaming from "../../assets/gaming.svg"
-import videographer from "../../assets/videographer.svg"
-import influencer from "../../assets/influencer.svg"
+import gaming from "../../assets/gaming.svg";
+import videographer from "../../assets/videographer.svg";
+import influencer from "../../assets/influencer.svg";
+import closeIcon from "../../assets/fechar.svg";
 
 const ModalUploadVideo = props => {
   const [uploadVideo, setUploadVideo] = useState({
@@ -38,53 +39,60 @@ const ModalUploadVideo = props => {
       trigger={<button className={style.button}> Upload vídeo </button>}
       modal
     >
-      <div className={style.modal}>
-        <div className={style.header}>
-          <h3 className={style.titleUpload}>Faça o upload de um vídeo</h3>
-          <p className={style.descriptionUpload}>Compartilhe algo com o mundo</p>
+      {close => (
+        <div className={style.modal}>
+          <div>
+            <img src={closeIcon} className={style.close} onClick={close} />
+          </div>
+          <div className={style.header}>
+            <h3 className={style.titleUpload}>Faça o upload de um vídeo</h3>
+            <p className={style.descriptionUpload}>
+              Compartilhe algo com o mundo
+            </p>
+          </div>
+          <div className={style.svgWrapper}>
+            <img className={style.imageSvg} src={gaming} />
+            <img className={style.imageSvg} src={videographer} />
+            <img className={style.imageSvg} src={influencer} />
+          </div>
+          <div className={style.content}>
+            <form
+              className={style.passwordForm}
+              onSubmit={onSubmitUpload}
+              onChange={handleInput}
+            >
+              <input
+                className={style.textInput}
+                type="text"
+                name={"title"}
+                id="title"
+                placeholder="Titulo do video"
+                required
+              />
+              <input
+                className={style.textInput}
+                type="text"
+                name={"description"}
+                id="description"
+                placeholder="Descrição do video"
+                required
+              />
+              <input
+                className={style.textInput}
+                type="text"
+                name={"url"}
+                id="url"
+                placeholder="Url do video"
+                required
+              />
+              <button type="submit" className={style.btnConfirm}>
+                Upload
+              </button>
+            </form>
+            <p>{error}</p>
+          </div>
         </div>
-        <div className={style.svgWrapper}>
-          <img className={style.imageSvg} src={gaming}/>
-          <img className={style.imageSvg} src={videographer}/>
-          <img className={style.imageSvg} src={influencer}/>
-        </div>
-        <div className={style.content}>
-          <form
-            className={style.passwordForm}
-            onSubmit={onSubmitUpload}
-            onChange={handleInput}
-          >
-            <input
-              className={style.textInput}
-              type="text"
-              name={"title"}
-              id="title"
-              placeholder="Titulo do video"
-              required
-            />
-            <input
-              className={style.textInput}
-              type="text"
-              name={"description"}
-              id="description"
-              placeholder="Descrição do video"
-              required
-            />
-            <input
-              className={style.textInput}
-              type="text"
-              name={"url"}
-              id="url"
-              placeholder="Url do video"
-              required
-            />
-            <button type="submit" className={style.btnConfirm}>
-              Upload
-            </button>
-          </form>
-          <p>{error}</p>
-        </div>
-      </div>
+      )}
     </Popup>
   );
 };

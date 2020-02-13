@@ -13,8 +13,8 @@ const auth = (state = initialState, action) => {
     case "SET_SUCCESS_MESSAGE":
       return { ...state, successMessage: action.payload.message };
     case "SET_CURRENT_USER":
-      return {...state, selectedUser: action.payload.user};
-      default:
+      return { ...state, selectedUser: action.payload.user };
+    default:
       return state;
   }
 };

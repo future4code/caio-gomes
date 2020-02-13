@@ -73,6 +73,7 @@ export const login = (email, password) => async dispatch => {
 };
 
 export const changePassword = (oldPassword, newPassword) => async dispatch => {
+  dispatch(clearErrorMessageAction());
   const token = window.localStorage.getItem("token");
   const body = { oldPassword, newPassword };
   const response = await axios.post(`${urlBase}/changePassword`, body, {
