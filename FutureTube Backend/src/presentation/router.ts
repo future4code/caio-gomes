@@ -20,10 +20,14 @@ import {
   EditVideoInformationInput
 } from "../business/usecases/Video/editVideoInformation";
 import {
-  GetVideoInformationUC,
+  GetVideoInformationUC
   // VideoInformationInput
 } from "../business/usecases/Video/getVideoInformationUC";
 import { GetUserUC, GetUserInput } from "../business/usecases/User/getUser";
+import {
+  GetUserVideosUC,
+  GetUserVideosInput
+} from "../business/usecases/Video/getUserVideosUC";
 
 export class ApiRouter {
   public static getTokenFromHeaders = (headers: any): string => {
@@ -136,6 +140,19 @@ export class ApiRouter {
 
         const resultEditVideo = await editVideo.execute(inputEditVideo);
         return resultEditVideo;
+
+      case "user/videos":
+        const authServiceUserVideo = new JwtAuthService();
+        const userIdVideo = authServiceUserVideo.getUserIdFromToken(
+          this.getTokenFromHeaders(event.headers)
+        );
+        const useCase = new GetUserVideosUC(new VideoDataBase());
+        const inputUserVideo: GetUserVideosInput = {
+          userIdVideo
+        };
+
+        const resultUserVideo = await useCase.execute(inputUserVideo);
+        return resultUserVideo;
 
       // case "video/information":
       //   const useCase = new GetVideoInformationUC(new VideoDataBase());

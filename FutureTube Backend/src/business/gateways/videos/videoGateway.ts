@@ -9,7 +9,7 @@ export interface GetAllVideosGateway {
 }
 
 export interface GetUserVideosGateway {
-  getUserVideos(userId: string): Promise<Video[]>;
+  getUserVideos(userId: string): Promise<VideoResponse[]>;
 }
 
 export interface DeleteVideoGateway {
@@ -25,12 +25,12 @@ export interface EditVideoInformationGateway {
 }
 
 export interface GetVideoByIdGateway {
-  getVideoById(videoId: string): Promise<VideoResponse[]>
+  getVideoById(videoId: string): Promise<VideoResponse[]>;
 }
 
 export interface VideoResponse {
-  video: Video
-  firstName: string
-  lastName: string
-  photo: string
+  video: Video;
+  firstName: string;
+  lastName: string;
+  photo: string;
 }

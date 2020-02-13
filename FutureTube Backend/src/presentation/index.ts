@@ -1,7 +1,4 @@
-import {
-  GetVideoInformationUC,
- 
-} from "./../business/usecases/Video/getVideoInformationUC";
+import { GetVideoInformationUC } from "./../business/usecases/Video/getVideoInformationUC";
 import { EditVideoInformationInput } from "./../business/usecases/Video/editVideoInformation";
 import {
   DeleteVideoUC,
@@ -23,6 +20,10 @@ import { LoginUC } from "../business/usecases/User/login";
 import { ChangeUserPasswordUC } from "../business/usecases/User/changePassword";
 import { EditVideoInformationUC } from "../business/usecases/Video/editVideoInformation";
 import { GetUserUC, GetUserInput } from "../business/usecases/User/getUser";
+import {
+  GetUserVideosUC,
+  GetUserVideosInput
+} from "../business/usecases/Video/getUserVideosUC";
 
 const app = express();
 app.use(express.json()); // Linha mágica (middleware)
@@ -193,13 +194,36 @@ app.put("/edit/video", async (req: Request, res: Response) => {
 //   }
 // });
 
+app.get("/user/videos", async (req: Request, res: Response) => {
+  try {
+    const authService = new JwtAuthService();
+    const userIdVideo = authService.getUserIdFromToken(
+      getTokenFromHeaders(req.headers)
+    );
+
+
+    const useCase = new GetUserVideosUC(new VideoDataBase());
+    const input: GetUserVideosInput = {
+      userIdVideo
+    };
+
+    const result = await useCase.execute(input);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(400).send({
+      ...err,
+      errorMessage: err.message
+    });
+  }
+});
+
 app.get("/user", async (req: Request, res: Response) => {
   try {
     const authService = new JwtAuthService();
     const token = authService.getUserIdFromToken(
       getTokenFromHeaders(req.headers)
     );
-     
+
     const useCase = new GetUserUC(new UserDataBase());
     const input: GetUserInput = {
       token
