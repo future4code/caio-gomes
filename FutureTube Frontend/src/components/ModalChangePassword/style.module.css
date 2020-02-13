@@ -12,13 +12,20 @@
   font-size: 1.5rem;
 }
 
+.button {
+  border: none;
+  background-color: #2F2F2F;
+  color: #eae9eb;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .passwordForm {
   height: 20vh;
   width: 300px;
   display: flex;
   flex-direction: column;
-	justify-content: space-around;
-	
+  justify-content: space-around;
 }
 
 .textInput {

@@ -1,62 +1,94 @@
 .modal {
-    height: 30vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .header {
-    font-family: "Open-Sans", sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-  }
-  
-  .passwordForm {
-    height: 20vh;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-      justify-content: space-around;
-      
-  }
-  
-  .textInput {
-    border-radius: 4px;
-    border: 1px solid #96a0aa;
-    height: 3rem;
-    width: 100%;
-    padding: 0.625rem 1rem;
-    font-size: 14px;
-    box-shadow: 0 2px 2px 0 rgba(46, 60, 73, 0.05);
-    color: #2e3d49;
-    transition: all 0.3s ease;
-  }
-  
-  .textInput:focus {
-    border: 1px solid #6300d9;
-    box-shadow: none;
-    outline: none;
-  }
-  
-  .btnConfirm {
-    padding: 1.2em 4em;
-    background-color: #02b3e4;
-    width: 100%;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 12px 15px 20px rgba(0, 0, 0, 0.1);
-    color: #fff;
-    cursor: pointer;
-    font-family: Open Sans, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.165em;
-    text-transform: uppercase;
-    transition: 0.5s;
-  }
-  
-  .btnConfirm:hover {
-    background-color: #027be4;
-  }
-  
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button {
+  border: none;
+  background-color: #2f2f2f;
+  color: #eae9eb;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.header {
+  font-family: "Open-Sans", sans-serif;
+  font-size: 1.5rem;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.titleUpload {
+  margin: 0;
+  font-weight: 300;
+  color: #6300d9;
+}
+
+.svgWrapper {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.imageSvg {
+  width: 200px;
+  object-fit: cover;
+}
+
+.descriptionUpload {
+  margin: 0;
+  color: #96a0aa;
+}
+
+.passwordForm {
+  height: 30vh;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.textInput {
+  border-radius: 4px;
+  border: 1px solid #96a0aa;
+  height: 3rem;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  font-size: 14px;
+  box-shadow: 0 2px 2px 0 rgba(46, 60, 73, 0.05);
+  color: #2e3d49;
+  transition: all 0.3s ease;
+}
+
+.textInput:focus {
+  border: 1px solid #6300d9;
+  box-shadow: none;
+  outline: none;
+}
+
+.btnConfirm {
+  padding: 1.2em 4em;
+  background-color: #02b3e4;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 12px 15px 20px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.165em;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.btnConfirm:hover {
+  background-color: #027be4;
+}

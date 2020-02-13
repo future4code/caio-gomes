@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import style from "./style.module.css";
-import { changePassword } from "../../actions/auth";
 import { connect } from "react-redux";
 import { uploadVideo } from "../../actions/videos";
+import gaming from "../../assets/gaming.svg"
+import videographer from "../../assets/videographer.svg"
+import influencer from "../../assets/influencer.svg"
 
 const ModalUploadVideo = props => {
   const [uploadVideo, setUploadVideo] = useState({
@@ -33,12 +35,20 @@ const ModalUploadVideo = props => {
 
   return (
     <Popup
-      trigger={<button className={style.button}> Upload Video </button>}
+      trigger={<button className={style.button}> Upload vídeo </button>}
       modal
     >
       <div className={style.modal}>
-        <div className={style.header}> Upload Video </div>
-        <div className="content">
+        <div className={style.header}>
+          <h3 className={style.titleUpload}>Faça o upload de um vídeo</h3>
+          <p className={style.descriptionUpload}>Compartilhe algo com o mundo</p>
+        </div>
+        <div className={style.svgWrapper}>
+          <img className={style.imageSvg} src={gaming}/>
+          <img className={style.imageSvg} src={videographer}/>
+          <img className={style.imageSvg} src={influencer}/>
+        </div>
+        <div className={style.content}>
           <form
             className={style.passwordForm}
             onSubmit={onSubmitUpload}

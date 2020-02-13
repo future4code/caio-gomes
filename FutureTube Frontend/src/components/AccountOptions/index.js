@@ -20,8 +20,8 @@ const AccountOptions = ({ goToLogin, goToHome }) => {
 
   return (
     <div className={style.container}>
-      <p onClick={getAllVideos} className={style.title}>Ver todos os videos</p>
-      <p className={style.title}>Meus videos</p>
+      <p onClick={getAllVideos} className={style.title}>Ver todos os vídeos</p>
+      <p className={style.title}>Meus vídeos</p>
       <ModalForUploadVideo/>
       <ModalPopup />
       <p className={style.title} onClick={logout}>

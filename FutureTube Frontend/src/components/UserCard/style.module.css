@@ -1,6 +1,6 @@
 .container {
-  border-bottom: 1px solid rgb(179, 177, 177);
-  height: 20%;
+  background-color: #6339b0;
+  height: 15%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,15 +14,18 @@
 }
 
 .userName {
-  font-size: 20px;
+  font-size: 1.5rem;
   margin: 0;
+  color: aliceblue;
+  font-weight: 800;
   font-family: "Roboto", sans-serif;
+  padding: 5px;
 }
 
 .nameWrapper {
-  margin-top: 10px;
+  flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
