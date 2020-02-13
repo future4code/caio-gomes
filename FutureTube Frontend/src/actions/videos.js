@@ -22,6 +22,7 @@ const getDetailVideo = videos => ({
 export const getAllVideos = () => async dispatch => {
   const response = await axios.get(`${urlBase}/allVideos`);
   dispatch(getVideos(response.data.result.videos));
+  console.log(response.data.result)
 };
 
 export const getVideoDetail = videoId => async dispatch => {

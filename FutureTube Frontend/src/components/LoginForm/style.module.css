@@ -94,6 +94,10 @@
   width: 100%;
 }
 
+.messageError {
+  color: red;
+}
+
 .formBox {
   width: 100%;
   display: flex;

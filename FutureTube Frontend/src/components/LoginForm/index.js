@@ -54,7 +54,7 @@ const FormLogin = ({ currentError, onSubmitLogin }) => {
               required
             />
           </div>
-          <span>{currentError}</span>
+          <span className={style.messageError}>{currentError}</span>
         </div>
 
         <button onKeyPress={keyPressed} type="submit" className={style.sendBtn}>

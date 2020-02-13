@@ -19,7 +19,7 @@ const FormSignup = ({ onSignup }) => {
     const {
       target: { value, name }
     } = event;
-    
+
     setUser({
       ...user,
       [name]: value
@@ -28,10 +28,10 @@ const FormSignup = ({ onSignup }) => {
 
   const keyPressed = e => {
     if (e.key === "Enter") {
-      validatePassword()
+      validatePassword();
     }
-  }
-  
+  };
+
   const validatePassword = event => {
     event.preventDefault();
     const { password, confirmPassword } = user;
@@ -105,17 +105,24 @@ const FormSignup = ({ onSignup }) => {
               required
             />
           </div>
-          <input type="date" name={"birthday"} required />
+          <label id="birthday">Data de nascimento</label>
+          <input
+            id="birthday"
+            className={style.dataInput}
+            type="date"
+            name={"birthday"}
+            value="2000-01-01"
+            required
+          />
 
-          {/* <input
-            className={style.textInput}
-            type="file"
+          <input
+            className={`${style.textInput} ${style.urlPhoto}`}
+            type="text"
             accept="file_extension|image/*|media_type"
             name={"photo"}
             required
-            placeholder="Confirmar Senha"
-          /> */}
-          <DropzonePhoto/>
+            placeholder="Url da sua foto"
+          />
         </div>
         <span>{error}</span>
         <button type="submit" onKeyPress={keyPressed} className={style.sendBtn}>

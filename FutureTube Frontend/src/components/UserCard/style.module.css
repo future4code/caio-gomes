@@ -1,28 +1,28 @@
 .container {
-	border-bottom: 1px solid rgb(179, 177, 177);
+  border-bottom: 1px solid rgb(179, 177, 177);
   height: 20%;
   display: flex;
-	flex-direction: column;
-	align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .userPhoto {
-	margin-top: 10px;
- 	width: 100px;
-  height: 100px;
+  margin-top: 10px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 
 .userName {
-	font-size: 20px;
-	margin: 0;
+  font-size: 20px;
+  margin: 0;
   font-family: "Roboto", sans-serif;
 }
 
 .nameWrapper {
-	margin-top: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }

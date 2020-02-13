@@ -11,9 +11,6 @@ const UserAccount = ({ loginError, onSubmitLogin, onSignup }) => {
     <div className={style.container}>
       <div className={style.wrapperLogo}>
         <img src={logo} className={style.logo} />
-        <p className={style.title}>
-          Future <span className={style.titleColor}>TUBE</span>
-        </p>
       </div>
       <p className={style.makeYear}>@2020</p>
       <div className={style.containerLogin}>
@@ -28,7 +25,7 @@ const UserAccount = ({ loginError, onSubmitLogin, onSignup }) => {
         {account ? (
           <FormLogin onSubmitLogin={onSubmitLogin} loginError={loginError} />
         ) : (
-          <FormSignup  onSignup={onSignup}/>
+          <FormSignup onSignup={onSignup} />
         )}
       </div>
     </div>
