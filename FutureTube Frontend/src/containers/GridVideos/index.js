@@ -21,6 +21,9 @@ const GridVideos = props => {
                 url={video.url}
                 title={video.title}
                 description={video.description}
+                photo={video.photo}
+                firstName={video.firstName}
+                lastName={video.lastName}
               />
             );
           })}
