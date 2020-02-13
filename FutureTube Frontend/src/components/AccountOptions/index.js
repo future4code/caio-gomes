@@ -6,6 +6,7 @@ import ModalPopup from "../ModalChangePassword";
 import { push } from "connected-react-router";
 import { routes } from "../../containers/Router";
 import ModalForUploadVideo from "../ModalForUploadVideo";
+import logoutSvg from "../../assets/logout.svg"
 
 const AccountOptions = ({ goToLogin, getAllVideos, getUserVideos }) => {
   const logout = () => {
@@ -23,9 +24,12 @@ const AccountOptions = ({ goToLogin, getAllVideos, getUserVideos }) => {
       </p>
       <ModalForUploadVideo />
       <ModalPopup />
-      <p className={style.title} onClick={logout}>
-        Logout
-      </p>
+      <div className={style.logoutWrapper} onClick={logout}>
+        <p className={style.title}>
+          Logout
+        </p>
+        <img className={style.svgLogout} src={logoutSvg} />
+      </div>
     </div>
   );
 };

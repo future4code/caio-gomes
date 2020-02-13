@@ -1,16 +1,30 @@
 .container {
-    margin-top: 20px;
-    display: flex;
-    height: 40%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  margin-top: 20px;
+  display: flex;
+  height: 40%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .title {
-    font-family: "Open-Sans", sans-serif;
-    cursor: pointer;
-    margin: 0;
-    font-size: 1.5rem;
-    color: #eae9eb;
+  font-family: "Open-Sans", sans-serif;
+  cursor: pointer;
+  margin: 0;
+  font-size: 1.5rem;
+  color: #eae9eb;
+}
+
+.logoutWrapper {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+	bottom: 10px;
+	padding: 5px;
+  cursor: pointer;
+}
+
+.svgLogout {
+	margin-left: 10px;
+  width: 25px;
 }
