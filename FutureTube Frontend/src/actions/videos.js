@@ -56,3 +56,17 @@ export const uploadVideo = (title, description, url) => async dispatch => {
     console.log(response.statusText);
   }
 };
+
+export const editVideoInformation = (title, description, videoId) => async () => {
+  const token = window.localStorage.getItem("token");
+  const editVideo = {
+    videoId,
+    title,
+    description
+  };
+  const response = await axios.put(`${urlBase}/edit/video`, editVideo, {
+    headers: {
+      auth: token
+    }
+  })
+}

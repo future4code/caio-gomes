@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
-import Dropzone from "../Dropzone";
-import DropzonePhoto from "../Dropzone";
 
 const FormSignup = ({ onSignup }) => {
   const [user, setUser] = useState({
