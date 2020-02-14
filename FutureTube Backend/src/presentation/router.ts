@@ -123,7 +123,7 @@ export class ApiRouter {
         const deleteVideo = new DeleteVideoUC(new VideoDataBase());
 
         const inputDeleteVideo: DeleteVideoInput = {
-          videoId: event.body.videoId
+          videoId: event.headers.videoId
         };
 
         const resultDeleteVideo = await deleteVideo.execute(inputDeleteVideo);
@@ -133,7 +133,7 @@ export class ApiRouter {
         const editVideo = new EditVideoInformationUC(new VideoDataBase());
 
         const inputEditVideo: EditVideoInformationInput = {
-          videoId: event.body.videoId,
+          videoId: event.headers.videoId,
           newTitle: event.body.newTitle,
           newDescription: event.body.newDescription
         };
@@ -154,17 +154,6 @@ export class ApiRouter {
         const resultUserVideo = await useCase.execute(inputUserVideo);
         return resultUserVideo;
 
-      // case "video/information":
-      //   const useCase = new GetVideoInformationUC(new VideoDataBase());
-
-      //   const inputVideoInformation: VideoInformationInput = {
-      //     videoId: event.headers.videoId
-      //   };
-
-      //   const resultVideoInformation = await useCase.execute(
-      //     inputVideoInformation
-      //   );
-      //   return resultVideoInformation;
       case "user":
         const authServiceUser = new JwtAuthService();
         const token = authServiceUser.getUserIdFromToken(

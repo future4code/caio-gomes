@@ -163,7 +163,7 @@ app.put("/edit/video", async (req: Request, res: Response) => {
     const editVideo = new EditVideoInformationUC(new VideoDataBase());
 
     const input: EditVideoInformationInput = {
-      videoId: req.body.videoId,
+      videoId: req.query.videoId,
       newTitle: req.body.newTitle,
       newDescription: req.body.newDescription
     };
@@ -176,23 +176,6 @@ app.put("/edit/video", async (req: Request, res: Response) => {
     });
   }
 });
-
-// app.get("/video/information", async (req: Request, res: Response) => {
-//   try {
-//     const useCase = new GetVideoInformationUC(new VideoDataBase());
-
-//     const input: VideoInformationInput = {
-//       videoId: req.query.videoId
-//     };
-
-//     const result = await useCase.execute(input);
-//     res.status(200).send(result);
-//   } catch (err) {
-//     res.status(400).send({
-//       errorMessage: err.message
-//     });
-//   }
-// });
 
 app.get("/user/videos", async (req: Request, res: Response) => {
   try {
