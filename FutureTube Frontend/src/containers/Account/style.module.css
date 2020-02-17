@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+}
+
+.logo {
+  width: 500px;
+  align-self: center;
+}
+
+.containerLogin {
+  background-color: #6300d9;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapperLogo {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.titleColor {
+  color: #6300d9;
+}
+
+.makeYear {
+  position: absolute;
+  font-weight: 600;
+  bottom: 0;
+  margin: 0;
+}
+
+.btnLoginWrapper {
+  width: 80%;
+  display: flex;
+  margin-bottom: 0;
+}
+
+.btnForm {
+  width: 50%;
+  border: none;
+  background: #f7f7f7;
+  border-bottom: 1px solid #dbe2e8;
+  font-weight: 600;
+  color: #7d97ad;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btnForm:focus {
+  outline: none;
+  border-bottom: 1px solid #6300d9;
+}
